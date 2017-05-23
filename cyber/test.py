@@ -26,7 +26,7 @@ num = 0
 while num < 10:
 	res = sock.recv(100)
 	if (res == 'ready') :
-		p = subprocess.Popen(["sudo","strace", "-f", "-s", "10000", "-o", "output" + str(num) + ".txt", "-p", str(pid)], stdout = subprocess.PIPE)
+		p = subprocess.Popen(["sudo","strace", "-f", "-t", "-s", "10000", "-o", "output" + str(num) + ".txt", "-p", str(pid)], stdout = subprocess.PIPE)
 		pidOfStrace = p.pid
 		print "the pid of strace is " + str(pidOfStrace)
 		sock.sendall('start')

