@@ -53,11 +53,6 @@ def create_data(d_sysc2index, data_type):
     return new_data
 
 
-def zeros_array(size):
-    arrr = []
-    for i in range(size):
-        arrr.append(0)
-    return arrr
 
 
 def save_data(folder_name, my_data):
