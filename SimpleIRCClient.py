@@ -12,7 +12,7 @@ irc.send("NICK " + botnick + "\n")
 channel = '#testit'
 irc.send("JOIN " + channel + "\n")  # join the chan
 
-for i in range(5):
+while True:
   
   time.sleep(4)
   irc.send("PRIVMSG  " + channel + " Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii" + "\n")  # join the chan

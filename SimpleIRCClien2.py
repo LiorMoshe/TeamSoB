@@ -11,7 +11,7 @@ irc.send("NICK " + botnick + "\n")
 channel = '#testit'
 irc.send("JOIN " + channel + "\n")  # join the chan
 
-for i in range(5):
+while True:
   text = irc.recv(200)   # join the chan
   print text
   text = irc.recv(200)   # join the chan
