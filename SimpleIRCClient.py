@@ -1,5 +1,6 @@
 import socket
 import time
+import random
 
 server_ip = 'localhost'
 server_port = 6667
@@ -10,32 +11,17 @@ irc.send("USER " + botnick + " 127.0.0.1 " + botnick + " :This is a fun bot!\n")
 irc.send("NICK " + botnick + "\n")
 channel = '#testit'
 irc.send("JOIN " + channel + "\n")  # join the chan
-time.sleep(3)
-irc.send("PRIVMSG  " + channel + " Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii" + "\n")  # join the chan
-time.sleep(3)
-irc.send("PRIVMSG  " + channel + " BLABLALBLALBLALBLALBLALBLALBLALABLLALBLA" + "\n")  # join the chan
-time.sleep(3)
-irc.send("PRIVMSG  " + channel + " ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n")  # join the chan
-time.sleep(3)
-irc.send("PRIVMSG  " + channel + " ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n")  # join the chan
 
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-text = irc.recv(200)   # join the chan
-print text
-time.sleep(1000)
+for i in range(5):
+  
+  time.sleep(4)
+  irc.send("PRIVMSG  " + channel + " Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii" + "\n")  # join the chan
+  #time.sleep(3)
+  irc.send("PRIVMSG  " + channel + " BLABLALBLALBLALBLALBLALBLALBLALABLLALBLA" + "\n")  # join the chan
+  #time.sleep(3)
+  irc.send("PRIVMSG  " + channel + " ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n")  # join the chan
+  #time.sleep(3)
+  irc.send("PRIVMSG  " + channel + " ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ" + "\n")  # join the chan
+  time.sleep(random.random() * 4)
+
 
