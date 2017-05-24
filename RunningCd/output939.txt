@@ -1,0 +1,439 @@
+4519  16:50:37.986736 select(1024, [2 3 4 6 9], [], NULL, {0, 990000}) = 1 (in [2], left {0, 870000})
+4519  16:50:38.108395 clock_gettime(CLOCK_MONOTONIC, {35847, 925416525}) = 0
+4519  16:50:38.108417 accept(2, 0, NULL) = 5
+4519  16:50:38.108453 getpeername(5, {sa_family=AF_INET, sin_port=htons(37123), sin_addr=inet_addr("10.0.2.4")}, [16]) = 0
+4519  16:50:38.108547 fcntl64(5, F_GETFL) = 0x2 (flags O_RDWR)
+4519  16:50:38.108562 fcntl64(5, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+4519  16:50:38.108575 setsockopt(5, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+4519  16:50:38.108604 setsockopt(5, SOL_SOCKET, SO_RCVBUF, [8192], 4) = 0
+4519  16:50:38.108615 setsockopt(5, SOL_SOCKET, SO_SNDBUF, [8192], 4) = 0
+4519  16:50:38.108627 getsockopt(5, SOL_IP, IP_OPTIONS, "", [0]) = 0
+4519  16:50:38.108642 setsockopt(5, SOL_IP, IP_OPTIONS, NULL, 0) = 0
+4519  16:50:38.108666 clock_gettime(CLOCK_MONOTONIC, {35847, 925679913}) = 0
+4519  16:50:38.108678 socket(PF_INET, SOCK_DGRAM, IPPROTO_IP) = 7
+4519  16:50:38.108691 fcntl64(7, F_GETFL) = 0x2 (flags O_RDWR)
+4519  16:50:38.108700 fcntl64(7, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+4519  16:50:38.108710 fcntl64(7, F_SETFD, FD_CLOEXEC) = 0
+4519  16:50:38.108720 connect(7, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("132.70.60.124")}, 16) = 0
+4519  16:50:38.108737 send(7, "48\1\0\0\1\0\0\0\0\0\0\0014\0012\0010\00210\7in-addr\4arpa\0\0\f\0\1", 39, MSG_NOSIGNAL) = 39
+4519  16:50:38.108792 accept(2, 0, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+4519  16:50:38.108814 gettimeofday({1495659038, 108819}, NULL) = 0
+4519  16:50:38.108827 select(1024, [2 3 4 6 7 9], [], NULL, {1, 0}) = 1 (in [7], left {0, 740000})
+4519  16:50:38.366192 clock_gettime(CLOCK_MONOTONIC, {35848, 183344175}) = 0
+4519  16:50:38.366475 recvfrom(7, "48\201\203\0\1\0\0\0\1\0\0\0014\0012\0010\00210\7in-addr\4arpa\0\0\f\0\1\300\22\0\6\0\1\0\0\0L\0A\10prisoner\4iana\3org\0\nhostmaster\froot-servers\300AwsD\225\0\0\7\10\0\0\3\204\0\t:\200\0\t:\200", 513, 0, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("132.70.60.124")}, [16]) = 116
+4519  16:50:38.366595 close(7)          = 0
+4519  16:50:38.366647 recvfrom(-1, 0xbfbaddf7, 513, 0, 0xbfbadff8, 0xbfbaddf0) = -1 EBADF (Bad file descriptor)
+4519  16:50:38.366680 send(5, ":irc.Metasploitable.LAN NOTICE AUTH :*** Looking up your hostname...\r\n:irc.Metasploitable.LAN NOTICE AUTH :*** Couldn\'t resolve your hostname; using your IP address instead\r\n", 174, 0) = 174
+4519  16:50:38.366751 time(NULL)        = 1495659038
+4519  16:50:38.366768 time(NULL)        = 1495659038
+4519  16:50:38.366802 gettimeofday({1495659038, 366824}, NULL) = 0
+4519  16:50:38.366832 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  16:50:38.366861 clock_gettime(CLOCK_MONOTONIC, {35848, 183874258}) = 0
+4519  16:50:38.366871 gettimeofday({1495659038, 366875}, NULL) = 0
+4519  16:50:38.366882 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [5], left {1, 0})
+4519  16:50:38.367517 clock_gettime(CLOCK_MONOTONIC, {35848, 184532676}) = 0
+4519  16:50:38.367550 recv(5, "AB;cd .\n", 8192, 0) = 8
+4519  16:50:38.367564 rt_sigaction(SIGINT, {SIG_IGN}, {0x8062280, [HUP INT], 0}, 8) = 0
+4519  16:50:38.367661 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+4519  16:50:38.367693 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+4519  16:50:38.367708 clone(child_stack=0, flags=CLONE_PARENT_SETTID|SIGCHLD, parent_tidptr=0xbfbae034) = 6156
+6156  16:50:38.367813 rt_sigaction(SIGINT, {0x8062280, [HUP INT], 0}, NULL, 8) = 0
+6156  16:50:38.367828 rt_sigaction(SIGQUIT, {SIG_IGN}, NULL, 8) = 0
+6156  16:50:38.367838 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+6156  16:50:38.367852 execve("/bin/sh", ["sh", "-c", "AB;cd .\n #testit0 ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ\n"], [/* 14 vars */]) = 0
+6156  16:50:38.367947 brk(0)            = 0x80f9000
+6156  16:50:38.367968 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.367986 mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fbf000
+6156  16:50:38.368002 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.368028 open("/etc/ld.so.cache", O_RDONLY) = 1
+6156  16:50:38.368041 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+6156  16:50:38.368060 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7fb7000
+6156  16:50:38.368082 close(1)          = 0
+6156  16:50:38.368123 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.368156 open("/lib/libncurses.so.5", O_RDONLY) = 1
+6156  16:50:38.368170 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\200\220\0\0004\0\0\0h\344\2\0\0\0\0\0004\0 \0\4\0(\0\32\0\31\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\305\2\0T\305\2\0\5\0\0\0\0\20\0\0\1\0\0\0T\305\2\0T\325\2\0T\325\2\0004\36\0\0 \"\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\335\2\0\34\355\2\0\34\355\2\0\330\0\0\0\330\0\0\0\6\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0\t\2\0\0&\2\0\0z\1\0\0L\0\0\0\0\0\0\0\0\0\0\0\25\0\0\0\333\1\0\0\0\0\0\0\0\0\0\0\t\2\0\0\20\2\0\0E\1\0\0\0\0\0\0\0\0\0\0T\0\0\0\367\1\0\0\0\0\0\0\0\0\0\0\306\1\0\0L\1\0\0\203\0\0\0\236\1\0\0\0\0\0\0\0\0\0\0\320\0\0\0005\0\0\0\233\1\0\0\375\0\0\0\265\0\0\0\0\0\0\0\267\0\0\0\0\0\0\0\246\1\0\0\33\1\0\0\300\1\0\0\356\0\0\0\223\0\0\0@\1\0\0\365\1\0\0\23\2\0\0O\0\0\0\303\1\0\0\0\0\0\0\0\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\225\0\0\0|\0\0\0\0\0\0\0x\0\0\0\364\1\0\0\0\0\0\0\21\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0^\1\0\0\0\0\0\0\22\2\0\0\0\0\0\0\371\0\0\0\33\0\0\0f\0\0\0\37\1\0\0\222\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\354\0\0\0\261\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\36\2\0\0\0\0\0\0\5\0\0\0\364\0\0\0\0\0\0\0R\0\0\0", 512) = 512
+6156  16:50:38.368280 fstat64(1, {st_mode=S_IFREG|0644, st_size=190584, ...}) = 0
+6156  16:50:38.368298 mmap2(NULL, 194420, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7f87000
+6156  16:50:38.368310 mmap2(0xb7fb4000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x2c) = 0xb7fb4000
+6156  16:50:38.368327 close(1)          = 0
+6156  16:50:38.368339 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.368353 open("/lib/tls/i686/cmov/libdl.so.2", O_RDONLY) = 1
+6156  16:50:38.368367 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\n\0\0004\0\0\0L!\0\0\0\0\0\0004\0 \0\10\0(\0\35\0\34\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0003\33\0\0003\33\0\0003\33\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\34\0\0\374\34\0\0\5\0\0\0\0\20\0\0\1\0\0\0\264\36\0\0\264.\0\0\264.\0\0\230\1\0\0\310\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\320\36\0\0\320.\0\0\320.\0\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\264\36\0\0\264.\0\0\264.\0\0@\1\0\0@\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\26\0\0\0\31\0\0\0\4\0\0\0\7\0\0\0\230\0\21\0\0B\0\0\202\0`\10\223(\10\336\31\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\32\0\0\0\0\0\0\0\33\0\0\0\34\0\0\0\0\0\0\0\36\0\0\0\0\0\0\0\0\0\0\0\37\0\0\0!\0\0\0\"\0\0\0\0\0\0\0\0\0\0\0#\0\0\0%\0\0\0&\0\0\0\0\0\0\0(\0\0\0\221!\374\370\225\263_\31\5\350\7\371\6\2\4\371\7\2\4\371\301S\200\30\256\304M\17a\242\222\6\325=l\366\327=l\366\370\31sB\353\26\251\30\373\31sB", 512) = 512
+6156  16:50:38.368455 fstat64(1, {st_mode=S_IFREG|0644, st_size=9684, ...}) = 0
+6156  16:50:38.368471 mmap2(NULL, 12412, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7f83000
+6156  16:50:38.368483 mmap2(0xb7f85000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x1) = 0xb7f85000
+6156  16:50:38.368498 close(1)          = 0
+6156  16:50:38.368509 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.368522 open("/lib/tls/i686/cmov/libc.so.6", O_RDONLY) = 1
+6156  16:50:38.368536 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260e\1\0004\0\0\0\4\307\24\0\0\0\0\0004\0 \0\n\0(\0D\0C\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0@\1\0\0@\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\2200\23\0\2200\23\0\2200\23\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\215\24\0(\215\24\0\5\0\0\0\0\20\0\0\1\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\260\'\0\0\204T\0\0\6\0\0\0\0\20\0\0\2\0\0\0\234\255\24\0\234\255\24\0\234\255\24\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0t\1\0\0t\1\0\0t\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0\7\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\10\0\0\0,\0\0\0\4\0\0\0\4\0\0\0P\345td\2440\23\0\2440\23\0\2440\23\0\354+\0\0\354+\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\354\221\24\0\354\221\24\0\354\221\24\0\10\36\0\0\10\36\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\363\3\0\0\n\0\0\0\0\2\0\0\16\0\0\0\2400\20D\200 \2\1\214\3\346\220AE\210\0\204\0\10\0A\200\0@\300\200\0\f\2\f\0\0010\0\10@\"\10\246\4\210H6l\240\0260\0&\204\200\216\4\10B$\2\f\246\244\32\6c\310\0\302 \1\300\0R\0!\201\10\4\n  \250\24\0\24(`\0\0P\240\312DB", 512) = 512
+6156  16:50:38.368688 fstat64(1, {st_mode=S_IFREG|0755, st_size=1364388, ...}) = 0
+6156  16:50:38.368707 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f82000
+6156  16:50:38.368722 mmap2(NULL, 1369712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7e33000
+6156  16:50:38.368733 mmap2(0xb7f7c000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x149) = 0xb7f7c000
+6156  16:50:38.368764 mmap2(0xb7f7f000, 9840, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7f7f000
+6156  16:50:38.368778 close(1)          = 0
+6156  16:50:38.368800 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7e32000
+6156  16:50:38.368811 set_thread_area({entry_number:-1 -> 6, base_addr:0xb7e326b0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+6156  16:50:38.368866 mprotect(0xb7f7c000, 4096, PROT_READ) = 0
+6156  16:50:38.368901 munmap(0xb7fb7000, 29913) = 0
+6156  16:50:38.368926 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+6156  16:50:38.368941 open("/dev/tty", O_RDWR|O_NONBLOCK|O_LARGEFILE) = -1 ENXIO (No such device or address)
+6156  16:50:38.368965 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbf9db440) = -1 ENOTTY (Inappropriate ioctl for device)
+6156  16:50:38.368995 brk(0)            = 0x80f9000
+6156  16:50:38.369004 brk(0x80fa000)    = 0x80fa000
+6156  16:50:38.369016 brk(0x80fb000)    = 0x80fb000
+6156  16:50:38.369032 getuid32()        = 0
+6156  16:50:38.369041 getgid32()        = 0
+6156  16:50:38.369050 geteuid32()       = 0
+6156  16:50:38.369058 getegid32()       = 0
+6156  16:50:38.369083 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+6156  16:50:38.369125 time(NULL)        = 1495659038
+6156  16:50:38.369138 brk(0x80fc000)    = 0x80fc000
+6156  16:50:38.369170 brk(0x80fd000)    = 0x80fd000
+6156  16:50:38.369189 open("/proc/meminfo", O_RDONLY) = 1
+6156  16:50:38.369210 fstat64(1, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+6156  16:50:38.369228 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fbe000
+6156  16:50:38.369239 read(1, "MemTotal:      1035240 kB\nMemFree:        342296 kB\nBuffers:        128396 kB\nCached:         386244 kB\nSwapCached:          0 kB\nActive:         340708 kB\nInactive:       303296 kB\nHighTotal:      131008 kB\nHighFree:          240 kB\nLowTotal:       904232 kB\nLowFree:        342056 kB\nSwapTotal:           0 kB\nSwapFree:            0 kB\nDirty:             628 kB\nWriteback:           0 kB\nAnonPages:      129352 kB\nMapped:          52016 kB\nSlab:            28852 kB\nSReclaimable:    18596 kB\nSUnreclaim:      10256 kB\nPageTables:       1956 kB\nNFS_Unstable:        0 kB\nBounce:              0 kB\nCommitLimit:    517620 kB\nCommitted_AS:   635720 kB\nVmallocTotal:   118776 kB\nVmallocUsed:      3420 kB\nVmallocChunk:   114760 kB\nHugePages_Total:     0\nHugePages_Free:      0\nHugePages_Rsvd:      0\nHugePages_Surp:      0\nHugepagesize:     2048 kB\n", 1024) = 846
+6156  16:50:38.369321 close(1)          = 0
+6156  16:50:38.369332 munmap(0xb7fbe000, 4096) = 0
+6156  16:50:38.369344 brk(0x80fe000)    = 0x80fe000
+6156  16:50:38.369373 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6156  16:50:38.369386 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6156  16:50:38.369398 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6156  16:50:38.369410 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6156  16:50:38.369422 rt_sigaction(SIGQUIT, {SIG_DFL}, {SIG_IGN}, 8) = 0
+6156  16:50:38.369434 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+6156  16:50:38.369447 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+6156  16:50:38.369459 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+6156  16:50:38.369472 uname({sys="Linux", node="metasploitable", ...}) = 0
+6156  16:50:38.369518 stat64("/", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+6156  16:50:38.369536 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+6156  16:50:38.369554 brk(0x8100000)    = 0x8100000
+6156  16:50:38.369577 getcwd("/etc/unreal", 4096) = 12
+6156  16:50:38.369623 getpid()          = 6156
+6156  16:50:38.369694 getppid()         = 4519
+6156  16:50:38.369750 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+6156  16:50:38.369770 stat64("/sbin/sh", 0xbf9db418) = -1 ENOENT (No such file or directory)
+6156  16:50:38.369783 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+6156  16:50:38.369817 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+6156  16:50:38.369840 socket(PF_FILE, SOCK_STREAM, 0) = 1
+6156  16:50:38.369892 fcntl64(1, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+6156  16:50:38.369925 connect(1, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+6156  16:50:38.369987 close(1)          = 0
+6156  16:50:38.370019 socket(PF_FILE, SOCK_STREAM, 0) = 1
+6156  16:50:38.370047 fcntl64(1, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+6156  16:50:38.370136 connect(1, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+6156  16:50:38.370195 close(1)          = 0
+6156  16:50:38.370249 open("/etc/nsswitch.conf", O_RDONLY) = 1
+6156  16:50:38.370303 fstat64(1, {st_mode=S_IFREG|0644, st_size=475, ...}) = 0
+6156  16:50:38.370341 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fbe000
+6156  16:50:38.370369 read(1, "# /etc/nsswitch.conf\n#\n# Example configuration of GNU Name Service Switch functionality.\n# If you have the `glibc-doc-reference\' and `info\' packages installed, try:\n# `info libc \"Name Service Switch\"\' for information about this file.\n\npasswd:         compat\ngroup:          compat\nshadow:         compat\n\nhosts:          files dns\nnetworks:       files\n\nprotocols:      db files\nservices:       db files\nethers:         db files\nrpc:            db files\n\nnetgroup:       nis\n", 4096) = 475
+6156  16:50:38.370440 read(1, "", 4096) = 0
+6156  16:50:38.370450 close(1)          = 0
+6156  16:50:38.370459 munmap(0xb7fbe000, 4096) = 0
+6156  16:50:38.370476 open("/etc/ld.so.cache", O_RDONLY) = 1
+6156  16:50:38.370489 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+6156  16:50:38.370506 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7fb7000
+6156  16:50:38.370516 close(1)          = 0
+6156  16:50:38.370527 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.370542 open("/lib/tls/i686/cmov/libnss_compat.so.2", O_RDONLY) = 1
+6156  16:50:38.370568 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@\16\0\0004\0\0\0\204r\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0001a\0\0001a\0\0001a\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\274c\0\0\274c\0\0\5\0\0\0\0\20\0\0\1\0\0\0\340n\0\0\340~\0\0\340~\0\0\250\2\0\0h\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\364n\0\0\364~\0\0\364~\0\0\350\0\0\0\350\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\340n\0\0\340~\0\0\340~\0\0\24\1\0\0\24\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\32\0\0\0&\0\0\0\4\0\0\0\7\0\0\0Q\0\200\2@\t\21\r\0\4\33\200\21H\262\201&\0\0\0\'\0\0\0(\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0)\0\0\0*\0\0\0+\0\0\0\0\0\0\0-\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0\0\0\0\0\0\0\0\0002\0\0\0\0\0\0\0003\0\0\0004\0\0\0\0\0\0\0005\0\0\0\207[\246\22\365\33=\274\365\365K\23\0012\310%;]^\2674\10\301\346\357\37>\346\312\271\330\2749\303M%", 512) = 512
+6156  16:50:38.370714 fstat64(1, {st_mode=S_IFREG|0644, st_size=30436, ...}) = 0
+6156  16:50:38.370732 mmap2(NULL, 33352, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7e29000
+6156  16:50:38.370745 mmap2(0xb7e30000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x6) = 0xb7e30000
+6156  16:50:38.370762 close(1)          = 0
+6156  16:50:38.370774 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.370788 open("/lib/tls/i686/cmov/libnsl.so.1", O_RDONLY) = 1
+6156  16:50:38.370803 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\00001\0\0004\0\0\0\234B\1\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\340,\1\0\340,\1\0\340,\1\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\3407\1\0\3407\1\0\5\0\0\0\0\20\0\0\1\0\0\0\300>\1\0\300N\1\0\300N\1\0\350\2\0\0()\0\0\6\0\0\0\0\20\0\0\2\0\0\0\324>\1\0\324N\1\0\324N\1\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\300>\1\0\300N\1\0\300N\1\0004\1\0\0004\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\374\0\0\0q\0\0\0 \0\0\0\n\0\0\0\1\1$\232 \'Q\0@ \0\0\f\1\1\n\1\n\0\0\240:X\0@\1\16$\10\4\200\n`\260\23 @\24\21\20@\3442\324\4H\346\0\1`\3@\260\272\2019\30\235\340\0\0\332\200\0044\2\201J\20{\203+\200\22 d\21\1\0\2\200\306 d`A\n\4\4\4\v\4PD@\200\20\0\22 \4\340@\1\32 \4\2\20\10\0\0\204\260\200\0\340\23\0\212$\0\206\210\0\2`@q\0\0\0\0\0\0\0\0\0\0\0r\0\0\0\0\0\0\0t\0\0\0\0\0\0\0", 512) = 512
+6156  16:50:38.370891 fstat64(1, {st_mode=S_IFREG|0644, st_size=83708, ...}) = 0
+6156  16:50:38.370908 mmap2(NULL, 96232, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7e11000
+6156  16:50:38.370920 mmap2(0xb7e25000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x13) = 0xb7e25000
+6156  16:50:38.370935 mmap2(0xb7e27000, 6120, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7e27000
+6156  16:50:38.370950 close(1)          = 0
+6156  16:50:38.370977 munmap(0xb7fb7000, 29913) = 0
+6156  16:50:38.370994 open("/etc/ld.so.cache", O_RDONLY) = 1
+6156  16:50:38.371007 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+6156  16:50:38.371024 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7fb7000
+6156  16:50:38.371034 close(1)          = 0
+6156  16:50:38.371044 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.371073 open("/lib/tls/i686/cmov/libnss_nis.so.2", O_RDONLY) = 1
+6156  16:50:38.371090 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\31\0\0004\0\0\0\320\201\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\350x\0\0\350x\0\0\350x\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\310}\0\0\310}\0\0\5\0\0\0\0\20\0\0\1\0\0\0\334~\0\0\334\216\0\0\334\216\0\0\374\1\0\0`\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\360~\0\0\360\216\0\0\360\216\0\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\334~\0\0\334\216\0\0\334\216\0\0\30\1\0\0\30\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0g\0\0\0000\0\0\0\20\0\0\0\t\0\0\0\2\0\0H  \26\20\0\0@g\3\0\3\6\30\24\0248A\30&\243\301\200\212\0048\21\10 B@\310\24\344\20\311\244\10\0\4\0\0@\0P!\0\0\204\0\0\0\0@\v\0y\243\0D\202\0\0\0\0000\0\0\0001\0\0\0\0\0\0\0002\0\0\0003\0\0\0004\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0005\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0006\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0007\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+6156  16:50:38.371184 fstat64(1, {st_mode=S_IFREG|0644, st_size=34352, ...}) = 0
+6156  16:50:38.371202 mmap2(NULL, 37436, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7e07000
+6156  16:50:38.371214 mmap2(0xb7e0f000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x7) = 0xb7e0f000
+6156  16:50:38.371231 close(1)          = 0
+6156  16:50:38.371244 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+6156  16:50:38.371258 open("/lib/tls/i686/cmov/libnss_files.so.2", O_RDONLY) = 1
+6156  16:50:38.371273 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340\30\0\0004\0\0\0\254\221\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\330\206\0\0\330\206\0\0\330\206\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\240\213\0\0\240\213\0\0\5\0\0\0\0\20\0\0\1\0\0\0\350\216\0\0\350\236\0\0\350\236\0\0\314\1\0\0\260\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\374\216\0\0\374\236\0\0\374\236\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\350\216\0\0\350\236\0\0\350\236\0\0\f\1\0\0\f\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0k\0\0\0.\0\0\0\20\0\0\0\t\0\0\0\"F\340\24\240\240\245\1\31\10\200\20\203\6\212\10\0\0\222@]\1(\nx\10 \"\220\200\20,\5\1\204\4)!\0224\0\24\0\31\0\0\2\2\210@\0\200@0\210\201@@\200\0B\0\6\300.\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0002\0\0\0003\0\0\0\0\0\0\0004\0\0\0\0\0\0\0005\0\0\0007\0\0\0008\0\0\0\0\0\0\0:\0\0\0\0\0\0\0;\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+6156  16:50:38.371363 fstat64(1, {st_mode=S_IFREG|0644, st_size=38412, ...}) = 0
+6156  16:50:38.371380 mmap2(NULL, 41624, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7dfc000
+6156  16:50:38.371391 mmap2(0xb7e05000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x8) = 0xb7e05000
+6156  16:50:38.371408 close(1)          = 0
+6156  16:50:38.371429 munmap(0xb7fb7000, 29913) = 0
+6156  16:50:38.371445 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 1
+6156  16:50:38.371461 fcntl64(1, F_GETFD) = 0x1 (flags FD_CLOEXEC)
+6156  16:50:38.371473 _llseek(1, 0, [0], SEEK_CUR) = 0
+6156  16:50:38.371485 fstat64(1, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+6156  16:50:38.371501 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 1, 0) = 0xb7fbe000
+6156  16:50:38.371512 _llseek(1, 1624, [1624], SEEK_SET) = 0
+6156  16:50:38.371527 munmap(0xb7fbe000, 1624) = 0
+6156  16:50:38.371537 close(1)          = 0
+6156  16:50:38.371578 getpgrp()         = 3831
+6156  16:50:38.371590 rt_sigaction(SIGCHLD, {0x807e540, [], 0}, {SIG_DFL}, 8) = 0
+6156  16:50:38.371606 getrlimit(RLIMIT_NPROC, {rlim_cur=8191, rlim_max=8191}) = 0
+6156  16:50:38.371622 brk(0x8101000)    = 0x8101000
+6156  16:50:38.371654 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+6156  16:50:38.371669 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+6156  16:50:38.371683 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+6156  16:50:38.371721 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+6156  16:50:38.371740 stat64("/sbin/AB", 0xbf9db0d8) = -1 ENOENT (No such file or directory)
+6156  16:50:38.371753 stat64("/bin/AB", 0xbf9db0d8) = -1 ENOENT (No such file or directory)
+6156  16:50:38.371765 stat64("/usr/sbin/AB", 0xbf9db0d8) = -1 ENOENT (No such file or directory)
+6156  16:50:38.371776 stat64("/usr/bin/AB", 0xbf9db0d8) = -1 ENOENT (No such file or directory)
+6156  16:50:38.371790 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+6156  16:50:38.371805 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7e326f8) = 6157
+6157  16:50:38.371851 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+6157  16:50:38.371869 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6157  16:50:38.371883 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6157  16:50:38.371895 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6157  16:50:38.371914 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+6157  16:50:38.371931 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+6157  16:50:38.371944 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+6157  16:50:38.372000 write(2, "sh: AB: command not found\n", 26) = -1 EPIPE (Broken pipe)
+6157  16:50:38.372014 --- SIGPIPE (Broken pipe) @ 0 (0) ---
+6157  16:50:38.372169 exit_group(127)   = ?
+4519  16:50:38.383177 waitpid(6156,  <unfinished ...>
+6156  16:50:38.383247 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+6156  16:50:38.383260 --- SIGCHLD (Child exited) @ 0 (0) ---
+6156  16:50:38.383274 waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 127}], WNOHANG) = 6157
+6156  16:50:38.383292 waitpid(-1, 0xbf9dad58, WNOHANG) = -1 ECHILD (No child processes)
+6156  16:50:38.383319 sigreturn()       = ? (mask now [])
+6156  16:50:38.383341 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+6156  16:50:38.383355 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+6156  16:50:38.383366 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+6156  16:50:38.383379 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_DFL}, 8) = 0
+6156  16:50:38.383396 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+6156  16:50:38.383407 rt_sigaction(SIGINT, {SIG_DFL}, {0x807f150, [], 0}, 8) = 0
+6156  16:50:38.383426 stat64("/etc", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+6156  16:50:38.383444 stat64("/etc/unreal", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+6156  16:50:38.383462 chdir("/etc/unreal") = 0
+6156  16:50:38.383479 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+6156  16:50:38.383514 exit_group(0)     = ?
+4519  16:50:38.392488 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 6156
+4519  16:50:38.392515 rt_sigaction(SIGINT, {0x8062280, [HUP INT], 0}, NULL, 8) = 0
+4519  16:50:38.392532 rt_sigaction(SIGQUIT, {SIG_IGN}, NULL, 8) = 0
+4519  16:50:38.392544 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+4519  16:50:38.392554 --- SIGCHLD (Child exited) @ 0 (0) ---
+4519  16:50:38.392575 send(5, ":irc.Metasploitable.LAN 451 AB;cd :You have not registered\r\n", 60, 0) = 60
+4519  16:50:38.392644 gettimeofday({1495659038, 392649}, NULL) = 0
+4519  16:50:38.392660 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [6], left {0, 990000})
+4519  16:50:38.403261 clock_gettime(CLOCK_MONOTONIC, {35848, 220278812}) = 0
+4519  16:50:38.403281 recv(6, "PRIVMSG  #testit1 Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\n", 8192, 0) = 55
+4519  16:50:38.403308 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403327 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403342 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403356 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403369 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403384 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403397 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403411 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403424 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403438 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403451 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403464 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403478 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403491 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403504 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403518 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403531 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403551 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403565 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403580 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403594 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403608 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.403625 time(NULL)        = 1495659038
+4519  16:50:38.403635 time(NULL)        = 1495659038
+4519  16:50:38.403660 gettimeofday({1495659038, 403689}, NULL) = 0
+4519  16:50:38.403697 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  16:50:38.403743 clock_gettime(CLOCK_MONOTONIC, {35848, 220756619}) = 0
+4519  16:50:38.403754 gettimeofday({1495659038, 403758}, NULL) = 0
+4519  16:50:38.403764 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [6], left {0, 840000})
+4519  16:50:38.562577 clock_gettime(CLOCK_MONOTONIC, {35848, 379598116}) = 0
+4519  16:50:38.562599 recv(6, "PRIVMSG  #testit1 BLABLALBLALBLALBLALBLALBLALBLALABLLALBLA\n", 8192, 0) = 59
+4519  16:50:38.562623 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562640 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562655 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562669 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562682 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562697 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562710 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562723 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562736 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562750 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562763 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562777 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562790 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562803 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562816 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562830 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562844 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562857 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562871 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562884 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562898 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562926 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.562971 gettimeofday({1495659038, 562975}, NULL) = 0
+4519  16:50:38.562983 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [6], left {0, 850000})
+4519  16:50:38.712621 clock_gettime(CLOCK_MONOTONIC, {35848, 529642159}) = 0
+4519  16:50:38.712643 recv(6, "PRIVMSG  #testit1 ABCDEFGHIJKLMNOPQRSTUVWXYZ\n", 8192, 0) = 45
+4519  16:50:38.712666 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712683 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712698 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712712 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712733 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712747 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712761 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712774 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712787 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712801 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712814 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712828 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712841 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712854 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712868 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712881 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712894 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712907 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712921 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.712977 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.713010 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.713023 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.713039 time(NULL)        = 1495659038
+4519  16:50:38.713049 time(NULL)        = 1495659038
+4519  16:50:38.713077 gettimeofday({1495659038, 713080}, NULL) = 0
+4519  16:50:38.713088 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  16:50:38.713116 clock_gettime(CLOCK_MONOTONIC, {35848, 530129324}) = 0
+4519  16:50:38.713127 gettimeofday({1495659038, 713130}, NULL) = 0
+4519  16:50:38.713137 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [6], left {0, 920000})
+4519  16:50:38.793335 clock_gettime(CLOCK_MONOTONIC, {35848, 610364816}) = 0
+4519  16:50:38.793383 recv(6, "PRIVMSG  #testit1 ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ\n", 8192, 0) = 71
+4519  16:50:38.793420 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793448 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793467 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793481 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793494 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793508 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793522 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793535 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793548 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793562 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793575 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793589 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793602 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793615 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793629 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793642 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793661 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793674 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793687 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793701 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793715 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793728 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.793794 gettimeofday({1495659038, 793801}, NULL) = 0
+4519  16:50:38.793829 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [9], left {0, 920000})
+4519  16:50:38.872604 clock_gettime(CLOCK_MONOTONIC, {35848, 689622881}) = 0
+4519  16:50:38.872623 recv(9, "PRIVMSG  #testit2 Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\n", 8192, 0) = 55
+4519  16:50:38.872647 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872664 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872678 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872692 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872706 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872720 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872734 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872747 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872761 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872774 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872788 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872801 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872814 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872827 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872841 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872854 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872867 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872880 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872894 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872908 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872921 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872934 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:38.872949 time(NULL)        = 1495659038
+4519  16:50:38.872959 time(NULL)        = 1495659038
+4519  16:50:38.872970 gettimeofday({1495659038, 872974}, NULL) = 0
+4519  16:50:38.872994 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  16:50:38.873072 clock_gettime(CLOCK_MONOTONIC, {35848, 690085373}) = 0
+4519  16:50:38.873101 gettimeofday({1495659038, 873105}, NULL) = 0
+4519  16:50:38.873111 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [9], left {0, 150000})
+4519  16:50:39.723850 clock_gettime(CLOCK_MONOTONIC, {35849, 540874824}) = 0
+4519  16:50:39.723880 recv(9, "PRIVMSG  #testit2 BLABLALBLALBLALBLALBLALBLALBLALABLLALBLA\n", 8192, 0) = 59
+4519  16:50:39.723904 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.723922 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.723937 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.723958 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.723972 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.723986 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.723999 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724012 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724026 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724039 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724052 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724066 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724079 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724092 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724105 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724119 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724132 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724145 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724159 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724173 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724183 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724183 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:39.724184 gettimeofday({1495659039, 724184}, NULL) = 0
+4519  16:50:39.724184 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [9], left {0, 610000})
+4519  16:50:40.112991 clock_gettime(CLOCK_MONOTONIC, {35849, 929999727}) = 0
+4519  16:50:40.112991 recv(9, "PRIVMSG  #testit2 ABCDEFGHIJKLMNOPQRSTUVWXYZ\n", 8192, 0) = 45
+4519  16:50:40.112991 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.112991 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113002 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113017 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113030 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113044 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113057 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113071 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113084 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113098 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113111 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113125 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113138 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113151 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113165 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113178 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113191 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113205 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113236 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113283 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113297 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113328 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={2, 710000}, ...}) = 0
+4519  16:50:40.113344 time(NULL)        = 1495659040
+4519  16:50:40.113357 time(NULL)        = 1495659040
+4519  16:50:40.113372 gettimeofday({1495659040, 113377}, NULL) = 0
+4519  16:50:40.113384 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  16:50:40.113413 clock_gettime(CLOCK_MONOTONIC, {35849, 930426280}) = 0
+4519  16:50:40.113424 gettimeofday({1495659040, 113427}, NULL) = 0
+4519  16:50:40.113434 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [5], left {0, 980000})
+4519  16:50:40.138635 clock_gettime(CLOCK_MONOTONIC, {35849, 955654692}) = 0
+4519  16:50:40.138655 recv(5, 0x80b7ec0, 8192, 0) = -1 ECONNRESET (Connection reset by peer)
+4519  16:50:40.138671 getsockopt(5, SOL_SOCKET, SO_ERROR, [0], [4]) = 0
+4519  16:50:40.138693 send(5, "ERROR :Closing Link: [10.0.2.4] (Connection reset by peer)\r\n", 60, 0) = -1 EPIPE (Broken pipe)
+4519  16:50:40.138711 --- SIGPIPE (Broken pipe) @ 0 (0) ---
+4519  16:50:40.138744 close(5)          = 0
+4519  16:50:40.138811 gettimeofday({1495659040, 138816}, NULL) = 0
+4519  16:50:40.138842 select(1024, [2 3 4 6 9], [], NULL, {1, 0} <unfinished ...>
