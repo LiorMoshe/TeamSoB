@@ -14,7 +14,7 @@ while(True):
   ftp = ftplib.FTP('127.0.0.1') #I hope it works.
   try :
     ftp.login('msfadmin', 'msfadmin')   
-    for j in range(random.randint(0, 12)):
+    for j in range(random.randint(0, 15)):
       os.rename(filename, filename[0:6] + str(cur))
       filename = filename[0:6] + str(cur)
       uploadFile(ftp, filename)

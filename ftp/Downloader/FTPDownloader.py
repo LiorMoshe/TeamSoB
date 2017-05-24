@@ -13,7 +13,7 @@ cur = 0
 while(True):
   ftp = ftplib.FTP('127.0.0.1') #I hope it works.
   try:
-    for j in range(random.randint(0, 12)):
+    for j in range(random.randint(0, 15)):
       ftp.login('msfadmin','msfadmin')
       downloadFile(ftp, 'myfile' + str(cur))
       ftp.delete('myfile' + str(cur))
