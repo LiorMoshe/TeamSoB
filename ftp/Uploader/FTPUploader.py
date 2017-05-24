@@ -20,14 +20,16 @@ while(True):
       uploadFile(ftp, filename)
       cur = cur + 1
       if (cur > 40):
-        os.rename(filename, filename[0:6] + '0')
+        print 'reset'
         cur = 0
-      time.sleep(random.uniform(0.2,0.25))
-    for j in range(random.randint(0, 1)):
-      ftp.nlst()
+      time.sleep(random.uniform(0.5,0.55))
+    if (random.randint(0, 1) > 0):
+      if (random.randint(0,1) > 0):
+        if (random.randint(0,1) > 0):
+          ftp.nlst()
   finally :
     ftp.quit()
-    time.sleep(random.uniform(0.2, 0.25))
+    time.sleep(random.uniform(0.5, 0.55))
 
 
 

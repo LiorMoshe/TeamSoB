@@ -16,13 +16,15 @@ while(True):
     for j in range(random.randint(0, 15)):
       ftp.login('msfadmin','msfadmin')
       downloadFile(ftp, 'myfile' + str(cur))
-      ftp.delete('myfile' + str(cur))
       os.remove('myfile' + str(cur))
       cur = cur + 1
-      time.sleep(random.uniform(0.25,0.3))
+      time.sleep(random.uniform(0.5,0.6))
+      if (cur > 40):
+        print 'reset'
+        cur = 0
   finally:
     ftp.quit()
-    time.sleep(random.uniform(0.25,0.3))
+    time.sleep(random.uniform(0.5,0.6))
     print cur
 
 
