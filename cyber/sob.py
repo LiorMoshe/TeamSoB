@@ -54,10 +54,11 @@ if __name__ == '__main__':
 	sock.listen(5)
 	client_sock, addr = sock.accept()
 	client_sock.sendall('ready')
+	print explt.payloads
 	while True:
 		cmd = client_sock.recv(100)
 		if cmd == 'start':
-			payload = explt.payloads[i]
+			payload = explt.payloads[5]
 			# i = (i + 1) % 4;
 			is_succeeded = exploit(explt, payload)
 			print(("success" if is_succeeded else "failure") + " , payload = " + payload)
@@ -69,3 +70,4 @@ if __name__ == '__main__':
 			break
 	client_sock.close()
 	sock.close()
+

@@ -1,0 +1,369 @@
+26995 16:05:43.581787 open("/etc/pam.d/common-account", O_RDONLY|O_LARGEFILE) = 6
+26995 16:05:43.581802 fstat64(6, {st_mode=S_IFREG|0644, st_size=392, ...}) = 0
+26995 16:05:43.581828 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f38000
+26995 16:05:43.581838 read(6, "#\n# /etc/pam.d/common-account - authorization settings common to all services\n#\n# This file is included from other service-specific PAM config files,\n# and should contain a list of the authorization modules that define\n# the central access policy for use on the system.  The default is to\n# only deny service to users whose accounts are expired in /etc/shadow.\n#\naccount\trequired\tpam_unix.so\n", 4096) = 392
+26995 16:05:43.581878 read(6, "", 4096) = 0
+26995 16:05:43.581888 close(6)          = 0
+26995 16:05:43.581897 munmap(0xb7f38000, 4096) = 0
+26995 16:05:43.581908 stat64("/etc/pam.d", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+26995 16:05:43.581927 open("/etc/pam.d/common-password", O_RDONLY|O_LARGEFILE) = 6
+26995 16:05:43.581940 fstat64(6, {st_mode=S_IFREG|0644, st_size=1563, ...}) = 0
+26995 16:05:43.581957 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f38000
+26995 16:05:43.581967 read(6, "#\n# /etc/pam.d/common-password - password-related modules common to all services\n#\n# This file is included from other service-specific PAM config files,\n# and should contain a list of modules that define the services to be\n# used to change user passwords.  The default is pam_unix.\n\n# Explanation of pam_unix options:\n#\n# The \"nullok\" option allows users to change an empty password, else\n# empty passwords are treated as locked accounts.\n#\n# The \"md5\" option enables MD5 passwords.  Without this option, the\n# default is Unix crypt.\n#\n# The \"obscure\" option replaces the old `OBSCURE_CHECKS_ENAB\' option in\n# login.defs.\n#\n# You can also use the \"min\" option to enforce the length of the new\n# password.\n#\n# See the pam_unix manpage for other options.\n\npassword   requisite   pam_unix.so nullok obscure md5\n\n# Alternate strength checking for password. Note that this\n# requires the libpam-cracklib package to be installed.\n# You will need to comment out the password line above and\n# uncomment the next two in order to use this.\n# (Replaces the `OBSCURE_CHECKS_ENAB\', `CRACKLIB_DICTPATH\')\n#\n# password required\t  pam_cracklib.so retry=3 minlen=6 difok=3\n# password required\t  pam_unix.so use_authtok nullok md5\n\n# minimally-intrusive inclusion of smbpass in the stack for\n# synchronization.  If the module is absent or the passwords don\'t\n# match, this module will be ignored without prompting; and if the \n# passwords do match, the NTLM hash for the user will be updated\n# automatically.\n# password   optional   pam_smbpass.so nullok use_authtok use_first_pass\n", 4096) = 1563
+26995 16:05:43.582084 read(6, "", 4096) = 0
+26995 16:05:43.582094 close(6)          = 0
+26995 16:05:43.582103 munmap(0xb7f38000, 4096) = 0
+26995 16:05:43.582114 stat64("/etc/pam.d", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+26995 16:05:43.582132 open("/etc/pam.d/common-session", O_RDONLY|O_LARGEFILE) = 6
+26995 16:05:43.582145 fstat64(6, {st_mode=S_IFREG|0644, st_size=372, ...}) = 0
+26995 16:05:43.582161 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f38000
+26995 16:05:43.582172 read(6, "#\n# /etc/pam.d/common-session - session-related modules common to all services\n#\n# This file is included from other service-specific PAM config files,\n# and should contain a list of modules that define tasks to be performed\n# at the start and end of sessions of *any* kind (both interactive and\n# non-interactive).  The default is pam_unix.\n#\nsession\trequired\tpam_unix.so\n", 4096) = 372
+26995 16:05:43.582209 read(6, "", 4096) = 0
+26995 16:05:43.582219 close(6)          = 0
+26995 16:05:43.582232 munmap(0xb7f38000, 4096) = 0
+26995 16:05:43.582242 read(5, "", 4096) = 0
+26995 16:05:43.582252 close(5)          = 0
+26995 16:05:43.582261 munmap(0xb7f3e000, 4096) = 0
+26995 16:05:43.582274 time(NULL)        = 1495656343
+26995 16:05:43.582285 lstat64("/etc/ftpusers", {st_mode=S_IFREG|0644, st_size=132, ...}) = 0
+26995 16:05:43.582304 open("/etc/ftpusers", O_RDONLY|O_LARGEFILE) = 5
+26995 16:05:43.582316 fstat64(5, {st_mode=S_IFREG|0644, st_size=132, ...}) = 0
+26995 16:05:43.582332 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f3e000
+26995 16:05:43.582343 read(5, "# /etc/ftpusers: list of users disallowed FTP access. See ftpusers(5).\n\nroot\ndaemon\nbin\nsys\nsync\ngames\nman\nlp\nmail\nnews\nuucp\nnobody\n", 4096) = 132
+26995 16:05:43.582364 read(5, "", 4096) = 0
+26995 16:05:43.582373 close(5)          = 0
+26995 16:05:43.582382 munmap(0xb7f3e000, 4096) = 0
+26995 16:05:43.582398 getuid32()        = 0
+26995 16:05:43.582414 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 5
+26995 16:05:43.582429 _llseek(5, 0, [0], SEEK_CUR) = 0
+26995 16:05:43.582440 fstat64(5, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+26995 16:05:43.582456 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f3e000
+26995 16:05:43.582467 _llseek(5, 1624, [1624], SEEK_SET) = 0
+26995 16:05:43.582486 munmap(0xb7f3e000, 1624) = 0
+26995 16:05:43.582497 close(5)          = 0
+26995 16:05:43.582521 open("/etc/shadow", O_RDONLY|0x80000 /* O_??? */) = 5
+26995 16:05:43.582538 _llseek(5, 0, [0], SEEK_CUR) = 0
+26995 16:05:43.582549 fstat64(5, {st_mode=S_IFREG|0640, st_size=1233, ...}) = 0
+26995 16:05:43.582565 mmap2(NULL, 1233, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f3e000
+26995 16:05:43.582587 _llseek(5, 1233, [1233], SEEK_SET) = 0
+26995 16:05:43.582610 munmap(0xb7f3e000, 1233) = 0
+26995 16:05:43.582620 close(5)          = 0
+26995 16:05:43.582639 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 5
+26995 16:05:43.582653 _llseek(5, 0, [0], SEEK_CUR) = 0
+26995 16:05:43.582664 fstat64(5, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+26995 16:05:43.582680 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f3e000
+26995 16:05:43.582691 _llseek(5, 1624, [1624], SEEK_SET) = 0
+26995 16:05:43.582735 munmap(0xb7f3e000, 1624) = 0
+26995 16:05:43.582748 close(5)          = 0
+26995 16:05:43.582762 open("/etc/shadow", O_RDONLY|0x80000 /* O_??? */) = 5
+26995 16:05:43.582776 _llseek(5, 0, [0], SEEK_CUR) = 0
+26995 16:05:43.582787 fstat64(5, {st_mode=S_IFREG|0640, st_size=1233, ...}) = 0
+26995 16:05:43.582804 mmap2(NULL, 1233, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f3e000
+26995 16:05:43.582815 _llseek(5, 1233, [1233], SEEK_SET) = 0
+26995 16:05:43.582841 munmap(0xb7f3e000, 1233) = 0
+26995 16:05:43.582851 close(5)          = 0
+26995 16:05:43.583082 getuid32()        = 0
+26995 16:05:43.583093 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 5
+26995 16:05:43.583106 _llseek(5, 0, [0], SEEK_CUR) = 0
+26995 16:05:43.583117 fstat64(5, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+26995 16:05:43.583133 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f3e000
+26995 16:05:43.583143 _llseek(5, 1624, [1624], SEEK_SET) = 0
+26995 16:05:43.583159 munmap(0xb7f3e000, 1624) = 0
+26995 16:05:43.583168 close(5)          = 0
+26995 16:05:43.583181 open("/etc/shadow", O_RDONLY|0x80000 /* O_??? */) = 5
+26995 16:05:43.583194 _llseek(5, 0, [0], SEEK_CUR) = 0
+26995 16:05:43.583204 fstat64(5, {st_mode=S_IFREG|0640, st_size=1233, ...}) = 0
+26995 16:05:43.583220 mmap2(NULL, 1233, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f3e000
+26995 16:05:43.583230 _llseek(5, 1233, [1233], SEEK_SET) = 0
+26995 16:05:43.583247 munmap(0xb7f3e000, 1233) = 0
+26995 16:05:43.583256 close(5)          = 0
+26995 16:05:43.583267 time(NULL)        = 1495656343
+26995 16:05:43.583282 munmap(0xb7f3b000, 12164) = 0
+26995 16:05:43.583296 munmap(0xb7f39000, 7136) = 0
+26995 16:05:43.583310 munmap(0xb7d6e000, 95428) = 0
+26995 16:05:43.583321 munmap(0xb7d34000, 201052) = 0
+26995 16:05:43.583332 munmap(0xb7d1b000, 101180) = 0
+26995 16:05:43.583348 gettimeofday({1495656343, 583352}, NULL) = 0
+26995 16:05:43.583363 stat64("/usr/share/zoneinfo/UTC+04:00", 0xbfa893f4) = -1 ENOENT (No such file or directory)
+26995 16:05:43.583379 open("/usr/share/zoneinfo/UTC+04:00", O_RDONLY) = -1 ENOENT (No such file or directory)
+26995 16:05:43.583404 fcntl64(3, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa89544) = 0
+26995 16:05:43.583420 write(3, "Wed May 24 16:05:43 2017 [pid 26995] [msfadmin] OK LOGIN: Client \"127.0.0.1\"\n", 77) = 77
+26995 16:05:43.583437 fcntl64(3, F_SETLK64, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa8954c) = 0
+26995 16:05:43.583450 rt_sigaction(SIGCHLD, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26995 16:05:43.583464 write(4, "\1", 1 <unfinished ...>
+26996 16:05:43.583474 <... read resumed> "\1", 1) = 1
+26995 16:05:43.583479 <... write resumed> ) = 1
+26996 16:05:43.583487 exit_group(0)     = ?
+26995 16:05:43.583515 --- SIGCHLD (Child exited) @ 0 (0) ---
+26995 16:05:43.583523 sigreturn()       = ? (mask now [])
+26995 16:05:43.583541 wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 26996
+26995 16:05:43.583554 close(4)          = 0
+26995 16:05:43.583566 socketpair(PF_FILE, SOCK_STREAM, 0, [4, 5]) = 0
+26995 16:05:43.583580 rt_sigaction(SIGCHLD, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26995 16:05:43.583594 rt_sigaction(SIGALRM, {0x805cb10, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26995 16:05:43.583607 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7da46f8) = 26997
+26997 16:05:43.583657 prctl(0x1, 0x9, 0, 0, 0) = 0
+26997 16:05:43.583671 close(4)          = 0
+26997 16:05:43.583715 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 4
+26997 16:05:43.583745 _llseek(4, 0, [0], SEEK_CUR) = 0
+26997 16:05:43.583760 fstat64(4, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+26997 16:05:43.583779 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 4, 0) = 0xb7f3e000
+26997 16:05:43.583791 _llseek(4, 1624, [1624], SEEK_SET) = 0
+26997 16:05:43.583813 munmap(0xb7f3e000, 1624) = 0
+26997 16:05:43.583825 close(4)          = 0
+26997 16:05:43.583838 getuid32()        = 0
+26997 16:05:43.583848 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 4
+26997 16:05:43.583861 _llseek(4, 0, [0], SEEK_CUR) = 0
+26997 16:05:43.583872 fstat64(4, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+26997 16:05:43.583888 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 4, 0) = 0xb7f3e000
+26997 16:05:43.583899 _llseek(4, 1624, [1624], SEEK_SET) = 0
+26997 16:05:43.583915 munmap(0xb7f3e000, 1624) = 0
+26997 16:05:43.583924 close(4)          = 0
+26997 16:05:43.583949 open("/proc/sys/kernel/ngroups_max", O_RDONLY) = 4
+26997 16:05:43.583970 read(4, "65536\n", 31) = 6
+26997 16:05:43.583983 close(4)          = 0
+26997 16:05:43.583997 socket(PF_FILE, SOCK_STREAM, 0) = 4
+26997 16:05:43.584008 fcntl64(4, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+26997 16:05:43.584019 connect(4, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+26997 16:05:43.584040 close(4)          = 0
+26997 16:05:43.584052 socket(PF_FILE, SOCK_STREAM, 0) = 4
+26997 16:05:43.584063 fcntl64(4, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+26997 16:05:43.584073 connect(4, {sa_family=AF_FILE, path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+26997 16:05:43.584091 close(4)          = 0
+26997 16:05:43.584115 open("/etc/group", O_RDONLY|0x80000 /* O_??? */) = 4
+26997 16:05:43.584132 _llseek(4, 0, [0], SEEK_CUR) = 0
+26997 16:05:43.584144 fstat64(4, {st_mode=S_IFREG|0644, st_size=886, ...}) = 0
+26997 16:05:43.584161 mmap2(NULL, 886, PROT_READ, MAP_SHARED, 4, 0) = 0xb7f3e000
+26997 16:05:43.584172 _llseek(4, 886, [886], SEEK_SET) = 0
+26997 16:05:43.584196 fstat64(4, {st_mode=S_IFREG|0644, st_size=886, ...}) = 0
+26997 16:05:43.584213 munmap(0xb7f3e000, 886) = 0
+26997 16:05:43.584224 close(4)          = 0
+26997 16:05:43.584233 setgroups32(13, [1000, 4, 20, 24, 25, 29, 30, 44, 46, 107, 111, 112, 119]) = 0
+26997 16:05:43.584250 geteuid32()       = 0
+26997 16:05:43.584261 getegid32()       = 0
+26997 16:05:43.584272 setregid32(-1, 1000) = 0
+26997 16:05:43.584282 setreuid32(-1, 1000) = 0
+26997 16:05:43.584297 chdir("/home/msfadmin") = 0
+26997 16:05:43.584309 setreuid32(-1, 0) = 0
+26997 16:05:43.584318 setregid32(-1, 0) = 0
+26997 16:05:43.584329 setgid32(1000)    = 0
+26997 16:05:43.584338 setuid32(1000)    = 0
+26997 16:05:43.584349 setrlimit(RLIMIT_NPROC, {rlim_cur=0, rlim_max=0}) = 0
+26997 16:05:43.584362 mmap2(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f3c000
+26997 16:05:43.584373 mprotect(0xb7f3e000, 4096, PROT_NONE) = 0
+26997 16:05:43.584385 mprotect(0xb7f3c000, 4096, PROT_NONE) = 0
+26997 16:05:43.584396 getcwd("/home/msfadmin", 4096) = 15
+26997 16:05:43.584409 umask(022)        = 077
+26997 16:05:43.584420 getcwd("/home/msfadmin", 4096) = 15
+26997 16:05:43.584433 open(".message", O_RDONLY|O_NONBLOCK|O_LARGEFILE) = -1 ENOENT (No such file or directory)
+26997 16:05:43.584456 write(0, "230 Login successful.\r\n", 23) = 23
+26997 16:05:43.584537 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:43.584555 alarm(300)        = 0
+26997 16:05:43.584565 mmap2(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f39000
+26997 16:05:43.584577 mprotect(0xb7f3b000, 4096, PROT_NONE) = 0
+26997 16:05:43.584589 mprotect(0xb7f39000, 4096, PROT_NONE) = 0
+26997 16:05:43.584602 recv(0, "TYPE I\r\n", 4096, MSG_PEEK) = 8
+26997 16:05:43.584615 read(0, "TYPE I\r\n", 8) = 8
+26997 16:05:43.584632 write(0, "200 Switching to Binary mode.\r\n", 31) = 31
+26997 16:05:43.584695 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:43.584721 alarm(300)        = 300
+26997 16:05:43.584732 recv(0, "PASV\r\n", 4096, MSG_PEEK) = 6
+26997 16:05:43.584744 read(0, "PASV\r\n", 6) = 6
+26997 16:05:43.584756 write(5, "\n", 1) = 1
+26997 16:05:43.584768 read(5,  <unfinished ...>
+26995 16:05:43.584780 close(5)          = 0
+26995 16:05:43.584792 getuid32()        = 0
+26995 16:05:43.584808 open("/etc/passwd", O_RDONLY|0x80000 /* O_??? */) = 5
+26995 16:05:43.584822 _llseek(5, 0, [0], SEEK_CUR) = 0
+26995 16:05:43.584835 fstat64(5, {st_mode=S_IFREG|0644, st_size=1624, ...}) = 0
+26995 16:05:43.584853 mmap2(NULL, 1624, PROT_READ, MAP_SHARED, 5, 0) = 0xb7f3e000
+26995 16:05:43.584864 _llseek(5, 1624, [1624], SEEK_SET) = 0
+26995 16:05:43.584882 munmap(0xb7f3e000, 1624) = 0
+26995 16:05:43.584893 close(5)          = 0
+26995 16:05:43.584909 setgroups32(0, []) = 0
+26995 16:05:43.584921 chdir("/usr/share/empty") = 0
+26995 16:05:43.584933 chroot(".")       = 0
+26995 16:05:43.584944 capset(NULL, NULL) = -1 EFAULT (Bad address)
+26995 16:05:43.584957 prctl(0x8, 0, 0xbfa89528, 0x80549a6, 0xbfa89510) = 0
+26995 16:05:43.584968 prctl(0x8, 0x1, 0xbfa89528, 0x8054a49, 0xbfa89510) = 0
+26995 16:05:43.584978 setgid32(65534)   = 0
+26995 16:05:43.584988 setuid32(65534)   = 0
+26995 16:05:43.584998 capset(0x19980330, 0, {CAP_NET_BIND_SERVICE, CAP_NET_BIND_SERVICE, 0}) = 0
+26995 16:05:43.585012 read(4, "\n", 1)  = 1
+26995 16:05:43.585025 write(4, "\1", 1) = 1
+26997 16:05:43.585036 <... read resumed> "\1", 1) = 1
+26997 16:05:43.585044 write(5, "\f", 1) = 1
+26997 16:05:43.585054 read(5,  <unfinished ...>
+26995 16:05:43.585061 read(4, "\f", 1)  = 1
+26995 16:05:43.585074 socket(PF_INET, SOCK_STREAM, IPPROTO_TCP) = 5
+26995 16:05:43.585087 setsockopt(5, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+26995 16:05:43.585098 gettimeofday({1495656343, 585102}, NULL) = 0
+26995 16:05:43.585115 bind(5, {sa_family=AF_INET, sin_port=htons(44054), sin_addr=inet_addr("127.0.0.1")}, 16) = 0
+26995 16:05:43.585130 listen(5, 1)      = 0
+26995 16:05:43.585143 write(4, "\26\254\0\0", 4) = 4
+26997 16:05:43.585154 <... read resumed> "\26\254\0\0", 4) = 4
+26997 16:05:43.585168 write(0, "227 Entering Passive Mode (127,0,0,1,172,22).\r\n", 47) = 47
+26997 16:05:43.585264 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:43.585281 alarm(300)        = 300
+26997 16:05:43.585292 recv(0, "STOR myfile12\r\n", 4096, MSG_PEEK) = 15
+26997 16:05:43.585305 read(0, "STOR myfile12\r\n", 15) = 15
+26997 16:05:43.585320 write(5, "\v", 1) = 1
+26997 16:05:43.585331 read(5,  <unfinished ...>
+26995 16:05:43.585338 read(4, "\v", 1)  = 1
+26995 16:05:43.585354 write(4, "\1\0\0\0", 4) = 4
+26997 16:05:43.585364 <... read resumed> "\1\0\0\0", 4) = 4
+26997 16:05:43.585373 gettimeofday({1495656343, 585377}, NULL) = 0
+26997 16:05:43.585384 getcwd("/home/msfadmin", 4096) = 15
+26997 16:05:43.585397 open("myfile12", O_WRONLY|O_CREAT|O_NONBLOCK|O_LARGEFILE, 0666) = 4
+26997 16:05:43.585411 fstat64(4, {st_mode=S_IFREG|0644, st_size=17, ...}) = 0
+26997 16:05:43.585427 fcntl64(4, F_GETFL) = 0x8801 (flags O_WRONLY|O_NONBLOCK|O_LARGEFILE)
+26997 16:05:43.585438 fcntl64(4, F_SETFL, O_WRONLY|O_LARGEFILE) = 0
+26997 16:05:43.585448 fcntl64(4, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa89474) = 0
+26997 16:05:43.585463 ftruncate64(4, 0) = 0
+26997 16:05:43.585482 _llseek(4, 0, [0], SEEK_SET) = 0
+26997 16:05:43.585493 write(5, "\v", 1) = 1
+26997 16:05:43.585504 read(5,  <unfinished ...>
+26995 16:05:43.585511 read(4, "\v", 1)  = 1
+26995 16:05:43.585522 write(4, "\1\0\0\0", 4) = 4
+26997 16:05:43.585533 <... read resumed> "\1\0\0\0", 4) = 4
+26997 16:05:43.585541 write(5, "\v", 1) = 1
+26997 16:05:43.585551 read(5,  <unfinished ...>
+26995 16:05:43.585558 read(4, "\v", 1)  = 1
+26995 16:05:43.585568 write(4, "\1\0\0\0", 4) = 4
+26997 16:05:43.585579 <... read resumed> "\1\0\0\0", 4) = 4
+26997 16:05:43.585586 write(5, "\r", 1) = 1
+26997 16:05:43.585597 read(5,  <unfinished ...>
+26995 16:05:43.585603 read(4, "\r", 1)  = 1
+26995 16:05:43.585634 select(6, [5], NULL, NULL, {60, 0}) = 1 (in [5], left {60, 0})
+26995 16:05:43.585655 accept(5, {sa_family=AF_INET, sin_port=htons(52339), sin_addr=inet_addr("127.0.0.1")}, [16]) = 6
+26995 16:05:43.585687 write(4, "\1", 1) = 1
+26997 16:05:43.585698 <... read resumed> "\1", 1) = 1
+26997 16:05:43.585708 recvmsg(5,  <unfinished ...>
+26995 16:05:43.585718 sendmsg(4, {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+26997 16:05:43.585735 <... recvmsg resumed> {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+26997 16:05:43.585749 setsockopt(6, SOL_SOCKET, SO_KEEPALIVE, [1], 4) = 0
+26997 16:05:43.585761 setsockopt(6, SOL_IP, IP_TOS, [8], 4) = 0
+26997 16:05:43.585773 setsockopt(6, SOL_SOCKET, SO_LINGER, {onoff=1, linger=32767}, 8) = 0
+26997 16:05:43.585785 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:43.585798 alarm(300)        = 300
+26997 16:05:43.585811 write(0, "150 Ok to send data.\r\n", 22) = 22
+26997 16:05:43.585875 mmap2(NULL, 77824, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7d73000
+26997 16:05:43.585889 mprotect(0xb7d85000, 4096, PROT_NONE) = 0
+26997 16:05:43.585901 mprotect(0xb7d73000, 4096, PROT_NONE) = 0
+26997 16:05:43.585911 read(6, "assasaaa\na\na\na\na\n", 65536) = 17
+26997 16:05:43.585925 write(4, "assasaaa\na\na\na\na\n", 17) = 17
+26997 16:05:43.585941 read(6, "", 65536) = 0
+26997 16:05:43.585951 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:43.585965 alarm(300)        = 300
+26997 16:05:43.585974 close(6)          = 0
+26997 16:05:43.585983 alarm(0)          = 300
+26997 16:05:43.585993 gettimeofday({1495656343, 585996}, NULL) = 0
+26997 16:05:43.586010 getpid()          = 26997
+26997 16:05:43.586022 gettimeofday({1495656343, 586026}, NULL) = 0
+26997 16:05:43.586040 fcntl64(3, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa89414) = 0
+26997 16:05:43.586055 write(3, "Wed May 24 16:05:43 2017 [pid 26997] [msfadmin] OK UPLOAD: Client \"127.0.0.1\", \"/home/msfadmin/myfile12\", 17 bytes, 25.58Kbyte/sec\n", 131) = 131
+26997 16:05:43.586075 fcntl64(3, F_SETLK64, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa8941c) = 0
+26997 16:05:43.586089 write(0, "226 Transfer complete.\r\n", 24) = 24
+26997 16:05:43.586129 write(5, "\n", 1) = 1
+26997 16:05:43.586141 read(5,  <unfinished ...>
+26995 16:05:43.586148 close(6)          = 0
+26995 16:05:43.586167 read(4, "\n", 1)  = 1
+26995 16:05:43.586178 close(5)          = 0
+26995 16:05:43.586193 write(4, "\1", 1) = 1
+26997 16:05:43.586204 <... read resumed> "\1", 1) = 1
+26997 16:05:43.586211 close(4)          = 0
+26997 16:05:43.586222 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:43.586235 alarm(300)        = 0
+26997 16:05:43.586246 recv(0,  <unfinished ...>
+26995 16:05:43.586254 read(4,  <unfinished ...>
+26997 16:05:44.133895 <... recv resumed> "TYPE I\r\n", 4096, MSG_PEEK) = 8
+26997 16:05:44.134005 read(0, "TYPE I\r\n", 8) = 8
+26997 16:05:44.134102 write(0, "200 Switching to Binary mode.\r\n", 31) = 31
+26997 16:05:44.134196 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:44.134229 alarm(300)        = 299
+26997 16:05:44.134254 recv(0, "PASV\r\n", 4096, MSG_PEEK) = 6
+26997 16:05:44.134270 read(0, "PASV\r\n", 6) = 6
+26997 16:05:44.134282 write(5, "\n", 1) = 1
+26997 16:05:44.134295 read(5,  <unfinished ...>
+26995 16:05:44.134342 <... read resumed> "\n", 1) = 1
+26995 16:05:44.134355 write(4, "\1", 1) = 1
+26997 16:05:44.134366 <... read resumed> "\1", 1) = 1
+26997 16:05:44.134383 write(5, "\f", 1) = 1
+26997 16:05:44.134394 read(5,  <unfinished ...>
+26995 16:05:44.134401 read(4, "\f", 1)  = 1
+26995 16:05:44.134413 socket(PF_INET, SOCK_STREAM, IPPROTO_TCP) = 5
+26995 16:05:44.134429 setsockopt(5, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+26995 16:05:44.134444 bind(5, {sa_family=AF_INET, sin_port=htons(38119), sin_addr=inet_addr("127.0.0.1")}, 16) = 0
+26995 16:05:44.134461 listen(5, 1)      = 0
+26995 16:05:44.134475 write(4, "\347\224\0\0", 4) = 4
+26997 16:05:44.134486 <... read resumed> "\347\224\0\0", 4) = 4
+26997 16:05:44.134499 write(0, "227 Entering Passive Mode (127,0,0,1,148,231).\r\n", 48) = 48
+26997 16:05:44.134615 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:44.134633 alarm(300)        = 300
+26997 16:05:44.134644 recv(0, "STOR myfile13\r\n", 4096, MSG_PEEK) = 15
+26997 16:05:44.134657 read(0, "STOR myfile13\r\n", 15) = 15
+26997 16:05:44.134671 write(5, "\v", 1) = 1
+26997 16:05:44.134682 read(5,  <unfinished ...>
+26995 16:05:44.134689 read(4, "\v", 1)  = 1
+26995 16:05:44.134700 write(4, "\1\0\0\0", 4) = 4
+26997 16:05:44.134711 <... read resumed> "\1\0\0\0", 4) = 4
+26997 16:05:44.134719 gettimeofday({1495656344, 134723}, NULL) = 0
+26997 16:05:44.134731 getcwd("/home/msfadmin", 4096) = 15
+26997 16:05:44.134744 open("myfile13", O_WRONLY|O_CREAT|O_NONBLOCK|O_LARGEFILE, 0666) = 4
+26997 16:05:44.134758 fstat64(4, {st_mode=S_IFREG|0644, st_size=17, ...}) = 0
+26997 16:05:44.134776 fcntl64(4, F_GETFL) = 0x8801 (flags O_WRONLY|O_NONBLOCK|O_LARGEFILE)
+26997 16:05:44.134787 fcntl64(4, F_SETFL, O_WRONLY|O_LARGEFILE) = 0
+26997 16:05:44.134797 fcntl64(4, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa89474) = 0
+26997 16:05:44.134844 ftruncate64(4, 0) = 0
+26997 16:05:44.134874 _llseek(4, 0, [0], SEEK_SET) = 0
+26997 16:05:44.134885 write(5, "\v", 1) = 1
+26997 16:05:44.134896 read(5,  <unfinished ...>
+26995 16:05:44.134903 read(4, "\v", 1)  = 1
+26995 16:05:44.134915 write(4, "\1\0\0\0", 4) = 4
+26997 16:05:44.134925 <... read resumed> "\1\0\0\0", 4) = 4
+26997 16:05:44.134933 write(5, "\v", 1) = 1
+26997 16:05:44.134943 read(5,  <unfinished ...>
+26995 16:05:44.134950 read(4, "\v", 1)  = 1
+26995 16:05:44.134960 write(4, "\1\0\0\0", 4) = 4
+26997 16:05:44.134971 <... read resumed> "\1\0\0\0", 4) = 4
+26997 16:05:44.134978 write(5, "\r", 1) = 1
+26997 16:05:44.134988 read(5,  <unfinished ...>
+26995 16:05:44.134995 read(4, "\r", 1)  = 1
+26995 16:05:44.135007 select(6, [5], NULL, NULL, {60, 0}) = 1 (in [5], left {60, 0})
+26995 16:05:44.135024 accept(5, {sa_family=AF_INET, sin_port=htons(32796), sin_addr=inet_addr("127.0.0.1")}, [16]) = 6
+26995 16:05:44.135046 write(4, "\1", 1) = 1
+26997 16:05:44.135057 <... read resumed> "\1", 1) = 1
+26997 16:05:44.135066 recvmsg(5,  <unfinished ...>
+26995 16:05:44.135074 sendmsg(4, {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+26997 16:05:44.135092 <... recvmsg resumed> {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+26997 16:05:44.135111 setsockopt(6, SOL_SOCKET, SO_KEEPALIVE, [1], 4) = 0
+26997 16:05:44.135124 setsockopt(6, SOL_IP, IP_TOS, [8], 4) = 0
+26997 16:05:44.135137 setsockopt(6, SOL_SOCKET, SO_LINGER, {onoff=1, linger=32767}, 8) = 0
+26997 16:05:44.135148 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:44.135162 alarm(300)        = 300
+26997 16:05:44.135174 write(0, "150 Ok to send data.\r\n", 22) = 22
+26997 16:05:44.135240 read(6, "assasaaa\na\na\na\na\n", 65536) = 17
+26997 16:05:44.135254 write(4, "assasaaa\na\na\na\na\n", 17) = 17
+26997 16:05:44.135270 read(6, "", 65536) = 0
+26997 16:05:44.135281 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:44.135305 alarm(300)        = 300
+26997 16:05:44.135335 close(6)          = 0
+26997 16:05:44.135354 alarm(0)          = 300
+26997 16:05:44.135364 gettimeofday({1495656344, 135367}, NULL) = 0
+26997 16:05:44.135379 gettimeofday({1495656344, 135383}, NULL) = 0
+26997 16:05:44.135393 fcntl64(3, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa89414) = 0
+26997 16:05:44.135408 write(3, "Wed May 24 16:05:44 2017 [pid 26997] [msfadmin] OK UPLOAD: Client \"127.0.0.1\", \"/home/msfadmin/myfile13\", 17 bytes, 25.15Kbyte/sec\n", 131) = 131
+26997 16:05:44.135430 fcntl64(3, F_SETLK64, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa8941c) = 0
+26997 16:05:44.135445 write(0, "226 Transfer complete.\r\n", 24) = 24
+26997 16:05:44.135490 write(5, "\n", 1) = 1
+26997 16:05:44.135502 read(5,  <unfinished ...>
+26995 16:05:44.135509 close(6)          = 0
+26995 16:05:44.135527 read(4, "\n", 1)  = 1
+26995 16:05:44.135538 close(5)          = 0
+26995 16:05:44.135549 write(4, "\1", 1) = 1
+26997 16:05:44.135560 <... read resumed> "\1", 1) = 1
+26997 16:05:44.135567 close(4)          = 0
+26997 16:05:44.135578 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+26997 16:05:44.135592 alarm(300)        = 0
+26997 16:05:44.135603 recv(0,  <unfinished ...>
+26995 16:05:44.135611 read(4,  <unfinished ...>

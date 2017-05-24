@@ -1,0 +1,326 @@
+9399  14:47:38.004604 read(0, "STOR myfile16\r\n", 15) = 15
+9399  14:47:38.004630 write(5, "\v", 1) = 1
+9399  14:47:38.004651 read(5,  <unfinished ...>
+9397  14:47:38.004665 read(4, "\v", 1)  = 1
+9397  14:47:38.004687 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:38.004708 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:38.004724 gettimeofday({1495651658, 4732}, NULL) = 0
+9399  14:47:38.004746 getcwd("/home/msfadmin", 4096) = 15
+9399  14:47:38.004770 open("myfile16", O_WRONLY|O_CREAT|O_NONBLOCK|O_LARGEFILE, 0666) = 4
+9399  14:47:38.004797 fstat64(4, {st_mode=S_IFREG|0644, st_size=17, ...}) = 0
+9399  14:47:38.004855 fcntl64(4, F_GETFL) = 0x8801 (flags O_WRONLY|O_NONBLOCK|O_LARGEFILE)
+9399  14:47:38.004879 fcntl64(4, F_SETFL, O_WRONLY|O_LARGEFILE) = 0
+9399  14:47:38.004901 fcntl64(4, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34c24) = 0
+9399  14:47:38.004931 ftruncate64(4, 0) = 0
+9399  14:47:38.004969 _llseek(4, 0, [0], SEEK_SET) = 0
+9399  14:47:38.004993 write(5, "\v", 1) = 1
+9399  14:47:38.005015 read(5,  <unfinished ...>
+9397  14:47:38.005031 read(4, "\v", 1)  = 1
+9397  14:47:38.005080 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:38.005104 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:38.005121 write(5, "\v", 1) = 1
+9399  14:47:38.005142 read(5,  <unfinished ...>
+9397  14:47:38.005156 read(4, "\v", 1)  = 1
+9397  14:47:38.005180 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:38.005202 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:38.005218 write(5, "\r", 1) = 1
+9399  14:47:38.005240 read(5,  <unfinished ...>
+9397  14:47:38.005254 read(4, "\r", 1)  = 1
+9397  14:47:38.005279 select(6, [5], NULL, NULL, {60, 0}) = 1 (in [5], left {60, 0})
+9397  14:47:38.005313 accept(5, {sa_family=AF_INET, sin_port=htons(55405), sin_addr=inet_addr("127.0.0.1")}, [16]) = 6
+9397  14:47:38.005360 write(4, "\1", 1) = 1
+9399  14:47:38.005382 <... read resumed> "\1", 1) = 1
+9399  14:47:38.005400 recvmsg(5,  <unfinished ...>
+9397  14:47:38.005418 sendmsg(4, {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9399  14:47:38.005455 <... recvmsg resumed> {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9399  14:47:38.005482 setsockopt(6, SOL_SOCKET, SO_KEEPALIVE, [1], 4) = 0
+9399  14:47:38.005509 setsockopt(6, SOL_IP, IP_TOS, [8], 4) = 0
+9399  14:47:38.005533 setsockopt(6, SOL_SOCKET, SO_LINGER, {onoff=1, linger=32767}, 8) = 0
+9399  14:47:38.005570 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.005598 alarm(300)        = 300
+9399  14:47:38.005626 write(0, "150 Ok to send data.\r\n", 22) = 22
+9399  14:47:38.005782 read(6, "assasaaa\na\na\na\na\n", 65536) = 17
+9399  14:47:38.005810 write(4, "assasaaa\na\na\na\na\n", 17) = 17
+9399  14:47:38.005842 read(6, "", 65536) = 0
+9399  14:47:38.005863 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.005890 alarm(300)        = 300
+9399  14:47:38.005937 close(6)          = 0
+9399  14:47:38.005959 alarm(0)          = 300
+9399  14:47:38.005979 gettimeofday({1495651658, 5987}, NULL) = 0
+9399  14:47:38.006034 gettimeofday({1495651658, 6047}, NULL) = 0
+9399  14:47:38.006069 fcntl64(3, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bc4) = 0
+9399  14:47:38.006102 write(3, "Wed May 24 14:47:38 2017 [pid 9399] [msfadmin] OK UPLOAD: Client \"127.0.0.1\", \"/home/msfadmin/myfile16\", 17 bytes, 12.62Kbyte/sec\n", 130) = 130
+9399  14:47:38.006146 fcntl64(3, F_SETLK64, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bcc) = 0
+9399  14:47:38.006179 write(0, "226 Transfer complete.\r\n", 24) = 24
+9399  14:47:38.006291 write(5, "\n", 1) = 1
+9399  14:47:38.006317 read(5,  <unfinished ...>
+9397  14:47:38.006334 close(6)          = 0
+9397  14:47:38.006376 read(4, "\n", 1)  = 1
+9397  14:47:38.006402 close(5)          = 0
+9397  14:47:38.006426 write(4, "\1", 1) = 1
+9399  14:47:38.006450 <... read resumed> "\1", 1) = 1
+9399  14:47:38.006466 close(4)          = 0
+9399  14:47:38.006489 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.006518 alarm(300)        = 0
+9399  14:47:38.006543 recv(0,  <unfinished ...>
+9397  14:47:38.006562 read(4,  <unfinished ...>
+9399  14:47:38.553276 <... recv resumed> "TYPE I\r\n", 4096, MSG_PEEK) = 8
+9399  14:47:38.553325 read(0, "TYPE I\r\n", 8) = 8
+9399  14:47:38.553366 write(0, "200 Switching to Binary mode.\r\n", 31) = 31
+9399  14:47:38.553455 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.553491 alarm(300)        = 299
+9399  14:47:38.553516 recv(0, "PASV\r\n", 4096, MSG_PEEK) = 6
+9399  14:47:38.553541 read(0, "PASV\r\n", 6) = 6
+9399  14:47:38.553566 write(5, "\n", 1) = 1
+9399  14:47:38.553592 read(5,  <unfinished ...>
+9397  14:47:38.553608 <... read resumed> "\n", 1) = 1
+9397  14:47:38.553626 write(4, "\1", 1) = 1
+9399  14:47:38.553649 <... read resumed> "\1", 1) = 1
+9399  14:47:38.553664 write(5, "\f", 1) = 1
+9399  14:47:38.553685 read(5,  <unfinished ...>
+9397  14:47:38.553700 read(4, "\f", 1)  = 1
+9397  14:47:38.553725 socket(PF_INET, SOCK_STREAM, IPPROTO_TCP) = 5
+9397  14:47:38.553755 setsockopt(5, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+9397  14:47:38.553784 bind(5, {sa_family=AF_INET, sin_port=htons(20822), sin_addr=inet_addr("127.0.0.1")}, 16) = 0
+9397  14:47:38.553824 listen(5, 1)      = 0
+9397  14:47:38.553849 write(4, "VQ\0\0", 4) = 4
+9399  14:47:38.553870 <... read resumed> "VQ\0\0", 4) = 4
+9399  14:47:38.553927 write(0, "227 Entering Passive Mode (127,0,0,1,81,86).\r\n", 46) = 46
+9399  14:47:38.554121 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.554152 alarm(300)        = 300
+9399  14:47:38.554174 recv(0, "STOR myfile17\r\n", 4096, MSG_PEEK) = 15
+9399  14:47:38.554198 read(0, "STOR myfile17\r\n", 15) = 15
+9399  14:47:38.554223 write(5, "\v", 1) = 1
+9399  14:47:38.554243 read(5,  <unfinished ...>
+9397  14:47:38.554257 read(4, "\v", 1)  = 1
+9397  14:47:38.554278 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:38.554298 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:38.554312 gettimeofday({1495651658, 554320}, NULL) = 0
+9399  14:47:38.554333 getcwd("/home/msfadmin", 4096) = 15
+9399  14:47:38.554357 open("myfile17", O_WRONLY|O_CREAT|O_NONBLOCK|O_LARGEFILE, 0666) = 4
+9399  14:47:38.554382 fstat64(4, {st_mode=S_IFREG|0644, st_size=17, ...}) = 0
+9399  14:47:38.554415 fcntl64(4, F_GETFL) = 0x8801 (flags O_WRONLY|O_NONBLOCK|O_LARGEFILE)
+9399  14:47:38.554436 fcntl64(4, F_SETFL, O_WRONLY|O_LARGEFILE) = 0
+9399  14:47:38.554466 fcntl64(4, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34c24) = 0
+9399  14:47:38.554493 ftruncate64(4, 0) = 0
+9399  14:47:38.554523 _llseek(4, 0, [0], SEEK_SET) = 0
+9399  14:47:38.554544 write(5, "\v", 1) = 1
+9399  14:47:38.554563 read(5,  <unfinished ...>
+9397  14:47:38.554576 read(4, "\v", 1)  = 1
+9397  14:47:38.554597 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:38.554617 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:38.554631 write(5, "\v", 1) = 1
+9399  14:47:38.554649 read(5,  <unfinished ...>
+9397  14:47:38.554662 read(4, "\v", 1)  = 1
+9397  14:47:38.554682 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:38.554701 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:38.554715 write(5, "\r", 1) = 1
+9399  14:47:38.554734 read(5,  <unfinished ...>
+9397  14:47:38.554747 read(4, "\r", 1)  = 1
+9397  14:47:38.554769 select(6, [5], NULL, NULL, {60, 0}) = 1 (in [5], left {60, 0})
+9397  14:47:38.554799 accept(5, {sa_family=AF_INET, sin_port=htons(38623), sin_addr=inet_addr("127.0.0.1")}, [16]) = 6
+9397  14:47:38.554844 write(4, "\1", 1) = 1
+9399  14:47:38.554885 <... read resumed> "\1", 1) = 1
+9399  14:47:38.554908 recvmsg(5,  <unfinished ...>
+9397  14:47:38.554919 sendmsg(4, {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9399  14:47:38.554942 <... recvmsg resumed> {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9399  14:47:38.554959 setsockopt(6, SOL_SOCKET, SO_KEEPALIVE, [1], 4) = 0
+9399  14:47:38.554975 setsockopt(6, SOL_IP, IP_TOS, [8], 4) = 0
+9399  14:47:38.554991 setsockopt(6, SOL_SOCKET, SO_LINGER, {onoff=1, linger=32767}, 8) = 0
+9399  14:47:38.555006 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.555023 alarm(300)        = 300
+9399  14:47:38.555040 write(0, "150 Ok to send data.\r\n", 22) = 22
+9399  14:47:38.555123 read(6, "assasaaa\na\na\na\na\n", 65536) = 17
+9399  14:47:38.555142 write(4, "assasaaa\na\na\na\na\n", 17) = 17
+9399  14:47:38.555163 read(6, "", 65536) = 0
+9399  14:47:38.555177 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.555195 alarm(300)        = 300
+9399  14:47:38.555208 close(6)          = 0
+9399  14:47:38.555220 alarm(0)          = 300
+9399  14:47:38.555233 gettimeofday({1495651658, 555238}, NULL) = 0
+9399  14:47:38.555253 gettimeofday({1495651658, 555259}, NULL) = 0
+9399  14:47:38.555272 fcntl64(3, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bc4) = 0
+9399  14:47:38.555292 write(3, "Wed May 24 14:47:38 2017 [pid 9399] [msfadmin] OK UPLOAD: Client \"127.0.0.1\", \"/home/msfadmin/myfile17\", 17 bytes, 17.68Kbyte/sec\n", 130) = 130
+9399  14:47:38.555319 fcntl64(3, F_SETLK64, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bcc) = 0
+9399  14:47:38.555338 write(0, "226 Transfer complete.\r\n", 24) = 24
+9399  14:47:38.555391 write(5, "\n", 1) = 1
+9399  14:47:38.555407 read(5,  <unfinished ...>
+9397  14:47:38.555416 close(6)          = 0
+9397  14:47:38.555439 read(4, "\n", 1)  = 1
+9397  14:47:38.555455 close(5)          = 0
+9397  14:47:38.555469 write(4, "\1", 1) = 1
+9399  14:47:38.555483 <... read resumed> "\1", 1) = 1
+9399  14:47:38.555493 close(4)          = 0
+9399  14:47:38.555507 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:38.555524 alarm(300)        = 0
+9399  14:47:38.555538 recv(0,  <unfinished ...>
+9397  14:47:38.555548 read(4,  <unfinished ...>
+9399  14:47:39.073502 <... recv resumed> "TYPE I\r\n", 4096, MSG_PEEK) = 8
+9399  14:47:39.073607 read(0, "TYPE I\r\n", 8) = 8
+9399  14:47:39.073708 write(0, "200 Switching to Binary mode.\r\n", 31) = 31
+9399  14:47:39.073992 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.074092 alarm(300)        = 299
+9399  14:47:39.074161 recv(0, "PASV\r\n", 4096, MSG_PEEK) = 6
+9399  14:47:39.074229 read(0, "PASV\r\n", 6) = 6
+9399  14:47:39.074299 write(5, "\n", 1) = 1
+9399  14:47:39.074395 read(5,  <unfinished ...>
+9397  14:47:39.074439 <... read resumed> "\n", 1) = 1
+9397  14:47:39.074486 write(4, "\1", 1) = 1
+9399  14:47:39.074546 <... read resumed> "\1", 1) = 1
+9399  14:47:39.074587 write(5, "\f", 1) = 1
+9399  14:47:39.074646 read(5,  <unfinished ...>
+9397  14:47:39.074685 read(4, "\f", 1)  = 1
+9397  14:47:39.074753 socket(PF_INET, SOCK_STREAM, IPPROTO_TCP) = 5
+9397  14:47:39.074831 setsockopt(5, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+9397  14:47:39.074965 bind(5, {sa_family=AF_INET, sin_port=htons(37705), sin_addr=inet_addr("127.0.0.1")}, 16) = 0
+9397  14:47:39.075054 listen(5, 1)      = 0
+9397  14:47:39.075127 write(4, "I\223\0\0", 4) = 4
+9399  14:47:39.075194 <... read resumed> "I\223\0\0", 4) = 4
+9399  14:47:39.075262 write(0, "227 Entering Passive Mode (127,0,0,1,147,73).\r\n", 47) = 47
+9399  14:47:39.075751 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.075889 alarm(300)        = 300
+9399  14:47:39.075964 recv(0, "STOR myfile18\r\n", 4096, MSG_PEEK) = 15
+9399  14:47:39.076041 read(0, "STOR myfile18\r\n", 15) = 15
+9399  14:47:39.076121 write(5, "\v", 1) = 1
+9399  14:47:39.076183 read(5,  <unfinished ...>
+9397  14:47:39.076225 read(4, "\v", 1)  = 1
+9397  14:47:39.076293 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:39.076357 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:39.076404 gettimeofday({1495651659, 76427}, NULL) = 0
+9399  14:47:39.076468 getcwd("/home/msfadmin", 4096) = 15
+9399  14:47:39.076540 open("myfile18", O_WRONLY|O_CREAT|O_NONBLOCK|O_LARGEFILE, 0666) = 4
+9399  14:47:39.076616 fstat64(4, {st_mode=S_IFREG|0644, st_size=17, ...}) = 0
+9399  14:47:39.076719 fcntl64(4, F_GETFL) = 0x8801 (flags O_WRONLY|O_NONBLOCK|O_LARGEFILE)
+9399  14:47:39.076783 fcntl64(4, F_SETFL, O_WRONLY|O_LARGEFILE) = 0
+9399  14:47:39.076885 fcntl64(4, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34c24) = 0
+9399  14:47:39.076968 ftruncate64(4, 0) = 0
+9399  14:47:39.077061 _llseek(4, 0, [0], SEEK_SET) = 0
+9399  14:47:39.077125 write(5, "\v", 1) = 1
+9399  14:47:39.077190 read(5,  <unfinished ...>
+9397  14:47:39.077234 read(4, "\v", 1)  = 1
+9397  14:47:39.077302 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:39.077367 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:39.077410 write(5, "\v", 1) = 1
+9399  14:47:39.077451 read(5,  <unfinished ...>
+9397  14:47:39.077479 read(4, "\v", 1)  = 1
+9397  14:47:39.077523 write(4, "\1\0\0\0", 4) = 4
+9399  14:47:39.077653 <... read resumed> "\1\0\0\0", 4) = 4
+9399  14:47:39.077688 write(5, "\r", 1) = 1
+9399  14:47:39.077728 read(5,  <unfinished ...>
+9397  14:47:39.077791 read(4, "\r", 1)  = 1
+9397  14:47:39.077852 select(6, [5], NULL, NULL, {60, 0}) = 1 (in [5], left {60, 0})
+9397  14:47:39.077917 accept(5, {sa_family=AF_INET, sin_port=htons(48639), sin_addr=inet_addr("127.0.0.1")}, [16]) = 6
+9397  14:47:39.078005 write(4, "\1", 1) = 1
+9399  14:47:39.078047 <... read resumed> "\1", 1) = 1
+9399  14:47:39.078082 recvmsg(5,  <unfinished ...>
+9397  14:47:39.078115 sendmsg(4, {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9399  14:47:39.078181 <... recvmsg resumed> {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9399  14:47:39.078233 setsockopt(6, SOL_SOCKET, SO_KEEPALIVE, [1], 4) = 0
+9399  14:47:39.078282 setsockopt(6, SOL_IP, IP_TOS, [8], 4) = 0
+9399  14:47:39.078329 setsockopt(6, SOL_SOCKET, SO_LINGER, {onoff=1, linger=32767}, 8) = 0
+9399  14:47:39.078374 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.078427 alarm(300)        = 300
+9399  14:47:39.078479 write(0, "150 Ok to send data.\r\n", 22) = 22
+9399  14:47:39.078944 read(6, "assasaaa\na\na\na\na\n", 65536) = 17
+9399  14:47:39.079007 write(4, "assasaaa\na\na\na\na\n", 17) = 17
+9399  14:47:39.079072 read(6, "", 65536) = 0
+9399  14:47:39.079114 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.079170 alarm(300)        = 300
+9399  14:47:39.079221 close(6)          = 0
+9399  14:47:39.079258 alarm(0)          = 300
+9399  14:47:39.079296 gettimeofday({1495651659, 79311}, NULL) = 0
+9399  14:47:39.079356 gettimeofday({1495651659, 79374}, NULL) = 0
+9399  14:47:39.079410 fcntl64(3, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bc4) = 0
+9399  14:47:39.079469 write(3, "Wed May 24 14:47:39 2017 [pid 9399] [msfadmin] OK UPLOAD: Client \"127.0.0.1\", \"/home/msfadmin/myfile18\", 17 bytes, 5.63Kbyte/sec\n", 129) = 129
+9399  14:47:39.079626 fcntl64(3, F_SETLK64, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bcc) = 0
+9399  14:47:39.079725 write(0, "226 Transfer complete.\r\n", 24) = 24
+9399  14:47:39.079906 write(5, "\n", 1) = 1
+9399  14:47:39.079954 read(5,  <unfinished ...>
+9397  14:47:39.079983 close(6)          = 0
+9397  14:47:39.080053 read(4, "\n", 1)  = 1
+9397  14:47:39.080099 close(5)          = 0
+9397  14:47:39.080143 write(4, "\1", 1) = 1
+9399  14:47:39.080186 <... read resumed> "\1", 1) = 1
+9399  14:47:39.080214 close(4)          = 0
+9399  14:47:39.080257 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.080310 alarm(300)        = 0
+9399  14:47:39.080354 recv(0,  <unfinished ...>
+9397  14:47:39.080384 read(4,  <unfinished ...>
+9399  14:47:39.603307 <... recv resumed> "TYPE I\r\n", 4096, MSG_PEEK) = 8
+9399  14:47:39.603463 read(0, "TYPE I\r\n", 8) = 8
+9399  14:47:39.603564 write(0, "200 Switching to Binary mode.\r\n", 31) = 31
+9399  14:47:39.603765 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.603839 alarm(300)        = 299
+9399  14:47:39.603893 recv(0, "PASV\r\n", 4096, MSG_PEEK) = 6
+9399  14:47:39.603945 read(0, "PASV\r\n", 6) = 6
+9399  14:47:39.603999 write(5, "\n", 1) = 1
+9397  14:47:39.604053 <... read resumed> "\n", 1) = 1
+9397  14:47:39.604088 write(4, "\1", 1) = 1
+9397  14:47:39.604136 read(4,  <unfinished ...>
+9399  14:47:39.604169 read(5, "\1", 1)  = 1
+9399  14:47:39.604219 write(5, "\f", 1) = 1
+9397  14:47:39.604262 <... read resumed> "\f", 1) = 1
+9397  14:47:39.604296 socket(PF_INET, SOCK_STREAM, IPPROTO_TCP) = 5
+9397  14:47:39.604358 setsockopt(5, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+9397  14:47:39.604470 bind(5, {sa_family=AF_INET, sin_port=htons(35435), sin_addr=inet_addr("127.0.0.1")}, 16) = 0
+9397  14:47:39.604543 listen(5, 1)      = 0
+9397  14:47:39.604600 write(4, "k\212\0\0", 4) = 4
+9397  14:47:39.604652 read(4,  <unfinished ...>
+9399  14:47:39.604685 read(5, "k\212\0\0", 4) = 4
+9399  14:47:39.604756 write(0, "227 Entering Passive Mode (127,0,0,1,138,107).\r\n", 48) = 48
+9399  14:47:39.605173 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.605248 alarm(300)        = 300
+9399  14:47:39.605299 recv(0, "STOR myfile19\r\n", 4096, MSG_PEEK) = 15
+9399  14:47:39.605353 read(0, "STOR myfile19\r\n", 15) = 15
+9399  14:47:39.605471 write(5, "\v", 1) = 1
+9397  14:47:39.605521 <... read resumed> "\v", 1) = 1
+9397  14:47:39.605553 write(4, "\1\0\0\0", 4) = 4
+9397  14:47:39.605602 read(4,  <unfinished ...>
+9399  14:47:39.605634 read(5, "\1\0\0\0", 4) = 4
+9399  14:47:39.605686 gettimeofday({1495651659, 605702}, NULL) = 0
+9399  14:47:39.605734 getcwd("/home/msfadmin", 4096) = 15
+9399  14:47:39.605789 open("myfile19", O_WRONLY|O_CREAT|O_NONBLOCK|O_LARGEFILE, 0666) = 4
+9399  14:47:39.605849 fstat64(4, {st_mode=S_IFREG|0644, st_size=17, ...}) = 0
+9399  14:47:39.605924 fcntl64(4, F_GETFL) = 0x8801 (flags O_WRONLY|O_NONBLOCK|O_LARGEFILE)
+9399  14:47:39.605973 fcntl64(4, F_SETFL, O_WRONLY|O_LARGEFILE) = 0
+9399  14:47:39.606018 fcntl64(4, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34c24) = 0
+9399  14:47:39.606079 ftruncate64(4, 0) = 0
+9399  14:47:39.606154 _llseek(4, 0, [0], SEEK_SET) = 0
+9399  14:47:39.606203 write(5, "\v", 1) = 1
+9397  14:47:39.606251 <... read resumed> "\v", 1) = 1
+9397  14:47:39.606283 write(4, "\1\0\0\0", 4) = 4
+9397  14:47:39.606403 read(4,  <unfinished ...>
+9399  14:47:39.606449 read(5, "\1\0\0\0", 4) = 4
+9399  14:47:39.606504 write(5, "\v", 1) = 1
+9397  14:47:39.606571 <... read resumed> "\v", 1) = 1
+9397  14:47:39.606603 write(4, "\1\0\0\0", 4) = 4
+9397  14:47:39.606650 read(4,  <unfinished ...>
+9399  14:47:39.606680 read(5, "\1\0\0\0", 4) = 4
+9399  14:47:39.606731 write(5, "\r", 1) = 1
+9397  14:47:39.606774 <... read resumed> "\r", 1) = 1
+9397  14:47:39.606808 select(6, [5], NULL, NULL, {60, 0}) = 1 (in [5], left {60, 0})
+9397  14:47:39.606878 accept(5, {sa_family=AF_INET, sin_port=htons(43326), sin_addr=inet_addr("127.0.0.1")}, [16]) = 6
+9397  14:47:39.606974 write(4, "\1", 1) = 1
+9397  14:47:39.607027 sendmsg(4, {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9397  14:47:39.607099 close(6)          = 0
+9397  14:47:39.607142 read(4,  <unfinished ...>
+9399  14:47:39.607173 read(5, "\1", 1)  = 1
+9399  14:47:39.607229 recvmsg(5, {msg_name(0)=NULL, msg_iov(1)=[{"\0", 1}], msg_controllen=16, {cmsg_len=16, cmsg_level=SOL_SOCKET, cmsg_type=SCM_RIGHTS, {6}}, msg_flags=0}, 0) = 1
+9399  14:47:39.607344 setsockopt(6, SOL_SOCKET, SO_KEEPALIVE, [1], 4) = 0
+9399  14:47:39.607408 setsockopt(6, SOL_IP, IP_TOS, [8], 4) = 0
+9399  14:47:39.607460 setsockopt(6, SOL_SOCKET, SO_LINGER, {onoff=1, linger=32767}, 8) = 0
+9399  14:47:39.607510 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.607570 alarm(300)        = 300
+9399  14:47:39.607626 write(0, "150 Ok to send data.\r\n", 22) = 22
+9399  14:47:39.607894 read(6, "assasaaa\na\na\na\na\n", 65536) = 17
+9399  14:47:39.607957 write(4, "assasaaa\na\na\na\na\n", 17) = 17
+9399  14:47:39.608028 read(6, "", 65536) = 0
+9399  14:47:39.608075 rt_sigaction(SIGALRM, {0x805cad0, ~[RTMIN RT_1], 0}, NULL, 8) = 0
+9399  14:47:39.608136 alarm(300)        = 300
+9399  14:47:39.608179 close(6)          = 0
+9399  14:47:39.608251 alarm(0)          = 300
+9399  14:47:39.608362 gettimeofday({1495651659, 608382}, NULL) = 0
+9399  14:47:39.608435 gettimeofday({1495651659, 608455}, NULL) = 0
+9399  14:47:39.608496 fcntl64(3, F_SETLKW64, {type=F_WRLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bc4) = 0
+9399  14:47:39.608561 write(3, "Wed May 24 14:47:39 2017 [pid 9399] [msfadmin] OK UPLOAD: Client \"127.0.0.1\", \"/home/msfadmin/myfile19\", 17 bytes, 6.03Kbyte/sec\n", 129) = 129
+9399  14:47:39.608660 fcntl64(3, F_SETLK64, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}, 0xbfa34bcc) = 0
