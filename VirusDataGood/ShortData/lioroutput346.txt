@@ -1,0 +1,324 @@
+11168 20:14:01.338957 stat64("/usr/local/lib/perl/5.8.8/File/stat.pm", 0xbfe9964c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.338971 stat64("/usr/local/share/perl/5.8.8/File/stat.pmc", 0xbfe9973c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.338984 stat64("/usr/local/share/perl/5.8.8/File/stat.pm", 0xbfe9964c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.338999 stat64("/usr/lib/perl5/File/stat.pmc", 0xbfe9973c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339011 stat64("/usr/lib/perl5/File/stat.pm", 0xbfe9964c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339024 stat64("/usr/share/perl5/File/stat.pmc", 0xbfe9973c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339037 stat64("/usr/share/perl5/File/stat.pm", 0xbfe9964c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339051 stat64("/usr/lib/perl/5.8/File/stat.pmc", 0xbfe9973c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339064 stat64("/usr/lib/perl/5.8/File/stat.pm", 0xbfe9964c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339092 stat64("/usr/share/perl/5.8/File/stat.pmc", 0xbfe9973c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339105 stat64("/usr/share/perl/5.8/File/stat.pm", {st_mode=S_IFREG|0644, st_size=3372, ...}) = 0
+11168 20:14:01.339126 open("/usr/share/perl/5.8/File/stat.pm", O_RDONLY|O_LARGEFILE) = 8
+11168 20:14:01.339141 ioctl(8, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe99458) = -1 ENOTTY (Inappropriate ioctl for device)
+11168 20:14:01.339152 _llseek(8, 0, [0], SEEK_CUR) = 0
+11168 20:14:01.339170 read(8, "package File::stat;\nuse 5.006;\n\nuse strict;\nuse warnings;\n\nour(@EXPORT, @EXPORT_OK, %EXPORT_TAGS);\n\nour $VERSION = \'1.00\';\n\nBEGIN { \n    use Exporter   ();\n    @EXPORT      = qw(stat lstat);\n    @EXPORT_OK   = qw( $st_dev\t   $st_ino    $st_mode \n\t\t       $st_nlink   $st_uid    $st_gid \n\t\t       $st_rdev    $st_size \n\t\t       $st_atime   $st_mtime  $st_ctime \n\t\t       $st_blksize $st_blocks\n\t\t    );\n    %EXPORT_TAGS = ( FIELDS => [ @EXPORT_OK, @EXPORT ] );\n}\nuse vars @EXPORT_OK;\n\n# Class::Struct forbids use of @ISA\nsub import { goto &Exporter::import }\n\nuse Class::Struct qw(struct);\nstruct \'File::stat\' => [\n     map { $_ => \'$\' } qw{\n\t dev ino mode nlink uid gid rdev size\n\t atime mtime ctime blksize blocks\n     }\n];\n\nsub populate (@) {\n    return unless @_;\n    my $stob = new();\n    @$stob = (\n\t$st_dev, $st_ino, $st_mode, $st_nlink, $st_uid, $st_gid, $st_rdev,\n        $st_size, $st_atime, $st_mtime, $st_ctime, $st_blksize, $st_blocks ) \n\t    = @_;\n    return $stob;\n} \n\nsub lstat ($)  { populate(CORE::lstat(shift)) }\n\nsub stat ($) {\n    my $arg = shift;\n    my $st = populate(CORE::stat $arg);\n    return $st if $st;\n\tmy $fh;\n    {\n\t\tlocal $!;\n\t\tno strict \'refs\';\n\t\trequire Symbol;\n\t\t$fh = \\*{ Symbol::qualify( $arg, caller() )};\n\t\treturn unless defined fileno $fh;\n\t}\n    return populate(CORE::stat $fh);\n}\n\n1;\n__END__\n\n=head1 NAME\n\nFile::stat - by-name interface to Perl\'s built-in stat() functions\n\n=head1 SYNOPSIS\n\n use File::stat;\n $st = stat($file) or die \"No $file: $!\";\n if ( ($st->mode & 0111) && $st->nlink > 1) ) {\n     print \"$file is executable with lotsa links\\n\";\n } \n\n use File::stat qw(:FIELDS);\n stat($file) or die \"No $file: $!\";\n if ( ($st_mode & 0111) && $st_nlink > 1) ) {\n     print \"$file is executable with lotsa links\\n\";\n } \n\n=head1 DESCRIPTION\n\nThis module\'s default exports override the core stat() \nand lstat() functions, replacing them with versions that return \n\"File::stat\" objects.  This object has methods that\nreturn the similarly named structure field name from the\nstat(2) function; namely,\ndev,\nino,\nmode,\nnlink,\nuid,\ngid,\nrdev,\nsize,\natime,\nmtime,\nctime,\nblksize,\nand\nblocks.  \n\nYou may also import all the structure fields directly into your namespace\nas regular variables using the :FIELDS import tag.  (Note that this still\noverrides your stat() and lstat() functions.)  Access these fields as\nvariables named with a preceding C<st_> in front their method names.\nThus, C<$stat_obj-E<gt>dev()> corresponds to $st_dev if you import\nthe fields.\n\nTo access this functionality without the core overrides,\npass the C<use> an empty import list, and then access\nfunction functions with their full qualified names.\nOn the other hand, the built-ins are still available\nvia the C<CORE::> pseudo-package.\n\n=head1 BUGS\n\nAs of Perl 5.8.0 after using this module you cannot use the implicit\nC<$_> or the special filehandle C<_> with stat() or lstat(), trying\nto do so leads into strange errors.  The workaround is for C<$_> to\nbe explicit\n\n    my $stat_obj = stat $_;\n\nand for C<_> to explicitly populate the object using the unexported\nand undocumented populate() function with CORE::stat():\n\n    my $stat_obj = File::stat::populate(CORE::stat(_));\n\n=head1 NOTE\n\nWhile this class is currently implemented using the Class::Struct\nmodule to build a struct-like class, you shouldn\'t rely upon this.\n\n=head1 AUTHOR\n\nTom Christiansen\n", 4096) = 3372
+11168 20:14:01.339661 stat64("/etc/perl/Class/Struct.pmc", 0xbfe9928c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339679 stat64("/etc/perl/Class/Struct.pm", 0xbfe9919c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339693 stat64("/usr/local/lib/perl/5.8.8/Class/Struct.pmc", 0xbfe9928c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339706 stat64("/usr/local/lib/perl/5.8.8/Class/Struct.pm", 0xbfe9919c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339720 stat64("/usr/local/share/perl/5.8.8/Class/Struct.pmc", 0xbfe9928c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339733 stat64("/usr/local/share/perl/5.8.8/Class/Struct.pm", 0xbfe9919c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339747 stat64("/usr/lib/perl5/Class/Struct.pmc", 0xbfe9928c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339759 stat64("/usr/lib/perl5/Class/Struct.pm", 0xbfe9919c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339772 stat64("/usr/share/perl5/Class/Struct.pmc", 0xbfe9928c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339784 stat64("/usr/share/perl5/Class/Struct.pm", 0xbfe9919c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339797 stat64("/usr/lib/perl/5.8/Class/Struct.pmc", 0xbfe9928c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339810 stat64("/usr/lib/perl/5.8/Class/Struct.pm", 0xbfe9919c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339823 stat64("/usr/share/perl/5.8/Class/Struct.pmc", 0xbfe9928c) = -1 ENOENT (No such file or directory)
+11168 20:14:01.339856 stat64("/usr/share/perl/5.8/Class/Struct.pm", {st_mode=S_IFREG|0644, st_size=20512, ...}) = 0
+11168 20:14:01.339923 open("/usr/share/perl/5.8/Class/Struct.pm", O_RDONLY|O_LARGEFILE) = 10
+11168 20:14:01.339952 ioctl(10, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe98fa8) = -1 ENOTTY (Inappropriate ioctl for device)
+11168 20:14:01.339963 _llseek(10, 0, [0], SEEK_CUR) = 0
+11168 20:14:01.339983 read(10, "package Class::Struct;\n\n## See POD after __END__\n\nuse 5.006_001;\n\nuse strict;\nuse warnings::register;\nour(@ISA, @EXPORT, $VERSION);\n\nuse Carp;\n\nrequire Exporter;\n@ISA = qw(Exporter);\n@EXPORT = qw(struct);\n\n$VERSION = \'0.63\';\n\n## Tested on 5.002 and 5.003 without class membership tests:\nmy $CHECK_CLASS_MEMBERSHIP = ($] >= 5.003_95);\n\nmy $print = 0;\nsub printem {\n    if (@_) { $print = shift }\n    else    { $print++ }\n}\n\n{\n    package Class::Struct::Tie_ISA;\n\n    sub TIEARRAY {\n        my $class = shift;\n        return bless [], $class;\n    }\n\n    sub STORE {\n        my ($self, $index, $value) = @_;\n        Class::Struct::_subclass_error();\n    }\n\n    sub FETCH {\n        my ($self, $index) = @_;\n        $self->[$index];\n    }\n\n    sub FETCHSIZE {\n        my $self = shift;\n        return scalar(@$self);\n    }\n\n    sub DESTROY { }\n}\n\nsub import {\n    my $self = shift;\n\n    if ( @_ == 0 ) {\n      $self->export_to_level( 1, $self, @EXPORT );\n    } elsif ( @_ == 1 ) {\n\t# This is admittedly a little bit silly:\n\t# do we ever export anything else than \'struct\'...?\n      $self->export_to_level( 1, $self, @_ );\n    } else {\n      goto &struct;\n    }\n}\n\nsub struct {\n\n    # Determine parameter list structure, one of:\n    #   struct( class => [ element-list ])\n    #   struct( class => { element-list })\n    #   struct( element-list )\n    # Latter form assumes current package name as struct name.\n\n    my ($class, @decls);\n    my $base_type = ref $_[1];\n    if ( $base_type eq \'HASH\' ) {\n        $class = shift;\n        @decls = %{shift()};\n        _usage_error() if @_;\n    }\n    elsif ( $base_type eq \'ARRAY\' ) {\n        $class = shift;\n        @decls = @{shift()};\n        _usage_error() if @_;\n    }\n    else {\n        $base_type = \'ARRAY\';\n        $class = (caller())[0];\n        @decls = @_;\n    }\n\n    _usage_error() if @decls % 2 == 1;\n\n    # Ensure we are not, and will not be, a subclass.\n\n    my $isa = do {\n        no strict \'refs\';\n        \\@{$class . \'::ISA\'};\n    };\n    _subclass_error() if @$isa;\n    tie @$isa, \'Class::Struct::Tie_ISA\';\n\n    # Create constructor.\n\n    croak \"function \'new\' already defined in package $class\"\n        if do { no strict \'refs\'; defined &{$class . \"::new\"} };\n\n    my @methods = ();\n    my %refs = ();\n    my %arrays = ();\n    my %hashes = ();\n    my %classes = ();\n    my $got_class = 0;\n    my $out = \'\';\n\n    $out = \"{\\n  package $class;\\n  use Carp;\\n  sub new {\\n\";\n    $out .= \"    my (\\$class, \\%init) = \\@_;\\n\";\n    $out .= \"    \\$class = __PACKAGE__ unless \\@_;\\n\";\n\n    my $cnt = 0;\n    my $idx = 0;\n    my( $cmt, $name, $type, $elem );\n\n    if( $base_type eq \'HASH\' ){\n        $out .= \"    my(\\$r) = {};\\n\";\n        $cmt = \'\';\n    }\n    elsif( $base_type eq \'ARRAY\' ){\n        $out .= \"    my(\\$r) = [];\\n\";\n    }\n    while( $idx < @decls ){\n        $name = $decls[$idx];\n        $type = $decls[$idx+1];\n        push( @methods, $name );\n        if( $base_type eq \'HASH\' ){\n            $elem = \"{\'${class}::$name\'}\";\n        }\n        elsif( $base_type eq \'ARRAY\' ){\n            $elem = \"[$cnt]\";\n            ++$cnt;\n            $cmt = \" # $name\";\n        }\n        if( $type =~ /^\\*(.)/ ){\n            $refs{$name}++;\n            $type = $1;\n        }\n        my $init = \"defined(\\$init{\'$name\'}) ? \\$init{\'$name\'} :\";\n        if( $type eq \'@\' ){\n            $out .= \"    croak \'Initializer for $name must be array reference\'\\n\"; \n            $out .= \"        if defined(\\$init{\'$name\'}) && ref(\\$init{\'$name\'}) ne \'ARRAY\';\\n\";\n            $out .= \"    \\$r->$elem = $init [];$cmt\\n\"; \n            $arrays{$name}++;\n        }\n        elsif( $type eq \'%\' ){\n            $out .= \"    croak \'Initializer for $name must be hash reference\'\\n\";\n            $out .= \"        if defined(\\$init{\'$name\'}) && ref(\\$init{\'$name\'}) ne \'HASH\';\\n\";\n            $out .= \"    \\$r->$elem = $init {};$cmt\\n\";\n            $hashes{$name}++;\n        }\n        elsif ( $type eq \'$\') {\n            $out .= \"    \\$r->$elem = $init undef;$cmt\\n\";\n        }\n        elsif( $type =~ /^\\w+(?:::\\w+)*$/ ){\n            $out .= \"    if (defined(\\$init{\'$name\'}))", 4096) = 4096
+11168 20:14:01.340452 brk(0x82de000)    = 0x82de000
+11168 20:14:01.340798 read(10, " {\\n\";\n           $out .= \"       if (ref \\$init{\'$name\'} eq \'HASH\')\\n\";\n            $out .= \"            { \\$r->$elem = $type->new(\\%{\\$init{\'$name\'}}) } $cmt\\n\";\n           $out .= \"       elsif (UNIVERSAL::isa(\\$init{\'$name\'}, \'$type\'))\\n\";\n            $out .= \"            { \\$r->$elem = \\$init{\'$name\'} } $cmt\\n\";\n            $out .= \"       else { croak \'Initializer for $name must be hash or $type reference\' }\\n\";\n            $out .= \"    }\\n\";\n            $classes{$name} = $type;\n            $got_class = 1;\n        }\n        else{\n            croak \"\'$type\' is not a valid struct element type\";\n        }\n        $idx += 2;\n    }\n    $out .= \"    bless \\$r, \\$class;\\n  }\\n\";\n\n    # Create accessor methods.\n\n    my( $pre, $pst, $sel );\n    $cnt = 0;\n    foreach $name (@methods){\n        if ( do { no strict \'refs\'; defined &{$class . \"::$name\"} } ) {\n            warnings::warnif(\"function \'$name\' already defined, overrides struct accessor method\");\n        }\n        else {\n            $pre = $pst = $cmt = $sel = \'\';\n            if( defined $refs{$name} ){\n                $pre = \"\\\\(\";\n                $pst = \")\";\n                $cmt = \" # returns ref\";\n            }\n            $out .= \"  sub $name {$cmt\\n    my \\$r = shift;\\n\";\n            if( $base_type eq \'ARRAY\' ){\n                $elem = \"[$cnt]\";\n                ++$cnt;\n            }\n            elsif( $base_type eq \'HASH\' ){\n                $elem = \"{\'${class}::$name\'}\";\n            }\n            if( defined $arrays{$name} ){\n                $out .= \"    my \\$i;\\n\";\n                $out .= \"    \\@_ ? (\\$i = shift) : return \\$r->$elem;\\n\"; \n                $out .= \"    if (ref(\\$i) eq \'ARRAY\' && !\\@_) { \\$r->$elem = \\$i; return \\$r }\\n\";\n                $sel = \"->[\\$i]\";\n            }\n            elsif( defined $hashes{$name} ){\n                $out .= \"    my \\$i;\\n\";\n                $out .= \"    \\@_ ? (\\$i = shift) : return \\$r->$elem;\\n\";\n                $out .= \"    if (ref(\\$i) eq \'HASH\' && !\\@_) { \\$r->$elem = \\$i; return \\$r }\\n\";\n                $sel = \"->{\\$i}\";\n            }\n            elsif( defined $classes{$name} ){\n                if ( $CHECK_CLASS_MEMBERSHIP ) {\n                    $out .= \"    croak \'$name argument is wrong class\' if \\@_ && ! UNIVERSAL::isa(\\$_[0], \'$classes{$name}\');\\n\";\n                }\n            }\n            $out .= \"    croak \'Too many args to $name\' if \\@_ > 1;\\n\";\n            $out .= \"    \\@_ ? ($pre\\$r->$elem$sel = shift$pst) : $pre\\$r->$elem$sel$pst;\\n\";\n            $out .= \"  }\\n\";\n        }\n    }\n    $out .= \"}\\n1;\\n\";\n\n    print $out if $print;\n    my $result = eval $out;\n    carp $@ if $@;\n}\n\nsub _usage_error {\n    confess \"struct usage error\";\n}\n\nsub _subclass_error {\n    croak \'struct class cannot be a subclass (@ISA not allowed)\';\n}\n\n1; # for require\n\n\n__END__\n\n=head1 NAME\n\nClass::Struct - declare struct-like datatypes as Perl classes\n\n=head1 SYNOPSIS\n\n    use Class::Struct;\n            # declare struct, based on array:\n    struct( CLASS_NAME => [ ELEMENT_NAME => ELEMENT_TYPE, ... ]);\n            # declare struct, based on hash:\n    struct( CLASS_NAME => { ELEMENT_NAME => ELEMENT_TYPE, ... });\n\n    package CLASS_NAME;\n    use Class::Struct;\n            # declare struct, based on array, implicit class name:\n    struct( ELEMENT_NAME => ELEMENT_TYPE, ... );\n\n    # Declare struct at compile time\n    use Class::Struct CLASS_NAME => [ ELEMENT_NAME => ELEMENT_TYPE, ... ];\n    use Class::Struct CLASS_NAME => { ELEMENT_NAME => ELEMENT_TYPE, ... };\n\n    # declare struct at compile time, based on array, implicit class name:\n    package CLASS_NAME;\n    use Class::Struct ELEMENT_NAME => ELEMENT_TYPE, ... ;\n\n    package Myobj;\n    use Class::Struct;\n            # declare struct with four types of elements:\n    struct( s => \'$\', a => \'@\', h => \'%\', c => \'My_Other_Class\' );\n\n    $obj = new Myobj;               # constructor\n\n                                    # scalar type accessor:\n    $element_value = $obj->s;           # element value\n    $obj->s(\'new value\');               # assign to element\n\n                             ", 4096) = 4096
+11168 20:14:01.341059 _llseek(10, 6916, [6916], SEEK_SET) = 0
+11168 20:14:01.341077 _llseek(10, 0, [6916], SEEK_CUR) = 0
+11168 20:14:01.341088 close(10)         = 0
+11168 20:14:01.341262 _llseek(8, 1334, [1334], SEEK_SET) = 0
+11168 20:14:01.341278 _llseek(8, 0, [1334], SEEK_CUR) = 0
+11168 20:14:01.341292 close(8)          = 0
+11168 20:14:01.342094 brk(0x82ff000)    = 0x82ff000
+11168 20:14:01.342242 _llseek(6, 2689, [2689], SEEK_SET) = 0
+11168 20:14:01.342258 _llseek(6, 0, [2689], SEEK_CUR) = 0
+11168 20:14:01.342268 close(6)          = 0
+11168 20:14:01.342510 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7df8908) = 11169
+11169 20:14:01.520897 getppid()         = 11168
+11169 20:14:01.521173 open("/etc/nsswitch.conf", O_RDONLY) = 6
+11169 20:14:01.521211 fstat64(6, {st_mode=S_IFREG|0644, st_size=475, ...}) = 0
+11169 20:14:01.521243 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fbe000
+11169 20:14:01.521265 read(6, "# /etc/nsswitch.conf\n#\n# Example configuration of GNU Name Service Switch functionality.\n# If you have the `glibc-doc-reference\' and `info\' packages installed, try:\n# `info libc \"Name Service Switch\"\' for information about this file.\n\npasswd:         compat\ngroup:          compat\nshadow:         compat\n\nhosts:          files dns\nnetworks:       files\n\nprotocols:      db files\nservices:       db files\nethers:         db files\nrpc:            db files\n\nnetgroup:       nis\n", 4096) = 475
+11169 20:14:01.521374 read(6, "", 4096) = 0
+11169 20:14:01.521409 close(6)          = 0
+11169 20:14:01.521444 munmap(0xb7fbe000, 4096) = 0
+11169 20:14:01.521495 open("/etc/ld.so.cache", O_RDONLY) = 6
+11169 20:14:01.521516 fstat64(6, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+11169 20:14:01.521542 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 6, 0) = 0xb7dc5000
+11169 20:14:01.521559 close(6)          = 0
+11169 20:14:01.521575 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521601 open("/lib/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521622 stat64("/lib/tls/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521643 open("/lib/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521663 stat64("/lib/tls/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521681 open("/lib/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521701 stat64("/lib/tls/i686/cmov", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.521729 open("/lib/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521748 stat64("/lib/tls/i686", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.521775 open("/lib/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521794 stat64("/lib/tls/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521811 open("/lib/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521830 stat64("/lib/tls/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521858 open("/lib/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521878 stat64("/lib/tls/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521895 open("/lib/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521913 stat64("/lib/tls", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.521940 open("/lib/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521959 stat64("/lib/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521976 open("/lib/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.521995 stat64("/lib/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522012 open("/lib/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522030 stat64("/lib/i686/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522062 open("/lib/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522080 stat64("/lib/i686", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522096 open("/lib/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522115 stat64("/lib/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522131 open("/lib/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522150 stat64("/lib/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522166 open("/lib/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522184 stat64("/lib/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522200 open("/lib/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522217 stat64("/lib", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.522244 open("/usr/lib/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522264 stat64("/usr/lib/tls/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522282 open("/usr/lib/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522302 stat64("/usr/lib/tls/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522319 open("/usr/lib/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522339 stat64("/usr/lib/tls/i686/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522367 open("/usr/lib/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522386 stat64("/usr/lib/tls/i686", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522403 open("/usr/lib/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522423 stat64("/usr/lib/tls/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522440 open("/usr/lib/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522459 stat64("/usr/lib/tls/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522476 open("/usr/lib/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522495 stat64("/usr/lib/tls/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522512 open("/usr/lib/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522531 stat64("/usr/lib/tls", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522548 open("/usr/lib/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522567 stat64("/usr/lib/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522585 open("/usr/lib/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522604 stat64("/usr/lib/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522622 open("/usr/lib/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522641 stat64("/usr/lib/i686/cmov", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.522669 open("/usr/lib/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522688 stat64("/usr/lib/i686", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.522715 open("/usr/lib/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522734 stat64("/usr/lib/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522751 open("/usr/lib/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522770 stat64("/usr/lib/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522787 open("/usr/lib/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522810 stat64("/usr/lib/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522826 open("/usr/lib/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522855 stat64("/usr/lib", {st_mode=S_IFDIR|0755, st_size=32768, ...}) = 0
+11169 20:14:01.522882 open("/lib/i486-linux-gnu/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522904 stat64("/lib/i486-linux-gnu/tls/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522924 open("/lib/i486-linux-gnu/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522944 stat64("/lib/i486-linux-gnu/tls/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522963 open("/lib/i486-linux-gnu/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.522983 stat64("/lib/i486-linux-gnu/tls/i686/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523002 open("/lib/i486-linux-gnu/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523022 stat64("/lib/i486-linux-gnu/tls/i686", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523041 open("/lib/i486-linux-gnu/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523061 stat64("/lib/i486-linux-gnu/tls/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523080 open("/lib/i486-linux-gnu/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523099 stat64("/lib/i486-linux-gnu/tls/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523118 open("/lib/i486-linux-gnu/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523138 stat64("/lib/i486-linux-gnu/tls/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523156 open("/lib/i486-linux-gnu/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523176 stat64("/lib/i486-linux-gnu/tls", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523193 open("/lib/i486-linux-gnu/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523214 stat64("/lib/i486-linux-gnu/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523233 open("/lib/i486-linux-gnu/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523252 stat64("/lib/i486-linux-gnu/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523271 open("/lib/i486-linux-gnu/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523291 stat64("/lib/i486-linux-gnu/i686/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523309 open("/lib/i486-linux-gnu/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523329 stat64("/lib/i486-linux-gnu/i686", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523385 open("/lib/i486-linux-gnu/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523423 stat64("/lib/i486-linux-gnu/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523441 open("/lib/i486-linux-gnu/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523460 stat64("/lib/i486-linux-gnu/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523478 open("/lib/i486-linux-gnu/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523498 stat64("/lib/i486-linux-gnu/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523517 open("/lib/i486-linux-gnu/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523536 stat64("/lib/i486-linux-gnu", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.523568 open("/usr/lib/i486-linux-gnu/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523590 stat64("/usr/lib/i486-linux-gnu/tls/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523609 open("/usr/lib/i486-linux-gnu/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523630 stat64("/usr/lib/i486-linux-gnu/tls/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523650 open("/usr/lib/i486-linux-gnu/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523671 stat64("/usr/lib/i486-linux-gnu/tls/i686/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523690 open("/usr/lib/i486-linux-gnu/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523710 stat64("/usr/lib/i486-linux-gnu/tls/i686", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523729 open("/usr/lib/i486-linux-gnu/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523751 stat64("/usr/lib/i486-linux-gnu/tls/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523770 open("/usr/lib/i486-linux-gnu/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523791 stat64("/usr/lib/i486-linux-gnu/tls/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523810 open("/usr/lib/i486-linux-gnu/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523830 stat64("/usr/lib/i486-linux-gnu/tls/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523859 open("/usr/lib/i486-linux-gnu/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523880 stat64("/usr/lib/i486-linux-gnu/tls", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523898 open("/usr/lib/i486-linux-gnu/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523919 stat64("/usr/lib/i486-linux-gnu/i686/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523939 open("/usr/lib/i486-linux-gnu/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523959 stat64("/usr/lib/i486-linux-gnu/i686/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523979 open("/usr/lib/i486-linux-gnu/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.523999 stat64("/usr/lib/i486-linux-gnu/i686/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524018 open("/usr/lib/i486-linux-gnu/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524038 stat64("/usr/lib/i486-linux-gnu/i686", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524056 open("/usr/lib/i486-linux-gnu/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524078 stat64("/usr/lib/i486-linux-gnu/sse2/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524097 open("/usr/lib/i486-linux-gnu/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524117 stat64("/usr/lib/i486-linux-gnu/sse2", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524136 open("/usr/lib/i486-linux-gnu/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524155 stat64("/usr/lib/i486-linux-gnu/cmov", 0xbfe99b2c) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524174 open("/usr/lib/i486-linux-gnu/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524194 stat64("/usr/lib/i486-linux-gnu", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+11169 20:14:01.524224 munmap(0xb7dc5000, 29913) = 0
+11169 20:14:01.524253 open("/etc/ld.so.cache", O_RDONLY) = 6
+11169 20:14:01.524272 fstat64(6, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+11169 20:14:01.524301 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 6, 0) = 0xb7dc5000
+11169 20:14:01.524318 close(6)          = 0
+11169 20:14:01.524343 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+11169 20:14:01.524368 open("/lib/tls/i686/cmov/libnss_files.so.2", O_RDONLY) = 6
+11169 20:14:01.524391 read(6, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340\30\0\0004\0\0\0\254\221\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\330\206\0\0\330\206\0\0\330\206\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\240\213\0\0\240\213\0\0\5\0\0\0\0\20\0\0\1\0\0\0\350\216\0\0\350\236\0\0\350\236\0\0\314\1\0\0\260\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\374\216\0\0\374\236\0\0\374\236\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\350\216\0\0\350\236\0\0\350\236\0\0\f\1\0\0\f\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0k\0\0\0.\0\0\0\20\0\0\0\t\0\0\0\"F\340\24\240\240\245\1\31\10\200\20\203\6\212\10\0\0\222@]\1(\nx\10 \"\220\200\20,\5\1\204\4)!\0224\0\24\0\31\0\0\2\2\210@\0\200@0\210\201@@\200\0B\0\6\300.\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0002\0\0\0003\0\0\0\0\0\0\0004\0\0\0\0\0\0\0005\0\0\0007\0\0\0008\0\0\0\0\0\0\0:\0\0\0\0\0\0\0;\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+11169 20:14:01.524545 fstat64(6, {st_mode=S_IFREG|0644, st_size=38412, ...}) = 0
+11169 20:14:01.524579 mmap2(NULL, 41624, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 6, 0) = 0xb7dba000
+11169 20:14:01.524598 mmap2(0xb7dc3000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 6, 0x8) = 0xb7dc3000
+11169 20:14:01.524623 close(6)          = 0
+11169 20:14:01.524655 munmap(0xb7dc5000, 29913) = 0
+11169 20:14:01.524679 open("/etc/protocols", O_RDONLY|0x80000 /* O_??? */) = 6
+11169 20:14:01.524703 fcntl64(6, F_GETFD) = 0x1 (flags FD_CLOEXEC)
+11169 20:14:01.524725 fstat64(6, {st_mode=S_IFREG|0644, st_size=2510, ...}) = 0
+11169 20:14:01.524751 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7dcc000
+11169 20:14:01.524768 read(6, "# Internet (IP) protocols\n#\n# Updated from http://www.iana.org/assignments/protocol-numbers and other\n# sources.\n# New protocols will be added on request if they have been officially\n# assigned by IANA and are not historical.\n# If you need a huge list of used numbers please install the nmap package.\n\nip\t0\tIP\t\t# internet protocol, pseudo protocol number\n#hopopt\t0\tHOPOPT\t\t# IPv6 Hop-by-Hop Option [RFC1883]\nicmp\t1\tICMP\t\t# internet control message protocol\nigmp\t2\tIGMP\t\t# Internet Group Management\nggp\t3\tGGP\t\t# gateway-gateway protocol\nipencap\t4\tIP-ENCAP\t# IP encapsulated in IP (officially ``IP\'\')\nst\t5\tST\t\t# ST datagram mode\ntcp\t6\tTCP\t\t# transmission control protocol\negp\t8\tEGP\t\t# exterior gateway protocol\nigp\t9\tIGP\t\t# any private interior gateway (Cisco)\npup\t12\tPUP\t\t# PARC universal packet protocol\nudp\t17\tUDP\t\t# user datagram protocol\nhmp\t20\tHMP\t\t# host monitoring protocol\nxns-idp\t22\tXNS-IDP\t\t# Xerox NS IDP\nrdp\t27\tRDP\t\t# \"reliable datagram\" protocol\niso-tp4\t29\tISO-TP4\t\t# ISO Transport Protocol class 4 [RFC905]\nxtp\t36\tXTP\t\t# Xpress Transfer Protocol\nddp\t37\tDDP\t\t# Datagram Delivery Protocol\nidpr-cmtp 38\tIDPR-CMTP\t# IDPR Control Message Transport\nipv6\t41\tIPv6\t\t# Internet Protocol, version 6\nipv6-route 43\tIPv6-Route\t# Routing Header for IPv6\nipv6-frag 44\tIPv6-Frag\t# Fragment Header for IPv6\nidrp\t45\tIDRP\t\t# Inter-Domain Routing Protocol\nrsvp\t46\tRSVP\t\t# Reservation Protocol\ngre\t47\tGRE\t\t# General Routing Encapsulation\nesp\t50\tIPSEC-ESP\t# Encap Security Payload [RFC2406]\nah\t51\tIPSEC-AH\t# Authentication Header [RFC2402]\nskip\t57\tSKIP\t\t# SKIP\nipv6-icmp 58\tIPv6-ICMP\t# ICMP for IPv6\nipv6-nonxt 59\tIPv6-NoNxt\t# No Next Header for IPv6\nipv6-opts 60\tIPv6-Opts\t# Destination Options for IPv6\nrspf\t73\tRSPF CPHB\t# Radio Shortest Path First (officially CPHB)\nvmtp\t81\tVMTP\t\t# Versatile Message Transport\neigrp\t88\tEIGRP\t\t# Enhanced Interior Routing Protocol (Cisco)\nospf\t89\tOSPFIGP\t\t# Open Shortest Path First IGP\nax.25\t93\tAX.25\t\t# AX.25 frames\nipip\t94\tIPIP\t\t# IP-within-IP Encapsulation Protocol\netherip\t97\tETHERIP\t\t# Ethernet-within-IP Encapsulation [RFC3378]\nencap\t98\tENCAP\t\t# Yet Another IP encapsulation [RFC1241]\n#\t99\t\t\t# any private encryption scheme\npim\t103\tPIM\t\t# Protocol Independent Multicast\nipcomp\t108\tIPCOMP\t\t# IP Payload Compression Protocol\nvrrp\t112\tVRRP\t\t# Virtual Router Redundancy Protocol\nl2tp\t115\tL2TP\t\t# Layer Two Tunneling Protocol [RFC2661]\nisis\t124\tISIS\t\t# IS-IS over IPv4\nsctp\t132\tSCTP\t\t# Stream Control Transmission Protocol\nfc\t133\tFC\t\t# Fibre Channel\nudplite\t136\tUDPLite\t\t# UDP-Lite\n\n", 4096) = 2510
+11169 20:14:01.525077 close(6)          = 0
+11169 20:14:01.525094 munmap(0xb7dcc000, 4096) = 0
+11169 20:14:01.525120 open("/etc/protocols", O_RDONLY|0x80000 /* O_??? */) = 6
+11169 20:14:01.525141 fstat64(6, {st_mode=S_IFREG|0644, st_size=2510, ...}) = 0
+11169 20:14:01.525167 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7dcc000
+11169 20:14:01.525184 read(6, "# Internet (IP) protocols\n#\n# Updated from http://www.iana.org/assignments/protocol-numbers and other\n# sources.\n# New protocols will be added on request if they have been officially\n# assigned by IANA and are not historical.\n# If you need a huge list of used numbers please install the nmap package.\n\nip\t0\tIP\t\t# internet protocol, pseudo protocol number\n#hopopt\t0\tHOPOPT\t\t# IPv6 Hop-by-Hop Option [RFC1883]\nicmp\t1\tICMP\t\t# internet control message protocol\nigmp\t2\tIGMP\t\t# Internet Group Management\nggp\t3\tGGP\t\t# gateway-gateway protocol\nipencap\t4\tIP-ENCAP\t# IP encapsulated in IP (officially ``IP\'\')\nst\t5\tST\t\t# ST datagram mode\ntcp\t6\tTCP\t\t# transmission control protocol\negp\t8\tEGP\t\t# exterior gateway protocol\nigp\t9\tIGP\t\t# any private interior gateway (Cisco)\npup\t12\tPUP\t\t# PARC universal packet protocol\nudp\t17\tUDP\t\t# user datagram protocol\nhmp\t20\tHMP\t\t# host monitoring protocol\nxns-idp\t22\tXNS-IDP\t\t# Xerox NS IDP\nrdp\t27\tRDP\t\t# \"reliable datagram\" protocol\niso-tp4\t29\tISO-TP4\t\t# ISO Transport Protocol class 4 [RFC905]\nxtp\t36\tXTP\t\t# Xpress Transfer Protocol\nddp\t37\tDDP\t\t# Datagram Delivery Protocol\nidpr-cmtp 38\tIDPR-CMTP\t# IDPR Control Message Transport\nipv6\t41\tIPv6\t\t# Internet Protocol, version 6\nipv6-route 43\tIPv6-Route\t# Routing Header for IPv6\nipv6-frag 44\tIPv6-Frag\t# Fragment Header for IPv6\nidrp\t45\tIDRP\t\t# Inter-Domain Routing Protocol\nrsvp\t46\tRSVP\t\t# Reservation Protocol\ngre\t47\tGRE\t\t# General Routing Encapsulation\nesp\t50\tIPSEC-ESP\t# Encap Security Payload [RFC2406]\nah\t51\tIPSEC-AH\t# Authentication Header [RFC2402]\nskip\t57\tSKIP\t\t# SKIP\nipv6-icmp 58\tIPv6-ICMP\t# ICMP for IPv6\nipv6-nonxt 59\tIPv6-NoNxt\t# No Next Header for IPv6\nipv6-opts 60\tIPv6-Opts\t# Destination Options for IPv6\nrspf\t73\tRSPF CPHB\t# Radio Shortest Path First (officially CPHB)\nvmtp\t81\tVMTP\t\t# Versatile Message Transport\neigrp\t88\tEIGRP\t\t# Enhanced Interior Routing Protocol (Cisco)\nospf\t89\tOSPFIGP\t\t# Open Shortest Path First IGP\nax.25\t93\tAX.25\t\t# AX.25 frames\nipip\t94\tIPIP\t\t# IP-within-IP Encapsulation Protocol\netherip\t97\tETHERIP\t\t# Ethernet-within-IP Encapsulation [RFC3378]\nencap\t98\tENCAP\t\t# Yet Another IP encapsulation [RFC1241]\n#\t99\t\t\t# any private encryption scheme\npim\t103\tPIM\t\t# Protocol Independent Multicast\nipcomp\t108\tIPCOMP\t\t# IP Payload Compression Protocol\nvrrp\t112\tVRRP\t\t# Virtual Router Redundancy Protocol\nl2tp\t115\tL2TP\t\t# Layer Two Tunneling Protocol [RFC2661]\nisis\t124\tISIS\t\t# IS-IS over IPv4\nsctp\t132\tSCTP\t\t# Stream Control Transmission Protocol\nfc\t133\tFC\t\t# Fibre Channel\nudplite\t136\tUDPLite\t\t# UDP-Lite\n\n", 4096) = 2510
+11169 20:14:01.525477 close(6)          = 0
+11169 20:14:01.525494 munmap(0xb7dcc000, 4096) = 0
+11169 20:14:01.525532 socket(PF_INET, SOCK_STREAM, IPPROTO_TCP) = 6
+11169 20:14:01.525563 ioctl(6, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe9a038) = -1 EINVAL (Invalid argument)
+11169 20:14:01.525583 _llseek(6, 0, 0xbfe9a080, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+11169 20:14:01.525601 ioctl(6, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe9a038) = -1 EINVAL (Invalid argument)
+11169 20:14:01.525616 _llseek(6, 0, 0xbfe9a080, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+11169 20:14:01.525631 fcntl64(6, F_SETFD, FD_CLOEXEC) = 0
+11169 20:14:01.525703 setsockopt(6, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+11169 20:14:01.525752 bind(6, {sa_family=AF_INET, sin_port=htons(4444), sin_addr=inet_addr("0.0.0.0")}, 16) = 0
+11169 20:14:01.525790 listen(6, 5)      = 0
+11169 20:14:01.525876 accept(6,  <unfinished ...>
+11168 20:14:01.800902 exit_group(0)     = ?
+11166 20:14:01.800982 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 11168
+11166 20:14:01.801032 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+11166 20:14:01.801048 --- SIGCHLD (Child exited) @ 0 (0) ---
+11166 20:14:01.801069 waitpid(-1, 0xbfcff078, WNOHANG) = -1 ECHILD (No child processes)
+11166 20:14:01.801081 sigreturn()       = ? (mask now [])
+11166 20:14:01.801097 rt_sigaction(SIGINT, {SIG_DFL}, {0x807f150, [], 0}, 8) = 0
+11166 20:14:01.801143 exit_group(0)     = ?
+4519  20:14:01.801182 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 11166
+4519  20:14:01.801195 rt_sigaction(SIGINT, {0x8062280, [HUP INT], 0}, NULL, 8) = 0
+4519  20:14:01.801210 rt_sigaction(SIGQUIT, {SIG_IGN}, NULL, 8) = 0
+4519  20:14:01.801221 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+4519  20:14:01.801231 --- SIGCHLD (Child exited) @ 0 (0) ---
+4519  20:14:01.801249 send(5, ":irc.Metasploitable.LAN 451 AB;perl :You have not registered\r\n", 62, 0) = 62
+4519  20:14:01.801317 time(NULL)        = 1495671241
+4519  20:14:01.801328 time(NULL)        = 1495671241
+4519  20:14:01.801380 gettimeofday({1495671241, 801385}, NULL) = 0
+4519  20:14:01.801394 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  20:14:01.801426 clock_gettime(CLOCK_MONOTONIC, {48051, 618439115}) = 0
+4519  20:14:01.801438 gettimeofday({1495671241, 801442}, NULL) = 0
+4519  20:14:01.801449 select(1024, [2 3 4 5 7 9], [], NULL, {1, 0}) = 2 (in [7 9], left {1, 0})
+4519  20:14:01.801501 clock_gettime(CLOCK_MONOTONIC, {48051, 618514726}) = 0
+4519  20:14:01.801513 recv(9, "PRIVMSG  #testit2 Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\n", 8192, 0) = 55
+4519  20:14:01.801537 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801555 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801570 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801584 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801597 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801611 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801625 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801638 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801652 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801665 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801679 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801692 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801706 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801719 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801733 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801753 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801767 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801780 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801794 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801809 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801823 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801837 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801855 recv(7, "PRIVMSG  #testit1 ABCDEFGHIJKLMNOPQRSTUVWXYZ\n", 8192, 0) = 45
+4519  20:14:01.801872 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801886 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801900 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801914 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801927 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801941 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801955 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801968 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.801982 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802022 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802036 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802064 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802078 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802091 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802105 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802118 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802132 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802145 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802159 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802173 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802186 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802199 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.802216 gettimeofday({1495671241, 802220}, NULL) = 0
+4519  20:14:01.802227 select(1024, [2 3 4 5 7 9], [], NULL, {1, 0}) = 1 (in [5], left {0, 950000})
+4519  20:14:01.851468 clock_gettime(CLOCK_MONOTONIC, {48051, 668545635}) = 0
+4519  20:14:01.851629 recv(5, 0x80b7ec0, 8192, 0) = -1 ECONNRESET (Connection reset by peer)
+4519  20:14:01.851697 getsockopt(5, SOL_SOCKET, SO_ERROR, [0], [4]) = 0
+4519  20:14:01.851745 send(5, "ERROR :Closing Link: [10.0.2.4] (Connection reset by peer)\r\n", 60, 0) = -1 EPIPE (Broken pipe)
+4519  20:14:01.851778 --- SIGPIPE (Broken pipe) @ 0 (0) ---
+4519  20:14:01.851824 close(5)          = 0
+4519  20:14:01.851842 time(NULL)        = 1495671241
+4519  20:14:01.851852 time(NULL)        = 1495671241
+4519  20:14:01.851864 gettimeofday({1495671241, 851867}, NULL) = 0
+4519  20:14:01.851876 select(1024, [2], [], NULL, {0, 0}) = 0 (Timeout)
+4519  20:14:01.851905 clock_gettime(CLOCK_MONOTONIC, {48051, 668917835}) = 0
+4519  20:14:01.851915 gettimeofday({1495671241, 851919}, NULL) = 0
+4519  20:14:01.851926 select(1024, [2 3 4 7 9], [], NULL, {1, 0}) = 1 (in [7], left {0, 980000})
+4519  20:14:01.871573 clock_gettime(CLOCK_MONOTONIC, {48051, 688633479}) = 0
+4519  20:14:01.871694 recv(7, "PRIVMSG  #testit1 ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ\n", 8192, 0) = 71
+4519  20:14:01.871759 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871799 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871827 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871852 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871867 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871881 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871895 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871909 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871922 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871936 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871949 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871963 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871976 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.871990 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.872004 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0
+4519  20:14:01.872056 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 130000}, ...}) = 0

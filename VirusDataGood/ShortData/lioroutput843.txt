@@ -1,0 +1,310 @@
+13316 20:35:40.982410 stat64("/usr/lib/perl/5.8/Tie/Hash.pm", 0xbfe7f63c) = -1 ENOENT (No such file or directory)
+13316 20:35:40.982423 stat64("/usr/share/perl/5.8/Tie/Hash.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:40.982436 stat64("/usr/share/perl/5.8/Tie/Hash.pm", {st_mode=S_IFREG|0644, st_size=7304, ...}) = 0
+13316 20:35:40.982468 open("/usr/share/perl/5.8/Tie/Hash.pm", O_RDONLY|O_LARGEFILE) = 8
+13316 20:35:40.982511 ioctl(8, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe7f448) = -1 ENOTTY (Inappropriate ioctl for device)
+13316 20:35:40.982523 _llseek(8, 0, [0], SEEK_CUR) = 0
+13316 20:35:40.982559 read(8, "package Tie::Hash;\n\nour $VERSION = \'1.02\';\n\n=head1 NAME\n\nTie::Hash, Tie::StdHash, Tie::ExtraHash - base class definitions for tied hashes\n\n=head1 SYNOPSIS\n\n    package NewHash;\n    require Tie::Hash;\n\n    @ISA = (Tie::Hash);\n\n    sub DELETE { ... }\t\t# Provides needed method\n    sub CLEAR { ... }\t\t# Overrides inherited method\n\n\n    package NewStdHash;\n    require Tie::Hash;\n\n    @ISA = (Tie::StdHash);\n\n    # All methods provided by default, define only those needing overrides\n    # Accessors access the storage in %{$_[0]};\n    # TIEHASH should return a reference to the actual storage\n    sub DELETE { ... }\n\n    package NewExtraHash;\n    require Tie::Hash;\n\n    @ISA = (Tie::ExtraHash);\n\n    # All methods provided by default, define only those needing overrides\n    # Accessors access the storage in %{$_[0][0]};\n    # TIEHASH should return an array reference with the first element being\n    # the reference to the actual storage \n    sub DELETE { \n      $_[0][1]->(\'del\', $_[0][0], $_[1]); # Call the report writer\n      delete $_[0][0]->{$_[1]};\t\t  #  $_[0]->SUPER::DELETE($_[1])\n    }\n\n\n    package main;\n\n    tie %new_hash, \'NewHash\';\n    tie %new_std_hash, \'NewStdHash\';\n    tie %new_extra_hash, \'NewExtraHash\',\n\tsub {warn \"Doing \\U$_[1]\\E of $_[2].\\n\"};\n\n=head1 DESCRIPTION\n\nThis module provides some skeletal methods for hash-tying classes. See\nL<perltie> for a list of the functions required in order to tie a hash\nto a package. The basic B<Tie::Hash> package provides a C<new> method, as well\nas methods C<TIEHASH>, C<EXISTS> and C<CLEAR>. The B<Tie::StdHash> and\nB<Tie::ExtraHash> packages\nprovide most methods for hashes described in L<perltie> (the exceptions\nare C<UNTIE> and C<DESTROY>).  They cause tied hashes to behave exactly like standard hashes,\nand allow for selective overwriting of methods.  B<Tie::Hash> grandfathers the\nC<new> method: it is used if C<TIEHASH> is not defined\nin the case a class forgets to include a C<TIEHASH> method.\n\nFor developers wishing to write their own tied hashes, the required methods\nare briefly defined below. See the L<perltie> section for more detailed\ndescriptive, as well as example code:\n\n=over 4\n\n=item TIEHASH classname, LIST\n\nThe method invoked by the command C<tie %hash, classname>. Associates a new\nhash instance with the specified class. C<LIST> would represent additional\narguments (along the lines of L<AnyDBM_File> and compatriots) needed to\ncomplete the association.\n\n=item STORE this, key, value\n\nStore datum I<value> into I<key> for the tied hash I<this>.\n\n=item FETCH this, key\n\nRetrieve the datum in I<key> for the tied hash I<this>.\n\n=item FIRSTKEY this\n\nReturn the first key in the hash.\n\n=item NEXTKEY this, lastkey\n\nReturn the next key in the hash.\n\n=item EXISTS this, key\n\nVerify that I<key> exists with the tied hash I<this>.\n\nThe B<Tie::Hash> implementation is a stub that simply croaks.\n\n=item DELETE this, key\n\nDelete the key I<key> from the tied hash I<this>.\n\n=item CLEAR this\n\nClear all values from the tied hash I<this>.\n\n=item SCALAR this\n\nReturns what evaluating the hash in scalar context yields.\n\nB<Tie::Hash> does not implement this method (but B<Tie::StdHash>\nand B<Tie::ExtraHash> do).\n\n=back\n\n=head1 Inheriting from B<Tie::StdHash>\n\nThe accessor methods assume that the actual storage for the data in the tied\nhash is in the hash referenced by C<tied(%tiedhash)>.  Thus overwritten\nC<TIEHASH> method should return a hash reference, and the remaining methods\nshould operate on the hash referenced by the first argument:\n\n  package ReportHash;\n  our @ISA = \'Tie::StdHash\';\n\n  sub TIEHASH  {\n    my $storage = bless {}, shift;\n    warn \"New ReportHash created, stored in $storage.\\n\";\n    $storage\n  }\n  sub STORE    {\n    warn \"Storing data with key $_[1] at $_[0].\\n\";\n    $_[0]{$_[1]} = $_[2]\n  }\n\n\n=head1 Inheriting from B<Tie::ExtraHash>\n\nThe accessor methods assume that the actual storage for the data in the tied\nhash is in the hash referenced by C<(tied(%tiedhash))-E<gt>[0]>.  Thus overwritten\nC<TIEHASH> method should return an array reference with the first\nelement being a hash refer", 4096) = 4096
+13316 20:35:41.255733 read(8, "ence, and the remaining methods should operate on the\nhash C<< %{ $_[0]->[0] } >>:\n\n  package ReportHash;\n  our @ISA = \'Tie::ExtraHash\';\n\n  sub TIEHASH  {\n    my $class = shift;\n    my $storage = bless [{}, @_], $class;\n    warn \"New ReportHash created, stored in $storage.\\n\";\n    $storage;\n  }\n  sub STORE    {\n    warn \"Storing data with key $_[1] at $_[0].\\n\";\n    $_[0][0]{$_[1]} = $_[2]\n  }\n\nThe default C<TIEHASH> method stores \"extra\" arguments to tie() starting\nfrom offset 1 in the array referenced by C<tied(%tiedhash)>; this is the\nsame storage algorithm as in TIEHASH subroutine above.  Hence, a typical\npackage inheriting from B<Tie::ExtraHash> does not need to overwrite this\nmethod.\n\n=head1 C<SCALAR>, C<UNTIE> and C<DESTROY>\n\nThe methods C<UNTIE> and C<DESTROY> are not defined in B<Tie::Hash>,\nB<Tie::StdHash>, or B<Tie::ExtraHash>.  Tied hashes do not require\npresence of these methods, but if defined, the methods will be called in\nproper time, see L<perltie>.\n\nC<SCALAR> is only defined in B<Tie::StdHash> and B<Tie::ExtraHash>.\n\nIf needed, these methods should be defined by the package inheriting from\nB<Tie::Hash>, B<Tie::StdHash>, or B<Tie::ExtraHash>. See L<pertie/\"SCALAR\">\nto find out what happens when C<SCALAR> does not exist.\n\n=head1 MORE INFORMATION\n\nThe packages relating to various DBM-related implementations (F<DB_File>,\nF<NDBM_File>, etc.) show examples of general tied hashes, as does the\nL<Config> module. While these do not utilize B<Tie::Hash>, they serve as\ngood working examples.\n\n=cut\n\nuse Carp;\nuse warnings::register;\n\nsub new {\n    my $pkg = shift;\n    $pkg->TIEHASH(@_);\n}\n\n# Grandfather \"new\"\n\nsub TIEHASH {\n    my $pkg = shift;\n    if (defined &{\"${pkg}::new\"}) {\n\twarnings::warnif(\"WARNING: calling ${pkg}->new since ${pkg}->TIEHASH is missing\");\n\t$pkg->new(@_);\n    }\n    else {\n\tcroak \"$pkg doesn\'t define a TIEHASH method\";\n    }\n}\n\nsub EXISTS {\n    my $pkg = ref $_[0];\n    croak \"$pkg doesn\'t define an EXISTS method\";\n}\n\nsub CLEAR {\n    my $self = shift;\n    my $key = $self->FIRSTKEY(@_);\n    my @keys;\n\n    while (defined $key) {\n\tpush @keys, $key;\n\t$key = $self->NEXTKEY(@_, $key);\n    }\n    foreach $key (@keys) {\n\t$self->DELETE(@_, $key);\n    }\n}\n\n# The Tie::StdHash package implements standard perl hash behaviour.\n# It exists to act as a base class for classes which only wish to\n# alter some parts of their behaviour.\n\npackage Tie::StdHash;\n# @ISA = qw(Tie::Hash);\t\t# would inherit new() only\n\nsub TIEHASH  { bless {}, $_[0] }\nsub STORE    { $_[0]->{$_[1]} = $_[2] }\nsub FETCH    { $_[0]->{$_[1]} }\nsub FIRSTKEY { my $a = scalar keys %{$_[0]}; each %{$_[0]} }\nsub NEXTKEY  { each %{$_[0]} }\nsub EXISTS   { exists $_[0]->{$_[1]} }\nsub DELETE   { delete $_[0]->{$_[1]} }\nsub CLEAR    { %{$_[0]} = () }\nsub SCALAR   { scalar %{$_[0]} }\n\npackage Tie::ExtraHash;\n\nsub TIEHASH  { my $p = shift; bless [{}, @_], $p }\nsub STORE    { $_[0][0]{$_[1]} = $_[2] }\nsub FETCH    { $_[0][0]{$_[1]} }\nsub FIRSTKEY { my $a = scalar keys %{$_[0][0]}; each %{$_[0][0]} }\nsub NEXTKEY  { each %{$_[0][0]} }\nsub EXISTS   { exists $_[0][0]->{$_[1]} }\nsub DELETE   { delete $_[0][0]->{$_[1]} }\nsub CLEAR    { %{$_[0][0]} = () }\nsub SCALAR   { scalar %{$_[0][0]} }\n\n1;\n", 4096) = 3208
+13316 20:35:41.256384 read(8, "", 4096) = 0
+13316 20:35:41.256422 close(8)          = 0
+13316 20:35:41.256459 stat64("/etc/perl/File/stat.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256476 stat64("/etc/perl/File/stat.pm", 0xbfe7f63c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256491 stat64("/usr/local/lib/perl/5.8.8/File/stat.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256505 stat64("/usr/local/lib/perl/5.8.8/File/stat.pm", 0xbfe7f63c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256519 stat64("/usr/local/share/perl/5.8.8/File/stat.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256532 stat64("/usr/local/share/perl/5.8.8/File/stat.pm", 0xbfe7f63c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256547 stat64("/usr/lib/perl5/File/stat.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256559 stat64("/usr/lib/perl5/File/stat.pm", 0xbfe7f63c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256573 stat64("/usr/share/perl5/File/stat.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256586 stat64("/usr/share/perl5/File/stat.pm", 0xbfe7f63c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256600 stat64("/usr/lib/perl/5.8/File/stat.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256614 stat64("/usr/lib/perl/5.8/File/stat.pm", 0xbfe7f63c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256628 stat64("/usr/share/perl/5.8/File/stat.pmc", 0xbfe7f72c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.256642 stat64("/usr/share/perl/5.8/File/stat.pm", {st_mode=S_IFREG|0644, st_size=3372, ...}) = 0
+13316 20:35:41.256665 open("/usr/share/perl/5.8/File/stat.pm", O_RDONLY|O_LARGEFILE) = 8
+13316 20:35:41.256682 ioctl(8, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe7f448) = -1 ENOTTY (Inappropriate ioctl for device)
+13316 20:35:41.256695 _llseek(8, 0, [0], SEEK_CUR) = 0
+13316 20:35:41.256714 read(8, "package File::stat;\nuse 5.006;\n\nuse strict;\nuse warnings;\n\nour(@EXPORT, @EXPORT_OK, %EXPORT_TAGS);\n\nour $VERSION = \'1.00\';\n\nBEGIN { \n    use Exporter   ();\n    @EXPORT      = qw(stat lstat);\n    @EXPORT_OK   = qw( $st_dev\t   $st_ino    $st_mode \n\t\t       $st_nlink   $st_uid    $st_gid \n\t\t       $st_rdev    $st_size \n\t\t       $st_atime   $st_mtime  $st_ctime \n\t\t       $st_blksize $st_blocks\n\t\t    );\n    %EXPORT_TAGS = ( FIELDS => [ @EXPORT_OK, @EXPORT ] );\n}\nuse vars @EXPORT_OK;\n\n# Class::Struct forbids use of @ISA\nsub import { goto &Exporter::import }\n\nuse Class::Struct qw(struct);\nstruct \'File::stat\' => [\n     map { $_ => \'$\' } qw{\n\t dev ino mode nlink uid gid rdev size\n\t atime mtime ctime blksize blocks\n     }\n];\n\nsub populate (@) {\n    return unless @_;\n    my $stob = new();\n    @$stob = (\n\t$st_dev, $st_ino, $st_mode, $st_nlink, $st_uid, $st_gid, $st_rdev,\n        $st_size, $st_atime, $st_mtime, $st_ctime, $st_blksize, $st_blocks ) \n\t    = @_;\n    return $stob;\n} \n\nsub lstat ($)  { populate(CORE::lstat(shift)) }\n\nsub stat ($) {\n    my $arg = shift;\n    my $st = populate(CORE::stat $arg);\n    return $st if $st;\n\tmy $fh;\n    {\n\t\tlocal $!;\n\t\tno strict \'refs\';\n\t\trequire Symbol;\n\t\t$fh = \\*{ Symbol::qualify( $arg, caller() )};\n\t\treturn unless defined fileno $fh;\n\t}\n    return populate(CORE::stat $fh);\n}\n\n1;\n__END__\n\n=head1 NAME\n\nFile::stat - by-name interface to Perl\'s built-in stat() functions\n\n=head1 SYNOPSIS\n\n use File::stat;\n $st = stat($file) or die \"No $file: $!\";\n if ( ($st->mode & 0111) && $st->nlink > 1) ) {\n     print \"$file is executable with lotsa links\\n\";\n } \n\n use File::stat qw(:FIELDS);\n stat($file) or die \"No $file: $!\";\n if ( ($st_mode & 0111) && $st_nlink > 1) ) {\n     print \"$file is executable with lotsa links\\n\";\n } \n\n=head1 DESCRIPTION\n\nThis module\'s default exports override the core stat() \nand lstat() functions, replacing them with versions that return \n\"File::stat\" objects.  This object has methods that\nreturn the similarly named structure field name from the\nstat(2) function; namely,\ndev,\nino,\nmode,\nnlink,\nuid,\ngid,\nrdev,\nsize,\natime,\nmtime,\nctime,\nblksize,\nand\nblocks.  \n\nYou may also import all the structure fields directly into your namespace\nas regular variables using the :FIELDS import tag.  (Note that this still\noverrides your stat() and lstat() functions.)  Access these fields as\nvariables named with a preceding C<st_> in front their method names.\nThus, C<$stat_obj-E<gt>dev()> corresponds to $st_dev if you import\nthe fields.\n\nTo access this functionality without the core overrides,\npass the C<use> an empty import list, and then access\nfunction functions with their full qualified names.\nOn the other hand, the built-ins are still available\nvia the C<CORE::> pseudo-package.\n\n=head1 BUGS\n\nAs of Perl 5.8.0 after using this module you cannot use the implicit\nC<$_> or the special filehandle C<_> with stat() or lstat(), trying\nto do so leads into strange errors.  The workaround is for C<$_> to\nbe explicit\n\n    my $stat_obj = stat $_;\n\nand for C<_> to explicitly populate the object using the unexported\nand undocumented populate() function with CORE::stat():\n\n    my $stat_obj = File::stat::populate(CORE::stat(_));\n\n=head1 NOTE\n\nWhile this class is currently implemented using the Class::Struct\nmodule to build a struct-like class, you shouldn\'t rely upon this.\n\n=head1 AUTHOR\n\nTom Christiansen\n", 4096) = 3372
+13316 20:35:41.257141 stat64("/etc/perl/Class/Struct.pmc", 0xbfe7f27c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257160 stat64("/etc/perl/Class/Struct.pm", 0xbfe7f18c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257174 stat64("/usr/local/lib/perl/5.8.8/Class/Struct.pmc", 0xbfe7f27c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257187 stat64("/usr/local/lib/perl/5.8.8/Class/Struct.pm", 0xbfe7f18c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257202 stat64("/usr/local/share/perl/5.8.8/Class/Struct.pmc", 0xbfe7f27c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257215 stat64("/usr/local/share/perl/5.8.8/Class/Struct.pm", 0xbfe7f18c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257230 stat64("/usr/lib/perl5/Class/Struct.pmc", 0xbfe7f27c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257242 stat64("/usr/lib/perl5/Class/Struct.pm", 0xbfe7f18c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257256 stat64("/usr/share/perl5/Class/Struct.pmc", 0xbfe7f27c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257269 stat64("/usr/share/perl5/Class/Struct.pm", 0xbfe7f18c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257323 stat64("/usr/lib/perl/5.8/Class/Struct.pmc", 0xbfe7f27c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257337 stat64("/usr/lib/perl/5.8/Class/Struct.pm", 0xbfe7f18c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257370 stat64("/usr/share/perl/5.8/Class/Struct.pmc", 0xbfe7f27c) = -1 ENOENT (No such file or directory)
+13316 20:35:41.257383 stat64("/usr/share/perl/5.8/Class/Struct.pm", {st_mode=S_IFREG|0644, st_size=20512, ...}) = 0
+13316 20:35:41.257409 open("/usr/share/perl/5.8/Class/Struct.pm", O_RDONLY|O_LARGEFILE) = 10
+13316 20:35:41.257425 ioctl(10, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe7ef98) = -1 ENOTTY (Inappropriate ioctl for device)
+13316 20:35:41.257437 _llseek(10, 0, [0], SEEK_CUR) = 0
+13316 20:35:41.257456 read(10, "package Class::Struct;\n\n## See POD after __END__\n\nuse 5.006_001;\n\nuse strict;\nuse warnings::register;\nour(@ISA, @EXPORT, $VERSION);\n\nuse Carp;\n\nrequire Exporter;\n@ISA = qw(Exporter);\n@EXPORT = qw(struct);\n\n$VERSION = \'0.63\';\n\n## Tested on 5.002 and 5.003 without class membership tests:\nmy $CHECK_CLASS_MEMBERSHIP = ($] >= 5.003_95);\n\nmy $print = 0;\nsub printem {\n    if (@_) { $print = shift }\n    else    { $print++ }\n}\n\n{\n    package Class::Struct::Tie_ISA;\n\n    sub TIEARRAY {\n        my $class = shift;\n        return bless [], $class;\n    }\n\n    sub STORE {\n        my ($self, $index, $value) = @_;\n        Class::Struct::_subclass_error();\n    }\n\n    sub FETCH {\n        my ($self, $index) = @_;\n        $self->[$index];\n    }\n\n    sub FETCHSIZE {\n        my $self = shift;\n        return scalar(@$self);\n    }\n\n    sub DESTROY { }\n}\n\nsub import {\n    my $self = shift;\n\n    if ( @_ == 0 ) {\n      $self->export_to_level( 1, $self, @EXPORT );\n    } elsif ( @_ == 1 ) {\n\t# This is admittedly a little bit silly:\n\t# do we ever export anything else than \'struct\'...?\n      $self->export_to_level( 1, $self, @_ );\n    } else {\n      goto &struct;\n    }\n}\n\nsub struct {\n\n    # Determine parameter list structure, one of:\n    #   struct( class => [ element-list ])\n    #   struct( class => { element-list })\n    #   struct( element-list )\n    # Latter form assumes current package name as struct name.\n\n    my ($class, @decls);\n    my $base_type = ref $_[1];\n    if ( $base_type eq \'HASH\' ) {\n        $class = shift;\n        @decls = %{shift()};\n        _usage_error() if @_;\n    }\n    elsif ( $base_type eq \'ARRAY\' ) {\n        $class = shift;\n        @decls = @{shift()};\n        _usage_error() if @_;\n    }\n    else {\n        $base_type = \'ARRAY\';\n        $class = (caller())[0];\n        @decls = @_;\n    }\n\n    _usage_error() if @decls % 2 == 1;\n\n    # Ensure we are not, and will not be, a subclass.\n\n    my $isa = do {\n        no strict \'refs\';\n        \\@{$class . \'::ISA\'};\n    };\n    _subclass_error() if @$isa;\n    tie @$isa, \'Class::Struct::Tie_ISA\';\n\n    # Create constructor.\n\n    croak \"function \'new\' already defined in package $class\"\n        if do { no strict \'refs\'; defined &{$class . \"::new\"} };\n\n    my @methods = ();\n    my %refs = ();\n    my %arrays = ();\n    my %hashes = ();\n    my %classes = ();\n    my $got_class = 0;\n    my $out = \'\';\n\n    $out = \"{\\n  package $class;\\n  use Carp;\\n  sub new {\\n\";\n    $out .= \"    my (\\$class, \\%init) = \\@_;\\n\";\n    $out .= \"    \\$class = __PACKAGE__ unless \\@_;\\n\";\n\n    my $cnt = 0;\n    my $idx = 0;\n    my( $cmt, $name, $type, $elem );\n\n    if( $base_type eq \'HASH\' ){\n        $out .= \"    my(\\$r) = {};\\n\";\n        $cmt = \'\';\n    }\n    elsif( $base_type eq \'ARRAY\' ){\n        $out .= \"    my(\\$r) = [];\\n\";\n    }\n    while( $idx < @decls ){\n        $name = $decls[$idx];\n        $type = $decls[$idx+1];\n        push( @methods, $name );\n        if( $base_type eq \'HASH\' ){\n            $elem = \"{\'${class}::$name\'}\";\n        }\n        elsif( $base_type eq \'ARRAY\' ){\n            $elem = \"[$cnt]\";\n            ++$cnt;\n            $cmt = \" # $name\";\n        }\n        if( $type =~ /^\\*(.)/ ){\n            $refs{$name}++;\n            $type = $1;\n        }\n        my $init = \"defined(\\$init{\'$name\'}) ? \\$init{\'$name\'} :\";\n        if( $type eq \'@\' ){\n            $out .= \"    croak \'Initializer for $name must be array reference\'\\n\"; \n            $out .= \"        if defined(\\$init{\'$name\'}) && ref(\\$init{\'$name\'}) ne \'ARRAY\';\\n\";\n            $out .= \"    \\$r->$elem = $init [];$cmt\\n\"; \n            $arrays{$name}++;\n        }\n        elsif( $type eq \'%\' ){\n            $out .= \"    croak \'Initializer for $name must be hash reference\'\\n\";\n            $out .= \"        if defined(\\$init{\'$name\'}) && ref(\\$init{\'$name\'}) ne \'HASH\';\\n\";\n            $out .= \"    \\$r->$elem = $init {};$cmt\\n\";\n            $hashes{$name}++;\n        }\n        elsif ( $type eq \'$\') {\n            $out .= \"    \\$r->$elem = $init undef;$cmt\\n\";\n        }\n        elsif( $type =~ /^\\w+(?:::\\w+)*$/ ){\n            $out .= \"    if (defined(\\$init{\'$name\'}))", 4096) = 4096
+13316 20:35:41.257943 brk(0x82de000)    = 0x82de000
+13316 20:35:41.258314 read(10, " {\\n\";\n           $out .= \"       if (ref \\$init{\'$name\'} eq \'HASH\')\\n\";\n            $out .= \"            { \\$r->$elem = $type->new(\\%{\\$init{\'$name\'}}) } $cmt\\n\";\n           $out .= \"       elsif (UNIVERSAL::isa(\\$init{\'$name\'}, \'$type\'))\\n\";\n            $out .= \"            { \\$r->$elem = \\$init{\'$name\'} } $cmt\\n\";\n            $out .= \"       else { croak \'Initializer for $name must be hash or $type reference\' }\\n\";\n            $out .= \"    }\\n\";\n            $classes{$name} = $type;\n            $got_class = 1;\n        }\n        else{\n            croak \"\'$type\' is not a valid struct element type\";\n        }\n        $idx += 2;\n    }\n    $out .= \"    bless \\$r, \\$class;\\n  }\\n\";\n\n    # Create accessor methods.\n\n    my( $pre, $pst, $sel );\n    $cnt = 0;\n    foreach $name (@methods){\n        if ( do { no strict \'refs\'; defined &{$class . \"::$name\"} } ) {\n            warnings::warnif(\"function \'$name\' already defined, overrides struct accessor method\");\n        }\n        else {\n            $pre = $pst = $cmt = $sel = \'\';\n            if( defined $refs{$name} ){\n                $pre = \"\\\\(\";\n                $pst = \")\";\n                $cmt = \" # returns ref\";\n            }\n            $out .= \"  sub $name {$cmt\\n    my \\$r = shift;\\n\";\n            if( $base_type eq \'ARRAY\' ){\n                $elem = \"[$cnt]\";\n                ++$cnt;\n            }\n            elsif( $base_type eq \'HASH\' ){\n                $elem = \"{\'${class}::$name\'}\";\n            }\n            if( defined $arrays{$name} ){\n                $out .= \"    my \\$i;\\n\";\n                $out .= \"    \\@_ ? (\\$i = shift) : return \\$r->$elem;\\n\"; \n                $out .= \"    if (ref(\\$i) eq \'ARRAY\' && !\\@_) { \\$r->$elem = \\$i; return \\$r }\\n\";\n                $sel = \"->[\\$i]\";\n            }\n            elsif( defined $hashes{$name} ){\n                $out .= \"    my \\$i;\\n\";\n                $out .= \"    \\@_ ? (\\$i = shift) : return \\$r->$elem;\\n\";\n                $out .= \"    if (ref(\\$i) eq \'HASH\' && !\\@_) { \\$r->$elem = \\$i; return \\$r }\\n\";\n                $sel = \"->{\\$i}\";\n            }\n            elsif( defined $classes{$name} ){\n                if ( $CHECK_CLASS_MEMBERSHIP ) {\n                    $out .= \"    croak \'$name argument is wrong class\' if \\@_ && ! UNIVERSAL::isa(\\$_[0], \'$classes{$name}\');\\n\";\n                }\n            }\n            $out .= \"    croak \'Too many args to $name\' if \\@_ > 1;\\n\";\n            $out .= \"    \\@_ ? ($pre\\$r->$elem$sel = shift$pst) : $pre\\$r->$elem$sel$pst;\\n\";\n            $out .= \"  }\\n\";\n        }\n    }\n    $out .= \"}\\n1;\\n\";\n\n    print $out if $print;\n    my $result = eval $out;\n    carp $@ if $@;\n}\n\nsub _usage_error {\n    confess \"struct usage error\";\n}\n\nsub _subclass_error {\n    croak \'struct class cannot be a subclass (@ISA not allowed)\';\n}\n\n1; # for require\n\n\n__END__\n\n=head1 NAME\n\nClass::Struct - declare struct-like datatypes as Perl classes\n\n=head1 SYNOPSIS\n\n    use Class::Struct;\n            # declare struct, based on array:\n    struct( CLASS_NAME => [ ELEMENT_NAME => ELEMENT_TYPE, ... ]);\n            # declare struct, based on hash:\n    struct( CLASS_NAME => { ELEMENT_NAME => ELEMENT_TYPE, ... });\n\n    package CLASS_NAME;\n    use Class::Struct;\n            # declare struct, based on array, implicit class name:\n    struct( ELEMENT_NAME => ELEMENT_TYPE, ... );\n\n    # Declare struct at compile time\n    use Class::Struct CLASS_NAME => [ ELEMENT_NAME => ELEMENT_TYPE, ... ];\n    use Class::Struct CLASS_NAME => { ELEMENT_NAME => ELEMENT_TYPE, ... };\n\n    # declare struct at compile time, based on array, implicit class name:\n    package CLASS_NAME;\n    use Class::Struct ELEMENT_NAME => ELEMENT_TYPE, ... ;\n\n    package Myobj;\n    use Class::Struct;\n            # declare struct with four types of elements:\n    struct( s => \'$\', a => \'@\', h => \'%\', c => \'My_Other_Class\' );\n\n    $obj = new Myobj;               # constructor\n\n                                    # scalar type accessor:\n    $element_value = $obj->s;           # element value\n    $obj->s(\'new value\');               # assign to element\n\n                             ", 4096) = 4096
+13316 20:35:41.258881 _llseek(10, 6916, [6916], SEEK_SET) = 0
+13316 20:35:41.258900 _llseek(10, 0, [6916], SEEK_CUR) = 0
+13316 20:35:41.258911 close(10)         = 0
+13316 20:35:41.259094 _llseek(8, 1334, [1334], SEEK_SET) = 0
+13316 20:35:41.259110 _llseek(8, 0, [1334], SEEK_CUR) = 0
+13316 20:35:41.259121 close(8)          = 0
+13316 20:35:41.259719 brk(0x82ff000)    = 0x82ff000
+13316 20:35:41.284788 _llseek(6, 2689, [2689], SEEK_SET) = 0
+13316 20:35:41.284809 _llseek(6, 0, [2689], SEEK_CUR) = 0
+13316 20:35:41.284820 close(6)          = 0
+13316 20:35:41.285036 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7ddd908) = 13317
+13317 20:35:41.434710 getppid()         = 13316
+13317 20:35:41.435246 open("/etc/nsswitch.conf", O_RDONLY) = 6
+13317 20:35:41.435273 fstat64(6, {st_mode=S_IFREG|0644, st_size=475, ...}) = 0
+13317 20:35:41.435293 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fa3000
+13317 20:35:41.435307 read(6, "# /etc/nsswitch.conf\n#\n# Example configuration of GNU Name Service Switch functionality.\n# If you have the `glibc-doc-reference\' and `info\' packages installed, try:\n# `info libc \"Name Service Switch\"\' for information about this file.\n\npasswd:         compat\ngroup:          compat\nshadow:         compat\n\nhosts:          files dns\nnetworks:       files\n\nprotocols:      db files\nservices:       db files\nethers:         db files\nrpc:            db files\n\nnetgroup:       nis\n", 4096) = 475
+13317 20:35:41.435358 read(6, "", 4096) = 0
+13317 20:35:41.435368 close(6)          = 0
+13317 20:35:41.435379 munmap(0xb7fa3000, 4096) = 0
+13317 20:35:41.435405 open("/etc/ld.so.cache", O_RDONLY) = 6
+13317 20:35:41.435419 fstat64(6, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+13317 20:35:41.435435 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 6, 0) = 0xb7daa000
+13317 20:35:41.435446 close(6)          = 0
+13317 20:35:41.435458 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435475 open("/lib/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435490 stat64("/lib/tls/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435504 open("/lib/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435517 stat64("/lib/tls/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435528 open("/lib/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435541 stat64("/lib/tls/i686/cmov", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.435559 open("/lib/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435571 stat64("/lib/tls/i686", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.435623 open("/lib/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435651 stat64("/lib/tls/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435669 open("/lib/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435681 stat64("/lib/tls/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435693 open("/lib/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435705 stat64("/lib/tls/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435729 open("/lib/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435741 stat64("/lib/tls", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.435757 open("/lib/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435770 stat64("/lib/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435781 open("/lib/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435792 stat64("/lib/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435803 open("/lib/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435815 stat64("/lib/i686/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435826 open("/lib/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435837 stat64("/lib/i686", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435848 open("/lib/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435861 stat64("/lib/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435871 open("/lib/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435883 stat64("/lib/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435893 open("/lib/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435904 stat64("/lib/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435915 open("/lib/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435926 stat64("/lib", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.435942 open("/usr/lib/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435955 stat64("/usr/lib/tls/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435967 open("/usr/lib/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435979 stat64("/usr/lib/tls/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.435990 open("/usr/lib/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436003 stat64("/usr/lib/tls/i686/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436014 open("/usr/lib/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436026 stat64("/usr/lib/tls/i686", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436037 open("/usr/lib/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436049 stat64("/usr/lib/tls/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436061 open("/usr/lib/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436080 stat64("/usr/lib/tls/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436115 open("/usr/lib/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436128 stat64("/usr/lib/tls/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436153 open("/usr/lib/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436165 stat64("/usr/lib/tls", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436176 open("/usr/lib/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436192 stat64("/usr/lib/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436204 open("/usr/lib/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436216 stat64("/usr/lib/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436227 open("/usr/lib/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436240 stat64("/usr/lib/i686/cmov", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.436257 open("/usr/lib/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436269 stat64("/usr/lib/i686", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.436286 open("/usr/lib/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436298 stat64("/usr/lib/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436309 open("/usr/lib/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436321 stat64("/usr/lib/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436332 open("/usr/lib/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436343 stat64("/usr/lib/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436354 open("/usr/lib/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436366 stat64("/usr/lib", {st_mode=S_IFDIR|0755, st_size=32768, ...}) = 0
+13317 20:35:41.436382 open("/lib/i486-linux-gnu/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436396 stat64("/lib/i486-linux-gnu/tls/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436408 open("/lib/i486-linux-gnu/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436421 stat64("/lib/i486-linux-gnu/tls/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436433 open("/lib/i486-linux-gnu/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436446 stat64("/lib/i486-linux-gnu/tls/i686/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436458 open("/lib/i486-linux-gnu/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436471 stat64("/lib/i486-linux-gnu/tls/i686", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436482 open("/lib/i486-linux-gnu/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436495 stat64("/lib/i486-linux-gnu/tls/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436507 open("/lib/i486-linux-gnu/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436520 stat64("/lib/i486-linux-gnu/tls/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436532 open("/lib/i486-linux-gnu/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436544 stat64("/lib/i486-linux-gnu/tls/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436556 open("/lib/i486-linux-gnu/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436574 stat64("/lib/i486-linux-gnu/tls", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436589 open("/lib/i486-linux-gnu/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436629 stat64("/lib/i486-linux-gnu/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436661 open("/lib/i486-linux-gnu/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436690 stat64("/lib/i486-linux-gnu/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436702 open("/lib/i486-linux-gnu/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436718 stat64("/lib/i486-linux-gnu/i686/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436730 open("/lib/i486-linux-gnu/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436743 stat64("/lib/i486-linux-gnu/i686", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436754 open("/lib/i486-linux-gnu/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436767 stat64("/lib/i486-linux-gnu/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436779 open("/lib/i486-linux-gnu/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436792 stat64("/lib/i486-linux-gnu/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436803 open("/lib/i486-linux-gnu/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436816 stat64("/lib/i486-linux-gnu/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436827 open("/lib/i486-linux-gnu/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436839 stat64("/lib/i486-linux-gnu", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.436856 open("/usr/lib/i486-linux-gnu/tls/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436870 stat64("/usr/lib/i486-linux-gnu/tls/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436883 open("/usr/lib/i486-linux-gnu/tls/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436896 stat64("/usr/lib/i486-linux-gnu/tls/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436909 open("/usr/lib/i486-linux-gnu/tls/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436922 stat64("/usr/lib/i486-linux-gnu/tls/i686/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436934 open("/usr/lib/i486-linux-gnu/tls/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436947 stat64("/usr/lib/i486-linux-gnu/tls/i686", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436959 open("/usr/lib/i486-linux-gnu/tls/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436972 stat64("/usr/lib/i486-linux-gnu/tls/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436985 open("/usr/lib/i486-linux-gnu/tls/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.436998 stat64("/usr/lib/i486-linux-gnu/tls/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437010 open("/usr/lib/i486-linux-gnu/tls/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437023 stat64("/usr/lib/i486-linux-gnu/tls/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437035 open("/usr/lib/i486-linux-gnu/tls/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437048 stat64("/usr/lib/i486-linux-gnu/tls", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437059 open("/usr/lib/i486-linux-gnu/i686/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437081 stat64("/usr/lib/i486-linux-gnu/i686/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437121 open("/usr/lib/i486-linux-gnu/i686/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437150 stat64("/usr/lib/i486-linux-gnu/i686/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437179 open("/usr/lib/i486-linux-gnu/i686/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437192 stat64("/usr/lib/i486-linux-gnu/i686/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437207 open("/usr/lib/i486-linux-gnu/i686/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437220 stat64("/usr/lib/i486-linux-gnu/i686", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437232 open("/usr/lib/i486-linux-gnu/sse2/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437245 stat64("/usr/lib/i486-linux-gnu/sse2/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437257 open("/usr/lib/i486-linux-gnu/sse2/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437270 stat64("/usr/lib/i486-linux-gnu/sse2", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437281 open("/usr/lib/i486-linux-gnu/cmov/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437294 stat64("/usr/lib/i486-linux-gnu/cmov", 0xbfe7fb1c) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437306 open("/usr/lib/i486-linux-gnu/libnss_db.so.2", O_RDONLY) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437318 stat64("/usr/lib/i486-linux-gnu", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+13317 20:35:41.437337 munmap(0xb7daa000, 29913) = 0
+13317 20:35:41.437357 open("/etc/ld.so.cache", O_RDONLY) = 6
+13317 20:35:41.437370 fstat64(6, {st_mode=S_IFREG|0644, st_size=29913, ...}) = 0
+13317 20:35:41.437386 mmap2(NULL, 29913, PROT_READ, MAP_PRIVATE, 6, 0) = 0xb7daa000
+13317 20:35:41.437396 close(6)          = 0
+13317 20:35:41.437407 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+13317 20:35:41.437421 open("/lib/tls/i686/cmov/libnss_files.so.2", O_RDONLY) = 6
+13317 20:35:41.437436 read(6, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340\30\0\0004\0\0\0\254\221\0\0\0\0\0\0004\0 \0\10\0(\0\34\0\33\0\6\0\0\0004\0\0\0004\0\0\0004\0\0\0\0\1\0\0\0\1\0\0\5\0\0\0\4\0\0\0\3\0\0\0\330\206\0\0\330\206\0\0\330\206\0\0\23\0\0\0\23\0\0\0\4\0\0\0\1\0\0\0\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\240\213\0\0\240\213\0\0\5\0\0\0\0\20\0\0\1\0\0\0\350\216\0\0\350\236\0\0\350\236\0\0\314\1\0\0\260\3\0\0\6\0\0\0\0\20\0\0\2\0\0\0\374\216\0\0\374\236\0\0\374\236\0\0\340\0\0\0\340\0\0\0\6\0\0\0\4\0\0\0\4\0\0\0004\1\0\0004\1\0\0004\1\0\0 \0\0\0 \0\0\0\4\0\0\0\4\0\0\0Q\345td\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\6\0\0\0\4\0\0\0R\345td\350\216\0\0\350\236\0\0\350\236\0\0\f\1\0\0\f\1\0\0\4\0\0\0\1\0\0\0\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\10\0\0\0k\0\0\0.\0\0\0\20\0\0\0\t\0\0\0\"F\340\24\240\240\245\1\31\10\200\20\203\6\212\10\0\0\222@]\1(\nx\10 \"\220\200\20,\5\1\204\4)!\0224\0\24\0\31\0\0\2\2\210@\0\200@0\210\201@@\200\0B\0\6\300.\0\0\0\0\0\0\0\0\0\0\0/\0\0\0000\0\0\0001\0\0\0002\0\0\0003\0\0\0\0\0\0\0004\0\0\0\0\0\0\0005\0\0\0007\0\0\0008\0\0\0\0\0\0\0:\0\0\0\0\0\0\0;\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 512) = 512
+13317 20:35:41.437525 fstat64(6, {st_mode=S_IFREG|0644, st_size=38412, ...}) = 0
+13317 20:35:41.437546 mmap2(NULL, 41624, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 6, 0) = 0xb7d9f000
+13317 20:35:41.437558 mmap2(0xb7da8000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 6, 0x8) = 0xb7da8000
+13317 20:35:41.437584 close(6)          = 0
+13317 20:35:41.437646 munmap(0xb7daa000, 29913) = 0
+13317 20:35:41.437662 open("/etc/protocols", O_RDONLY|0x80000 /* O_??? */) = 6
+13317 20:35:41.437679 fcntl64(6, F_GETFD) = 0x1 (flags FD_CLOEXEC)
+13317 20:35:41.437694 fstat64(6, {st_mode=S_IFREG|0644, st_size=2510, ...}) = 0
+13317 20:35:41.437712 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7db1000
+13317 20:35:41.437722 read(6, "# Internet (IP) protocols\n#\n# Updated from http://www.iana.org/assignments/protocol-numbers and other\n# sources.\n# New protocols will be added on request if they have been officially\n# assigned by IANA and are not historical.\n# If you need a huge list of used numbers please install the nmap package.\n\nip\t0\tIP\t\t# internet protocol, pseudo protocol number\n#hopopt\t0\tHOPOPT\t\t# IPv6 Hop-by-Hop Option [RFC1883]\nicmp\t1\tICMP\t\t# internet control message protocol\nigmp\t2\tIGMP\t\t# Internet Group Management\nggp\t3\tGGP\t\t# gateway-gateway protocol\nipencap\t4\tIP-ENCAP\t# IP encapsulated in IP (officially ``IP\'\')\nst\t5\tST\t\t# ST datagram mode\ntcp\t6\tTCP\t\t# transmission control protocol\negp\t8\tEGP\t\t# exterior gateway protocol\nigp\t9\tIGP\t\t# any private interior gateway (Cisco)\npup\t12\tPUP\t\t# PARC universal packet protocol\nudp\t17\tUDP\t\t# user datagram protocol\nhmp\t20\tHMP\t\t# host monitoring protocol\nxns-idp\t22\tXNS-IDP\t\t# Xerox NS IDP\nrdp\t27\tRDP\t\t# \"reliable datagram\" protocol\niso-tp4\t29\tISO-TP4\t\t# ISO Transport Protocol class 4 [RFC905]\nxtp\t36\tXTP\t\t# Xpress Transfer Protocol\nddp\t37\tDDP\t\t# Datagram Delivery Protocol\nidpr-cmtp 38\tIDPR-CMTP\t# IDPR Control Message Transport\nipv6\t41\tIPv6\t\t# Internet Protocol, version 6\nipv6-route 43\tIPv6-Route\t# Routing Header for IPv6\nipv6-frag 44\tIPv6-Frag\t# Fragment Header for IPv6\nidrp\t45\tIDRP\t\t# Inter-Domain Routing Protocol\nrsvp\t46\tRSVP\t\t# Reservation Protocol\ngre\t47\tGRE\t\t# General Routing Encapsulation\nesp\t50\tIPSEC-ESP\t# Encap Security Payload [RFC2406]\nah\t51\tIPSEC-AH\t# Authentication Header [RFC2402]\nskip\t57\tSKIP\t\t# SKIP\nipv6-icmp 58\tIPv6-ICMP\t# ICMP for IPv6\nipv6-nonxt 59\tIPv6-NoNxt\t# No Next Header for IPv6\nipv6-opts 60\tIPv6-Opts\t# Destination Options for IPv6\nrspf\t73\tRSPF CPHB\t# Radio Shortest Path First (officially CPHB)\nvmtp\t81\tVMTP\t\t# Versatile Message Transport\neigrp\t88\tEIGRP\t\t# Enhanced Interior Routing Protocol (Cisco)\nospf\t89\tOSPFIGP\t\t# Open Shortest Path First IGP\nax.25\t93\tAX.25\t\t# AX.25 frames\nipip\t94\tIPIP\t\t# IP-within-IP Encapsulation Protocol\netherip\t97\tETHERIP\t\t# Ethernet-within-IP Encapsulation [RFC3378]\nencap\t98\tENCAP\t\t# Yet Another IP encapsulation [RFC1241]\n#\t99\t\t\t# any private encryption scheme\npim\t103\tPIM\t\t# Protocol Independent Multicast\nipcomp\t108\tIPCOMP\t\t# IP Payload Compression Protocol\nvrrp\t112\tVRRP\t\t# Virtual Router Redundancy Protocol\nl2tp\t115\tL2TP\t\t# Layer Two Tunneling Protocol [RFC2661]\nisis\t124\tISIS\t\t# IS-IS over IPv4\nsctp\t132\tSCTP\t\t# Stream Control Transmission Protocol\nfc\t133\tFC\t\t# Fibre Channel\nudplite\t136\tUDPLite\t\t# UDP-Lite\n\n", 4096) = 2510
+13317 20:35:41.437909 close(6)          = 0
+13317 20:35:41.437920 munmap(0xb7db1000, 4096) = 0
+13317 20:35:41.437938 open("/etc/protocols", O_RDONLY|0x80000 /* O_??? */) = 6
+13317 20:35:41.437951 fstat64(6, {st_mode=S_IFREG|0644, st_size=2510, ...}) = 0
+13317 20:35:41.437967 mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7db1000
+13317 20:35:41.437978 read(6, "# Internet (IP) protocols\n#\n# Updated from http://www.iana.org/assignments/protocol-numbers and other\n# sources.\n# New protocols will be added on request if they have been officially\n# assigned by IANA and are not historical.\n# If you need a huge list of used numbers please install the nmap package.\n\nip\t0\tIP\t\t# internet protocol, pseudo protocol number\n#hopopt\t0\tHOPOPT\t\t# IPv6 Hop-by-Hop Option [RFC1883]\nicmp\t1\tICMP\t\t# internet control message protocol\nigmp\t2\tIGMP\t\t# Internet Group Management\nggp\t3\tGGP\t\t# gateway-gateway protocol\nipencap\t4\tIP-ENCAP\t# IP encapsulated in IP (officially ``IP\'\')\nst\t5\tST\t\t# ST datagram mode\ntcp\t6\tTCP\t\t# transmission control protocol\negp\t8\tEGP\t\t# exterior gateway protocol\nigp\t9\tIGP\t\t# any private interior gateway (Cisco)\npup\t12\tPUP\t\t# PARC universal packet protocol\nudp\t17\tUDP\t\t# user datagram protocol\nhmp\t20\tHMP\t\t# host monitoring protocol\nxns-idp\t22\tXNS-IDP\t\t# Xerox NS IDP\nrdp\t27\tRDP\t\t# \"reliable datagram\" protocol\niso-tp4\t29\tISO-TP4\t\t# ISO Transport Protocol class 4 [RFC905]\nxtp\t36\tXTP\t\t# Xpress Transfer Protocol\nddp\t37\tDDP\t\t# Datagram Delivery Protocol\nidpr-cmtp 38\tIDPR-CMTP\t# IDPR Control Message Transport\nipv6\t41\tIPv6\t\t# Internet Protocol, version 6\nipv6-route 43\tIPv6-Route\t# Routing Header for IPv6\nipv6-frag 44\tIPv6-Frag\t# Fragment Header for IPv6\nidrp\t45\tIDRP\t\t# Inter-Domain Routing Protocol\nrsvp\t46\tRSVP\t\t# Reservation Protocol\ngre\t47\tGRE\t\t# General Routing Encapsulation\nesp\t50\tIPSEC-ESP\t# Encap Security Payload [RFC2406]\nah\t51\tIPSEC-AH\t# Authentication Header [RFC2402]\nskip\t57\tSKIP\t\t# SKIP\nipv6-icmp 58\tIPv6-ICMP\t# ICMP for IPv6\nipv6-nonxt 59\tIPv6-NoNxt\t# No Next Header for IPv6\nipv6-opts 60\tIPv6-Opts\t# Destination Options for IPv6\nrspf\t73\tRSPF CPHB\t# Radio Shortest Path First (officially CPHB)\nvmtp\t81\tVMTP\t\t# Versatile Message Transport\neigrp\t88\tEIGRP\t\t# Enhanced Interior Routing Protocol (Cisco)\nospf\t89\tOSPFIGP\t\t# Open Shortest Path First IGP\nax.25\t93\tAX.25\t\t# AX.25 frames\nipip\t94\tIPIP\t\t# IP-within-IP Encapsulation Protocol\netherip\t97\tETHERIP\t\t# Ethernet-within-IP Encapsulation [RFC3378]\nencap\t98\tENCAP\t\t# Yet Another IP encapsulation [RFC1241]\n#\t99\t\t\t# any private encryption scheme\npim\t103\tPIM\t\t# Protocol Independent Multicast\nipcomp\t108\tIPCOMP\t\t# IP Payload Compression Protocol\nvrrp\t112\tVRRP\t\t# Virtual Router Redundancy Protocol\nl2tp\t115\tL2TP\t\t# Layer Two Tunneling Protocol [RFC2661]\nisis\t124\tISIS\t\t# IS-IS over IPv4\nsctp\t132\tSCTP\t\t# Stream Control Transmission Protocol\nfc\t133\tFC\t\t# Fibre Channel\nudplite\t136\tUDPLite\t\t# UDP-Lite\n\n", 4096) = 2510
+13317 20:35:41.438200 close(6)          = 0
+13317 20:35:41.438211 munmap(0xb7db1000, 4096) = 0
+13317 20:35:41.438238 socket(PF_INET, SOCK_STREAM, IPPROTO_TCP) = 6
+13317 20:35:41.438260 ioctl(6, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe80028) = -1 EINVAL (Invalid argument)
+13317 20:35:41.438274 _llseek(6, 0, 0xbfe80070, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+13317 20:35:41.438286 ioctl(6, SNDCTL_TMR_TIMEBASE or TCGETS, 0xbfe80028) = -1 EINVAL (Invalid argument)
+13317 20:35:41.438296 _llseek(6, 0, 0xbfe80070, SEEK_CUR) = -1 ESPIPE (Illegal seek)
+13317 20:35:41.438306 fcntl64(6, F_SETFD, FD_CLOEXEC) = 0
+13317 20:35:41.438359 setsockopt(6, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+13317 20:35:41.438395 bind(6, {sa_family=AF_INET, sin_port=htons(4444), sin_addr=inet_addr("0.0.0.0")}, 16) = 0
+13317 20:35:41.438437 listen(6, 5)      = 0
+13317 20:35:41.438493 accept(6,  <unfinished ...>
+13316 20:35:41.438785 exit_group(0)     = ?
+13314 20:35:41.438873 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 13316
+13314 20:35:41.455321 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+13314 20:35:41.455339 --- SIGCHLD (Child exited) @ 0 (0) ---
+13314 20:35:41.455364 waitpid(-1, 0xbf96f4e8, WNOHANG) = -1 ECHILD (No child processes)
+13314 20:35:41.455374 sigreturn()       = ? (mask now [])
+13314 20:35:41.455391 rt_sigaction(SIGINT, {SIG_DFL}, {0x807f150, [], 0}, 8) = 0
+13314 20:35:41.455436 exit_group(0)     = ?
+4519  20:35:41.464710 <... waitpid resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0) = 13314
+4519  20:35:41.464710 rt_sigaction(SIGINT, {0x8062280, [HUP INT], 0}, NULL, 8) = 0
+4519  20:35:41.464710 rt_sigaction(SIGQUIT, {SIG_IGN}, NULL, 8) = 0
+4519  20:35:41.464710 rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+4519  20:35:41.464711 --- SIGCHLD (Child exited) @ 0 (0) ---
+4519  20:35:41.464711 send(5, ":irc.Metasploitable.LAN 451 AB;perl :You have not registered\r\n", 62, 0) = 62
+4519  20:35:41.464754 gettimeofday({1495672541, 464759}, NULL) = 0
+4519  20:35:41.464768 select(1024, [2 3 4 5 7 9], [], NULL, {1, 0}) = 1 (in [4], left {1, 0})
+4519  20:35:41.495472 clock_gettime(CLOCK_MONOTONIC, {49351, 312489969}) = 0
+4519  20:35:41.495493 recv(4, "PRIVMSG  #testit0 BLABLALBLALBLALBLALBLALBLALBLALABLLALBLA\nPRIVMSG  #testit0 ABCDEFGHIJKLMNOPQRSTUVWXYZ\nPRIVMSG  #testit0 ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ\nTIME\n", 8192, 0) = 180
+4519  20:35:41.495531 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495549 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495564 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495578 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495599 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495613 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495627 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495641 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495655 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495668 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495682 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495696 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495710 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495723 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495737 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495750 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495764 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495778 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495792 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495807 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495821 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495835 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495854 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495869 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495883 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495922 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495968 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495982 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.495995 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496008 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496022 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496035 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496048 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496061 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496074 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496088 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496101 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496114 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496127 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496141 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496154 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496167 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496181 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496194 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496210 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496228 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496241 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496255 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496268 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496282 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496295 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496308 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496321 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496335 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496348 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
+4519  20:35:41.496361 getrusage(RUSAGE_SELF, {ru_utime={0, 160000}, ru_stime={3, 180000}, ...}) = 0
